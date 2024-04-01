@@ -2,12 +2,11 @@ import { usePage } from '@inertiajs/react';
 
 export default function Index() {
   // Obtener los datos de la página actual
-  const { usuario, usuarios } = usePage().props;
+  const { usuarios } = usePage().props;
 
   return (
       <div>
           <h2>Hola mundo!</h2>
-          <h3> Sesión: { usuario }</h3>
           <ul>
               {usuarios.map(usuario => (
                   <li key={usuario.IdUsuario}>

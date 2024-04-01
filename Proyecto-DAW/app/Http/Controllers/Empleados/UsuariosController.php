@@ -1,65 +1,47 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Empleados;
 
+use App\Http\Controllers\Controller;
 use App\Models\Usuarios;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
+use Inertia\Inertia;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index() {
+        // Recoger todos los registros de la tabla usuarios refiriendonos al modelo Usuarios
+        $usuarios = Usuarios::all();
+
+        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
+        return Inertia::render('Empleados/Index', ['usuarios' => $usuarios]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    // Para almacenar usuarios en la bbdd, coge los datos con el objeto Request del formulario
+    public function store(Request $request) {
+        // Validar los datos
+        $request->validate([
+            'Nombre' => 'required|max:20',
+            'Apellido' => 'required|max:20',
+            'Correo' => 'required|max:50',
+            'Contrasena' => 'required|max:15',
+            'Rol' => 'required|max:10'
+        ]);
+        // Crear un objeto para guardar los datos
+        $usuario = new Usuarios($request->input());
+        $usuario->save();
+        return redirect('empleados');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function update(Request $request, $id) {
+        $usuario = Usuarios::find($id);
+        $usuario->fill($request->input())->saveOrFail();
+        return redirect('empleados');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Usuarios $usuarios)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Usuarios $usuarios)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Usuarios $usuarios)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Usuarios $usuarios)
-    {
-        //
+    public function destroy($id) {
+        $usuario = Usuarios::find($id);
+        $usuario->delete();
+        return redirect('empleados');
     }
 }
