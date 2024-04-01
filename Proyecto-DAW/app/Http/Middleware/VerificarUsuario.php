@@ -17,7 +17,7 @@ class VerificarUsuario
 
         // Excluir la ruta de inicio de sesión de la verificación de autenticación
         $route = $request->route();
-        //dd('usuario');
+        
         if ($route && $route->getName() !== 'login') {
             if (!$request->session()->has('usuario_autenticado')) {
                 return redirect()->route('login');
