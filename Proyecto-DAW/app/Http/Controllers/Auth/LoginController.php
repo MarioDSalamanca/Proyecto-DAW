@@ -14,15 +14,17 @@ class LoginController extends Controller
         return Inertia::render('Auth/Login');
     }
     public function auth(Request $request) {
+        
         // Buscar al usuario por su dirección de correo electrónico
         $usuario = Usuarios::where('Correo', $request->correo)->first();
         //dd($request->contrasena, $usuario->Contrasena);
         if ($usuario) { 
+            
             // Verificar si se encontró un usuario y si la contraseña proporcionada es correcta
             if (Hash::check($request->contrasena, $usuario->Contrasena)) {
 
                 // Iniciar la sesión en el servidor
-                //$request->session()->put('usuario_autenticado', true);
+                $request->session()->put('usuario_autenticado', $usuario);
                 // Redirigir al home
                 return redirect()->route('empleados.index');
             } else {

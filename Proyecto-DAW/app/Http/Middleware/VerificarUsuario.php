@@ -13,12 +13,16 @@ class VerificarUsuario
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        /*if (!$request->session()->has('usuario_autenticado')) {
-            // Si el usuario no está autenticado, redirige al formulario de inicio de sesión
-            return redirect()->route('login.showLogin');
-        }*/
+    public function handle(Request $request, Closure $next): Response {
+
+        // Excluir la ruta de inicio de sesión de la verificación de autenticación
+        $route = $request->route();
+        //dd('usuario');
+        if ($route && $route->getName() !== 'login') {
+            if (!$request->session()->has('usuario_autenticado')) {
+                return redirect()->route('login');
+            }
+        }
     
         // Si el usuario está autenticado, permite que la solicitud continúe
         return $next($request);
