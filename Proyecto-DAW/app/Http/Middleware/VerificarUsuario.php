@@ -17,14 +17,14 @@ class VerificarUsuario
 
         // Excluir la ruta de inicio de sesión de la verificación de autenticación
         $route = $request->route();
-        
         if ($route && $route->getName() !== 'login') {
+            // Comprobar que existe la variable de sesión
             if (!$request->session()->has('usuario_autenticado')) {
                 return redirect()->route('login');
             }
         }
-    
-        // Si el usuario está autenticado, permite que la solicitud continúe
+        
+        // $next($request) para continuar el flujo
         return $next($request);
     }
 }

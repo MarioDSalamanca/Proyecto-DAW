@@ -44,7 +44,7 @@ export default function Login() {
             </div>
             <div>
                 {errores && (
-                    <div>
+                    <div style={{ color: 'red' }}>
                         <p>{errores.correo}</p>
                         <p>{errores.contrasena}</p>
                     </div>
