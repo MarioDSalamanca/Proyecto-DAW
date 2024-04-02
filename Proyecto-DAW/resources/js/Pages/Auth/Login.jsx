@@ -4,8 +4,10 @@ import { usePage } from '@inertiajs/react';
 
 
 export default function Login() {
+    // Hook para recoger los errores del servidor
     const { errores } = usePage().props;
 
+    // Declarar las credenciales como estados
     const [credenciales, setCredenciales] = useState({
         correo: '',
         contrasena: '',

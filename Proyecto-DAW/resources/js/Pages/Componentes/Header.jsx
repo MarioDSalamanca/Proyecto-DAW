@@ -1,23 +1,32 @@
-export default function Header({ mostrar }) {
+import { router } from "@inertiajs/react";
+import logo from '../../Img/logo.png'
+
+export default function Header({ sesionUsuario }) {
     
+    // Función para cerrar sesión
     const logout = () => {
         router.post('/logout');
     };
-
-    // Verificar si se debe mostrar el encabezado
-    if (!mostrar) {
-        return null; // No mostrar nada si mostrar es false
-    }
     
     return (
-        <header>
-            <nav>
-                <div><a href="">Productos</a></div>
-                <div><a href="">Empleados</a></div>
+        <>
+            <header>
+                <div>
+                    <img src={logo} alt="" />
+                </div>
                 <div>
                     <button onClick={ logout }>Logout</button>
                 </div>
-            </nav>
-        </header>
+            </header>
+            <div className="divNav">
+                <nav>
+                    <div>Productos</div>
+                    <div>Ventas</div>
+                    <div>Compras</div>
+                    <div>Proveedores</div>
+                    <div>Empleados</div>
+                </nav>
+            </div>
+        </>
     )
 }

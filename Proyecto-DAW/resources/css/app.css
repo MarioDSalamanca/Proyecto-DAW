@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell;
+}
+
+/************* HEADER *************/
+
+header {
+    display: flex;
+}
+header img {
+    width: 50%;
+}
+header button {
+    padding: 1%;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: .2s;
+}
+header button:hover {
+    background-color: darkblue;
+    font-size: 110%;
+}

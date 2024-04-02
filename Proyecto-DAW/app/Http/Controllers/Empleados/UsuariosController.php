@@ -17,7 +17,7 @@ class UsuariosController extends Controller
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
         // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
-        return Inertia::render('Empleados/Index', compact('usuarios', 'sesionUsuario'));
+        return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
     }
 
     public function logout() {
