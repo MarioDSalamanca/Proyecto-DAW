@@ -5,9 +5,9 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     console.log('Variable de sesión:', sesionUsuario);
 
     return (
-      <div>
-            <Header />
-            <div>
+        <>
+            <Header sesion={ sesionUsuario }/>
+            <main>
                 <ul>
                     { usuarios.map(usuario => (
                         <li key={usuario.IdUsuario}>
@@ -18,7 +18,7 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                         </li>
                     ))}
                 </ul>
-            </div>
-      </div>
+            </main>
+        </>
     ); 
 }

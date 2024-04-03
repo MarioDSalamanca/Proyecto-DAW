@@ -37,20 +37,16 @@ export default function Login() {
                     <div>
                         <label>Correo</label><br />
                         <input type="email" name="correo" value={credenciales.correo} onChange={handleChange} required/>
+                        {errores && errores.correo && (<p>{errores.correo}</p>)}
                     </div>
                     <div>
                         <label>Contraseña</label><br />
                         <input type="password" name="contrasena" value={credenciales.contrasena} onChange={handleChange} required/>
+                        {errores && errores.contrasena && (<p>{errores.contrasena}</p>)}
                     </div>
                     <button type="submit">Iniciar Sesión</button>
                 </form>
                 <div>
-                    {errores && (
-                        <div style={{ color: 'red' }}>
-                            <p>{errores.correo}</p>
-                            <p>{errores.contrasena}</p>
-                        </div>
-                    )}
                 </div>
             </div>
         </>

@@ -3,6 +3,12 @@
     padding: 0;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell;
 }
+::-webkit-scrollbar {
+    display: none;
+}
+body {
+    height: 100vh;
+}
 
 /************* LOGIN *************/
 
@@ -18,7 +24,7 @@
 }
 .login img {
     border-radius: 50%;
-    width: 60%;
+    width: 50%;
     margin: auto;
     margin-bottom: 8%;
     border: 1px solid blue;
@@ -37,12 +43,12 @@
     font-size: 70%;
 }
 .login input {
-    font-size: 80%;
+    font-size: 75%;
     padding: 2%;
     width: 95%;
     border: 0;
     border-bottom: 1px solid blue;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     background-color: white;
 }
 .login input:focus {
@@ -55,27 +61,84 @@
     padding: 1%;
     border: 1px solid black;
     font-size: 80%;
+    font-weight: 800;
     background-color: blue;
     color: white;
-    border-radius: 2%;
+    border-radius: 3%;
+    cursor: pointer;
+}
+.login p {
+    margin-top: 1%;
+    font-size: 60%;
+    color: red;
 }
 
 /************* HEADER *************/
 
 header {
     display: flex;
+    flex-wrap: wrap;
+    background-color: darkblue;
+    justify-content: center;
+    align-items: center;
 }
-header img {
-    width: 50%;
+.divLogo {
+    flex: 5;
+}
+.divLogo img {
+    width: 10%;
+    margin-left: 3%;
+    border-radius: 50%;
+}
+.divSesion {
+    flex: 1;
+    text-align: right;
+    color: white;
+    font-size: 90%;
+    font-weight: 500;
+}
+.divLogout {
+    flex: 1;
+    text-align: center;
 }
 header button {
-    padding: 1%;
+    padding: 3% 8%;
     background-color: transparent;
-    border: 0;
+    font-size: 80%;
+    font-weight: 800;
+    border: 1px solid white;
+    border-radius: 5%;
     cursor: pointer;
-    transition: .2s;
+    flex: 1;
+    color: white;
+    transition: .5s;
 }
 header button:hover {
+    background-color: white;
+    color: black;
+}
+.divNav {
+    position: relative;
+    float: left;
+    padding-top: 7vh;
     background-color: darkblue;
-    font-size: 110%;
+    width: 12%;
+    height: 73vh;
+}
+.divNav nav {
+}
+.divNav nav div {
+    margin: auto;
+    margin: 0% 5%;
+    margin-bottom: 15%;
+    padding: 5%;
+    padding-left: 12%;
+    color: white;
+    transition: .3s;
+    font-weight: 800;
+    border-radius: 3%;
+    cursor: pointer;
+}
+.divNav nav div:hover {
+    background-color: rgb(0, 0, 101);
 }

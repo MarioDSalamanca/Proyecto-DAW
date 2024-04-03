@@ -1,7 +1,7 @@
 import { router } from "@inertiajs/react";
-import logo from '../../Img/logo.png'
+import logo from '../../Img/logo.png';
 
-export default function Header({ sesionUsuario }) {
+export default function Header({ sesion }) {
     
     // Función para cerrar sesión
     const logout = () => {
@@ -11,11 +11,14 @@ export default function Header({ sesionUsuario }) {
     return (
         <>
             <header>
-                <div>
-                    <img src={logo} alt="" />
+                <div className="divLogo">
+                    <img src={ logo } alt="" />
                 </div>
-                <div>
-                    <button onClick={ logout }>Logout</button>
+                <div className="divSesion">
+                    { sesion }
+                </div>
+                <div className="divLogout">
+                    <button onClick={ logout }>Desconectar</button>
                 </div>
             </header>
             <div className="divNav">
