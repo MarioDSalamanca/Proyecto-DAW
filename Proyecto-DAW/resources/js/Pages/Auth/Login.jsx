@@ -30,7 +30,7 @@ export default function Login() {
 
     return (
         <>
-            <div>
+            <div className='login'>
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -43,15 +43,15 @@ export default function Login() {
                     </div>
                     <button type="submit">Iniciar Sesión</button>
                 </form>
+                <div>
+                    {errores && (
+                        <div style={{ color: 'red' }}>
+                            <p>{errores.correo}</p>
+                            <p>{errores.contrasena}</p>
+                        </div>
+                    )}
+                </div>
             </div>
-            <div>
-                {errores && (
-                    <div style={{ color: 'red' }}>
-                        <p>{errores.correo}</p>
-                        <p>{errores.contrasena}</p>
-                    </div>
-                )}
-        </div>
         </>
     );
 }
