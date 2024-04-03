@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { router } from '@inertiajs/react'
-import { usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react'
+import img from '../../Img/login.png'
 
 
 export default function Login() {
@@ -31,14 +32,14 @@ export default function Login() {
     return (
         <>
             <div className='login'>
-                <h2>Login</h2>
+                <img src={img} alt="" />
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Correo</label>
+                        <label>Correo</label><br />
                         <input type="email" name="correo" value={credenciales.correo} onChange={handleChange} required/>
                     </div>
                     <div>
-                        <label>Contraseña</label>
+                        <label>Contraseña</label><br />
                         <input type="password" name="contrasena" value={credenciales.contrasena} onChange={handleChange} required/>
                     </div>
                     <button type="submit">Iniciar Sesión</button>
