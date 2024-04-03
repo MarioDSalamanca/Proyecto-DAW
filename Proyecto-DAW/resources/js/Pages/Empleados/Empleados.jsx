@@ -5,20 +5,36 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     console.log('Variable de sesión:', sesionUsuario);
 
     return (
-        <>
+        <body>
             <Header sesion={ sesionUsuario }/>
             <main>
-                <ul>
+                { usuarios &&  
+                <table className="tablaEmpleados">
+                    <caption>Empleados</caption>
+                    <tr>
+                        <button className="añadirEmpleado">Añadir usuario</button>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                     { usuarios.map(usuario => (
-                        <li key={usuario.IdUsuario}>
-                            <p>Nombre: {usuario.Nombre}</p>
-                            <p>Apellido: {usuario.Apellido}</p>
-                            <p>Correo: {usuario.Correo}</p>
-                            <p>Rol: {usuario.Rol}</p>
-                        </li>
+                        <tr key={usuario.IdUsuario}>
+                            <td>{usuario.Nombre}</td>
+                            <td>{usuario.Apellido}</td>
+                            <td>{usuario.Correo}</td>
+                            <td>{usuario.Rol}</td>
+                            <td className="botonesEmpleados editar"><button>Editar</button></td>
+                            <td className="botonesEmpleados eliminar"><button>Eliminar</button></td>
+                        </tr>
                     ))}
-                </ul>
+                </table>
+                }
             </main>
-        </>
+        </body>
     ); 
 }

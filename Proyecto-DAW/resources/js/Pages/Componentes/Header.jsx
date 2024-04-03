@@ -21,15 +21,13 @@ export default function Header({ sesion }) {
                     <button onClick={ logout }>Desconectar</button>
                 </div>
             </header>
-            <div className="divNav">
-                <nav>
-                    <div>Productos</div>
-                    <div>Ventas</div>
-                    <div>Compras</div>
-                    <div>Proveedores</div>
-                    <div>Empleados</div>
-                </nav>
-            </div>
+            <nav>
+                <div>Productos</div>
+                <div>Ventas</div>
+                <div>Compras</div>
+                <div>Proveedores</div>
+                <div>Empleados</div>
+            </nav>
         </>
     )
 }
