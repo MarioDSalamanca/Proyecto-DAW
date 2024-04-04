@@ -4,19 +4,17 @@ import Header from "../Componentes/Header";
 export default function Empleados({ usuarios, sesionUsuario }) {
 
     // Estados para los popups
-    const [popupAñadirVisible, setPopupAñadirVisible] = useState(false);
-    const [popupEditarVisible, setPopupEditarVisible] = useState(false);
-    const [popupEliminarVisible, setPopupEliminarVisible] = useState(false);
+    const [popupAñadir, setPopupAñadir] = useState(false);
+    const [popupEditar, setPopupEditar] = useState(false);
+    const [popupEliminar, setPopupEliminar] = useState(false);
 
     // Funciones para mostrar u ocultar los popups
-    const mostrarPopupAñadir = () => setPopupAñadirVisible(true);
-    const mostrarPopupEditar = () => setPopupEditarVisible(true);
-    const mostrarPopupEliminar = () => setPopupEliminarVisible(true);
+    const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
+    const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
+    const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
 
     const ocultarPopups = () => {
-        setPopupAñadirVisible(false);
-        setPopupEditarVisible(false);
-        setPopupEliminarVisible(false);
+        setPopupAñadir(false);
     };
 
     const añadir = () => {
@@ -65,27 +63,27 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                     </tbody>
                 </table>
                 }
-                { popupAñadirVisible && (
+                { popupAñadir && (
                     <div className="popup añadir">
                         <form>
+                            <button onClick={ ocultarPopups }>X</button>
                             <h2>Añadir un usuario</h2>
-                            {/* Contenido del formulario para añadir usuario */}
                         </form>
                     </div>
                 )}
-                { popupEditarVisible && (
+                { popupEditar && (
                     <div className="popup editar">
                         <form>
+                            <button onClick={ ocultarPopups }>X</button>
                             <h2>Editar un usuario</h2>
-                            {/* Contenido del formulario para editar usuario */}
                         </form>
                     </div>
                 )}
-                { popupEliminarVisible && (
+                { popupEliminar && (
                     <div className="popup eliminar">
                         <form>
+                            <button onClick={ ocultarPopups }>X</button>
                             <h2>Eliminar un usuario</h2>
-                            {/* Contenido del formulario para eliminar usuario */}
                         </form>
                     </div>
                 )}
