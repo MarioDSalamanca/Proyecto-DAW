@@ -13,10 +13,6 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
     const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
 
-    const ocultarPopups = () => {
-        setPopupAñadir(false);
-    };
-
     const añadir = () => {
         mostrarPopupAñadir();
     };
@@ -33,6 +29,70 @@ export default function Empleados({ usuarios, sesionUsuario }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
+                { popupAñadir && (
+                    <div className="popup añadir">
+                        <form>
+                            <div className='cerrar'>
+                                <button onClick={ añadir }>x</button>
+                            </div>
+                            <h2>Añadir un usuario</h2>
+                            <form>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <label>Nombre</label><br />
+                                                <input type="text" name='nombre' />
+                                            </td>
+                                            <td>
+                                                <label>Apellido</label><br />
+                                                <input type="text" name='apellido' />
+                                            </td>
+                                            <td>
+                                                <label>Correo</label><br />
+                                                <input type="email" name='correo' />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Contraseña</label><br />
+                                                <input type="text" name='contrasena' />
+                                            </td>
+                                            <td>
+                                                <label>Rol</label><br />
+                                                <select name='rol'>
+                                                    <option value=" " selected></option>
+                                                    <option value="auxiliar">auxiliar</option>
+                                                    <option value="adjunto">adjunto</option>
+                                                    <option value="titular">titular</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button className='guardar'>Guardar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </form>
+                    </div>
+                )}
+                { popupEditar && (
+                    <div className="popup editar">
+                        <form>
+                            <button onClick={ editar }>x</button>
+                            <h2>Editar un usuario</h2>
+                        </form>
+                    </div>
+                )}
+                { popupEliminar && (
+                    <div className="popup eliminar">
+                        <form>
+                            <button onClick={ eliminar }>x</button>
+                            <h2>Eliminar un usuario</h2>
+                        </form>
+                    </div>
+                )}
                 { usuarios &&  
                 <table className="tablaEmpleados">
                     <caption>Empleados</caption>
@@ -63,30 +123,6 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                     </tbody>
                 </table>
                 }
-                { popupAñadir && (
-                    <div className="popup añadir">
-                        <form>
-                            <button onClick={ ocultarPopups }>X</button>
-                            <h2>Añadir un usuario</h2>
-                        </form>
-                    </div>
-                )}
-                { popupEditar && (
-                    <div className="popup editar">
-                        <form>
-                            <button onClick={ ocultarPopups }>X</button>
-                            <h2>Editar un usuario</h2>
-                        </form>
-                    </div>
-                )}
-                { popupEliminar && (
-                    <div className="popup eliminar">
-                        <form>
-                            <button onClick={ ocultarPopups }>X</button>
-                            <h2>Eliminar un usuario</h2>
-                        </form>
-                    </div>
-                )}
             </main>
         </>
     ); 
