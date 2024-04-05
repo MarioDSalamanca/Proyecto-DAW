@@ -14,7 +14,6 @@ body {
 main {
     height: 78vh;
     overflow-y: auto;
-    border: 1px solid black;
 }
 
 /************* LOGIN *************/

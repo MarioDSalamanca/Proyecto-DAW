@@ -21,11 +21,6 @@ class UsuariosController extends Controller
         return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
     }
 
-    public function logout() {
-        session()->forget('usuario_autenticado');
-        return redirect()->route('login');
-    }
-
     // Para almacenar usuarios en la bbdd, coge los datos con el objeto Request del formulario
     public function save(Request $request) {
         
@@ -39,6 +34,19 @@ class UsuariosController extends Controller
 
         $usuario->save();
         return redirect()->route('empleados.index');
+    }
+
+    public function delete(Request $request) {
+
+        $usuario = Usuarios::where('correo', $request->input('correo'));
+        $usuario->delete();
+
+        return Inertia::render('Empleados/Empleados', ['mensaje' => ['Se ha eliminado el usuario '. $request->input('correo') .'']]);
+    }
+
+    public function logout() {
+        session()->forget('usuario_autenticado');
+        return redirect()->route('login');
     }
 
     /*public function update(Request $request, $id) {
