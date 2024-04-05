@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import Header from "../Componentes/Header";
-import { router, usePage } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 
 export default function Empleados({ usuarios, sesionUsuario }) {
-
-    const { mensaje } = usePage().props
 
     // Estados para los popups
     const [popupAñadir, setPopupAñadir] = useState(false);
@@ -60,20 +58,14 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     };
     
     function confirmarEliminar() {
-        mostrarPopupEliminar();
-        console.log('eliminar: ' + correo);
-        router.post('/empleados/eliminar', { correo: correo });
+        mostrarPopupEliminar(); 
+        router.post('/empleados/eliminar', { correo: correo })
     }
     
     return (
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                { mensaje && (
-                    <div>
-                        <h1>{ mensaje }</h1>
-                    </div>
-                )}
                 { popupAñadir && (
                     <div className="popup añadir">
                         <div className='cerrar'>
