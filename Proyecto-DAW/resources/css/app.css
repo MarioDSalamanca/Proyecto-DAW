@@ -246,16 +246,16 @@ nav div:hover {
 .popup h2 {
     margin-bottom: 3%;
 }
-.popup.añadir table {
+.popup.añadir-editar table {
     width: 100%;
 }
-.popup.añadir td {
+.popup.añadir-editar td {
     padding: 1%;
 }
-.popup.añadir label {
+.popup.añadir-editar label {
     font-size: 90%;
 }
-.popup.añadir input, select {
+.popup.añadir-editar input, select {
     font-size: 100%;
     padding: 2%;
     width: 29vh;
