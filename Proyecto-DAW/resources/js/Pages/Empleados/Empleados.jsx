@@ -15,14 +15,8 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     // Estado para guardar el correo del usuario para eliminarlo
     const [correoEliminar, setCorreoEliminar] = useState('');
     // Estado para guardar la información del usuario para editarlo
-    const [formEditar, setFormEditar] = useState(null);
-
-    // Funciones para mostrar u ocultar los popups
-    const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
-    const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
-    const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
-
-    // Formulario para añadir
+    const [formEditar, setFormEditar] = useState({});
+    // Estado del formulario para añadir
     const [formAñadir, setFormAñadir] = useState({
         nombre: '',
         apellido: '',
@@ -30,6 +24,11 @@ export default function Empleados({ usuarios, sesionUsuario }) {
         contrasena: '',
         rol: '',
     });
+
+    // Funciones para mostrar u ocultar los popups
+    const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
+    const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
+    const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
 
     // Actualizar valores de los inputs
     function handleChangeAñadir(e) {
@@ -69,13 +68,13 @@ export default function Empleados({ usuarios, sesionUsuario }) {
 
     function confirmarEliminar() {
         mostrarPopupEliminar(); 
-        router.post('/empleados/eliminar', { correo: correoEliminar })
+        router.post('/empleados/eliminar', { correo: correoEliminar });
     }
 
     // Para setear los datos del usuaio seleccionado y mostrar el Popup
     function editar(usuario) {
         mostrarPopupEditar();
-        setFormEditar(usuario)
+        setFormEditar(usuario);
     };
 
     // Para setear el correo seleccionado y mostrar el Popup
@@ -109,13 +108,13 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                                 <th></th>
                             </tr>
                             { usuarios.map(usuario => (
-                                <tr key={usuario.IdUsuario}>
-                                    <td>{usuario.Nombre}</td>
-                                    <td>{usuario.Apellido}</td>
-                                    <td>{usuario.Correo}</td>
-                                    <td>{usuario.Rol}</td>
+                                <tr key={usuario.correo}>
+                                    <td>{usuario.nombre}</td>
+                                    <td>{usuario.apellido}</td>
+                                    <td>{usuario.correo}</td>
+                                    <td>{usuario.rol}</td>
                                     <td className="botonesEmpleados editar"><button onClick={() => editar(usuario) }>Editar</button></td>
-                                    <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(usuario.Correo) }>Eliminar</button></td>
+                                    <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(usuario.correo) }>Eliminar</button></td>
                                 </tr>
                             ))}
                         </tbody>

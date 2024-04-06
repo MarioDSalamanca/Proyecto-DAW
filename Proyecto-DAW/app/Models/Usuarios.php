@@ -9,5 +9,5 @@ class Usuarios extends Model
 {
     use HasFactory;
     // Añadir los campos accesibles por los usuarios ('IdUsuarios' no es modificable)
-    protected $fillable = ['Nombre', 'Apellido', 'Correo', 'Contrasena', 'Rol'];
+    protected $fillable = ['nombre', 'apellido', 'correo', 'contrasena', 'rol'];
 }

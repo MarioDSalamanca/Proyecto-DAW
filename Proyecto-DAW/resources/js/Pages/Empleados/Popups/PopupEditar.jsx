@@ -6,30 +6,30 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formE
             </div>
             <h2>Editar un usuario</h2>
             <form onSubmit={ confirmarEditar }>
-            <table>
+                <table>
                     <tbody>
                         <tr>
                             <td>
                                 <label>Nombre</label><br />
-                                <input type="text" name='nombre' value={ formEditar.Nombre } onChange={ handleChangeEditar } minLength={2} />
+                                <input type="text" name='nombre' value={ formEditar.nombre } onChange={ handleChangeEditar } minLength={2} />
                             </td>
                             <td>
                                 <label>Apellido</label><br />
-                                <input type="text" name='apellido' value={ formEditar.Apellido } onChange={ handleChangeEditar } minLength={2} />
+                                <input type="text" name='apellido' value={ formEditar.apellido } onChange={ handleChangeEditar } minLength={2} />
                             </td>
                             <td>
                                 <label>Correo</label><br />
-                                <input type="email" name='correo' value={ formEditar.Correo } onChange={ handleChangeEditar } minLength={5} />
+                                <input type="email" name='correo' value={ formEditar.correo } onChange={ handleChangeEditar } minLength={5} />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>Contraseña</label><br />
-                                <input type="text" name='contrasena' value={ formEditar.Contrasena } onChange={ handleChangeEditar } minLength={8} />
+                                <input type="text" name='contrasena' value={ formEditar.contrasena } onChange={ handleChangeEditar } minLength={8} />
                             </td>
                             <td>
                                 <label>Rol</label><br />
-                                <select name='rol' value={ formEditar.Rol } onChange={ handleChangeEditar } required >
+                                <select name='rol' value={ formEditar.rol } onChange={ handleChangeEditar } required >
                                     <option value=""></option>
                                     <option value="auxiliar">auxiliar</option>
                                     <option value="adjunto">adjunto</option>

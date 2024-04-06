@@ -11,27 +11,27 @@ class UsuariosSeeder extends Seeder
         if (Usuarios::count() === 0) {
             
             Usuarios::create([
-                'Nombre' => 'Mario',
-                'Apellido' => 'Dieguez',
-                'Correo' => 'mario@example.com',
-                'Contrasena' => bcrypt('Mario123'),
-                'Rol' => 'titular',
+                'nombre' => 'Mario',
+                'apellido' => 'Dieguez',
+                'correo' => 'mario@example.com',
+                'contrasena' => bcrypt('Mario123'),
+                'rol' => 'titular',
             ]);
 
             Usuarios::create([
-                'Nombre' => 'Sandra',
-                'Apellido' => 'Bujak',
-                'Correo' => 'sandra@example.com',
-                'Contrasena' => bcrypt('Sandra123'),
-                'Rol' => 'adjunto',
+                'nombre' => 'Sandra',
+                'apellido' => 'Bujak',
+                'correo' => 'sandra@example.com',
+                'contrasena' => bcrypt('Sandra123'),
+                'rol' => 'adjunto',
             ]);
     
             Usuarios::create([
-                'Nombre' => 'Iker',
-                'Apellido' => 'Casillas',
-                'Correo' => 'iker@example.com',
-                'Contrasena' => bcrypt('Iker123'),
-                'Rol' => 'auxiliar',
+                'nombre' => 'Iker',
+                'apellido' => 'Casillas',
+                'correo' => 'iker@example.com',
+                'contrasena' => bcrypt('Iker123'),
+                'rol' => 'auxiliar',
             ]);
         }
     }
