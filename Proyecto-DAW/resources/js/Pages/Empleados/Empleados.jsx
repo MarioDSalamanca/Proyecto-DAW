@@ -88,6 +88,8 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                                 <th>Apellido</th>
                                 <th>Correo</th>
                                 <th>Rol</th>
+                                <th>Creado</th>
+                                <th>Actualizado</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -97,6 +99,8 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                                     <td>{usuario.apellido}</td>
                                     <td>{usuario.correo}</td>
                                     <td>{usuario.rol}</td>
+                                    <td>{new Date(usuario.created_at).toLocaleString()}</td>
+                                    <td>{new Date(usuario.updated_at).toLocaleString()}</td>
                                     <td className="botonesEmpleados editar"><button onClick={() => editar(usuario) }>Editar</button></td>
                                     <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(usuario.correo) }>Eliminar</button></td>
                                 </tr>
