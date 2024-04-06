@@ -1,4 +1,4 @@
-export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, usuarioEditar, handleChange }) {
+export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formEditar, handleChangeEditar }) {
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
@@ -11,25 +11,25 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, usuar
                         <tr>
                             <td>
                                 <label>Nombre</label><br />
-                                <input type="text" name='nombre' value={ usuarioEditar.Nombre } onChange={ handleChange } minLength={2} />
+                                <input type="text" name='nombre' value={ formEditar.Nombre } onChange={ handleChangeEditar } minLength={2} />
                             </td>
                             <td>
                                 <label>Apellido</label><br />
-                                <input type="text" name='apellido' value={ usuarioEditar.Apellido } onChange={ handleChange } minLength={2} />
+                                <input type="text" name='apellido' value={ formEditar.Apellido } onChange={ handleChangeEditar } minLength={2} />
                             </td>
                             <td>
                                 <label>Correo</label><br />
-                                <input type="email" name='correo' value={ usuarioEditar.Correo } onChange={ handleChange } minLength={5} />
+                                <input type="email" name='correo' value={ formEditar.Correo } onChange={ handleChangeEditar } minLength={5} />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>Contraseña</label><br />
-                                <input type="text" name='contrasena' value={ usuarioEditar.Contrasena } onChange={ handleChange } minLength={8} />
+                                <input type="text" name='contrasena' value={ formEditar.Contrasena } onChange={ handleChangeEditar } minLength={8} />
                             </td>
                             <td>
                                 <label>Rol</label><br />
-                                <select name='rol' value={ usuarioEditar.Rol } onChange={ handleChange } required >
+                                <select name='rol' value={ formEditar.Rol } onChange={ handleChangeEditar } required >
                                     <option value=""></option>
                                     <option value="auxiliar">auxiliar</option>
                                     <option value="adjunto">adjunto</option>

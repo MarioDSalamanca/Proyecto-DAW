@@ -15,7 +15,7 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     // Estado para guardar el correo del usuario para eliminarlo
     const [correoEliminar, setCorreoEliminar] = useState('');
     // Estado para guardar la información del usuario para editarlo
-    const [usuarioEditar, setUsuarioEditar] = useState(null);
+    const [formEditar, setFormEditar] = useState(null);
 
     // Funciones para mostrar u ocultar los popups
     const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
@@ -32,13 +32,21 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     });
 
     // Actualizar valores de los inputs
-    function handleChange(e) {
+    function handleChangeAñadir(e) {
         const { name, value } = e.target;
         setFormAñadir(prev => ({
             ...prev,
             [name]: value.trim(),
         }));
     };
+
+    function handleChangeEditar(e) {
+        const { name, value } = e.target;
+        setFormEditar(prev => ({
+            ...prev,
+            [name]: value.trim(),
+        }));
+    }
 
     // Funciones para mandar solicitudes post
     function confirmarAñadir(e) {
@@ -56,7 +64,7 @@ export default function Empleados({ usuarios, sesionUsuario }) {
 
     function confirmarEditar(e) {
         e.preventDefault();
-        console.log('Enviando solicitud...');
+        console.log(formEditar);
     };
 
     function confirmarEliminar() {
@@ -67,7 +75,7 @@ export default function Empleados({ usuarios, sesionUsuario }) {
     // Para setear los datos del usuaio seleccionado y mostrar el Popup
     function editar(usuario) {
         mostrarPopupEditar();
-        setUsuarioEditar(usuario)
+        setFormEditar(usuario)
     };
 
     // Para setear el correo seleccionado y mostrar el Popup
@@ -80,8 +88,8 @@ export default function Empleados({ usuarios, sesionUsuario }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formAñadir={ formAñadir } handleChange={ handleChange } /> }
-                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } usuarioEditar={ usuarioEditar } handleChange={ handleChange } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formAñadir={ formAñadir } handleChangeAñadir={ handleChangeAñadir } /> }
+                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formEditar={ formEditar } handleChangeEditar={ handleChangeEditar } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } correoEliminar={ correoEliminar } /> }
                 { usuarios &&  
                     <table className="tablaEmpleados">
