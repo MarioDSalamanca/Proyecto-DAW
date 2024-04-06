@@ -7,76 +7,60 @@ import PopupEliminar from "./Popups/PopupEliminar";
 
 export default function Empleados({ usuarios, sesionUsuario }) {
 
-    // Estados para los popups
+    // Estados para los Popups
     const [popupAñadir, setPopupAñadir] = useState(false);
     const [popupEditar, setPopupEditar] = useState(false);
     const [popupEliminar, setPopupEliminar] = useState(false);
 
     // Estado para guardar el correo del usuario para eliminarlo
     const [correoEliminar, setCorreoEliminar] = useState('');
-    // Estado para guardar la información del usuario para editarlo
-    const [formEditar, setFormEditar] = useState({});
-    // Estado del formulario para añadir
-    const [formAñadir, setFormAñadir] = useState({
-        nombre: '',
-        apellido: '',
-        correo: '',
-        contrasena: '',
-        rol: '',
-    });
+    // Estado para guardar la información del usuario
+    const [formData, setFormData] = useState({});
 
     // Funciones para mostrar u ocultar los popups
     const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
     const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
     const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
 
-    // Actualizar valores de los inputs
-    function handleChangeAñadir(e) {
+    // Actualizar valores de los inputs de los Popups
+    function handleChange(e) {
         const { name, value } = e.target;
-        setFormAñadir(prev => ({
-            ...prev,
-            [name]: value.trim(),
-        }));
-    };
-
-    function handleChangeEditar(e) {
-        const { name, value } = e.target;
-        setFormEditar(prev => ({
+        setFormData(prev => ({
             ...prev,
             [name]: value.trim(),
         }));
     }
 
-    // Funciones para mandar solicitudes post
+    // Solicitud POST para añadir usuario
     function confirmarAñadir(e) {
         e.preventDefault();
         mostrarPopupAñadir();
-        router.post('/empleados/añadir', formAñadir)
-        setFormAñadir({
-            nombre: '',
-            apellido: '',
-            correo: '',
-            contrasena: '',
-            rol: '',
-        });
+        router.post('/empleados/añadir', formData)
+        setFormData({});
     };
-
+    // Solicitud POST para editar usuario
     function confirmarEditar(e) {
         e.preventDefault();
-        console.log(formEditar);
+        mostrarPopupEditar();
+        router.post('/empleados/editar', formData);
+        setFormData({});
     };
-
+    // Solicitud POST para eliminar usuario
     function confirmarEliminar() {
         mostrarPopupEliminar(); 
         router.post('/empleados/eliminar', { correo: correoEliminar });
     }
 
+    // Mostrar el Popup con los valores vacíos
+    function añadir() {
+        mostrarPopupAñadir();
+        setFormData({});
+    }
     // Para setear los datos del usuaio seleccionado y mostrar el Popup
     function editar(usuario) {
         mostrarPopupEditar();
-        setFormEditar(usuario);
+        setFormData(usuario);
     };
-
     // Para setear el correo seleccionado y mostrar el Popup
     function eliminar(correo) {
         mostrarPopupEliminar();
@@ -87,8 +71,8 @@ export default function Empleados({ usuarios, sesionUsuario }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formAñadir={ formAñadir } handleChangeAñadir={ handleChangeAñadir } /> }
-                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formEditar={ formEditar } handleChangeEditar={ handleChangeEditar } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formData={ formData } handleChange={ handleChange } /> }
+                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formData={ formData } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } correoEliminar={ correoEliminar } /> }
                 { usuarios &&  
                     <table className="tablaEmpleados">
@@ -96,7 +80,7 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                         <tbody>
                             <tr>
                                 <td style={{ border: 0 }}>
-                                    <button className="añadirEmpleado" onClick={ mostrarPopupAñadir }>Añadir usuario</button>
+                                    <button className="añadirEmpleado" onClick={ añadir }>Añadir usuario</button>
                                 </td>
                             </tr>
                             <tr>
@@ -108,7 +92,7 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                                 <th></th>
                             </tr>
                             { usuarios.map(usuario => (
-                                <tr key={usuario.correo}>
+                                <tr key={usuario.idUsuario}>
                                     <td>{usuario.nombre}</td>
                                     <td>{usuario.apellido}</td>
                                     <td>{usuario.correo}</td>

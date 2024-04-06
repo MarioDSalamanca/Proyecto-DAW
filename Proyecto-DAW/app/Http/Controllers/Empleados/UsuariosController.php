@@ -22,16 +22,30 @@ class UsuariosController extends Controller
     }
 
     // Añadir empleados a la tabla usuarios
-    public function save(Request $request) {
+    public function insert(Request $request) {
         
         // Crear un objeto para guardar los datos
         $usuario = new Usuarios();
-        $usuario->Nombre = $request->input('nombre');
-        $usuario->Apellido = $request->input('apellido');
-        $usuario->Correo = $request->input('correo');
-        $usuario->Contrasena = Hash::make($request->input('contrasena'));;
-        $usuario->Rol = $request->input('rol');
+        $usuario->nombre = $request->input('nombre');
+        $usuario->apellido = $request->input('apellido');
+        $usuario->correo = $request->input('correo');
+        $usuario->contrasena = Hash::make($request->input('contrasena'));;
+        $usuario->rol = $request->input('rol');
 
+        $usuario->save();
+        return redirect()->route('empleados.index');
+    }
+
+    // Editar empleados de la tabla usuarios
+    public function update(Request $request) {
+        $usuario = Usuarios::where('idUsuario', $request->input('idUsuario'))->first();
+
+        $usuario->nombre = $request->input('nombre');
+        $usuario->apellido = $request->input('apellido');
+        $usuario->correo = $request->input('correo');
+        $usuario->contrasena = Hash::make($request->input('contrasena'));;
+        $usuario->rol = $request->input('rol');
+        
         $usuario->save();
         return redirect()->route('empleados.index');
     }
@@ -51,11 +65,4 @@ class UsuariosController extends Controller
         session()->forget('usuario_autenticado');
         return redirect()->route('login');
     }
-
-    /*public function update(Request $request, $id) {
-        $usuario = Usuarios::find($id);
-        $usuario->fill($request->input())->saveOrFail();
-        return redirect('empleados');
-    }*/
-
 }
