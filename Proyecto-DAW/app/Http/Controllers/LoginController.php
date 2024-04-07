@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use App\Models\Usuarios;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
     public function showLogin() {
         return Inertia::render('Auth/Login');
     }
+
     public function auth(Request $request) {
         
         // Buscar al usuario por su dirección de correo electrónico
@@ -26,7 +25,7 @@ class LoginController extends Controller
                 // Iniciar variable de sesión con los valores del usuario
                 $request->session()->put('usuario_autenticado', $request->correo);
                 // Redirigir al home
-                return redirect()->route('empleados.index');
+                return redirect()->route('home');
             } else {
                 // Contraseña incorrecta
                 return Inertia::render('Auth/Login', ['errores' => ['contrasena' => 'La contraseña proporcionada es incorrecta.']]);

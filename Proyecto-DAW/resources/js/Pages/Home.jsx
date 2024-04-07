@@ -1,15 +1,16 @@
 import Header from "./Componentes/Header";
 
-export default function Home() {
+export default function Home({ sesionUsuario }) {
     return (
         <>
-            <Header />
+            <Header sesion={ sesionUsuario }/>
             <main>
-                <div>Productos</div>
-                <div>Ventas</div>
-                <div>Compras</div>
-                <div>Proveedores</div>
-                <div>Empleados</div>
+                <a href="/productos">Productos</a>
+                <a href="/ventas">Ventas</a>
+                <a href="/compras">Compras</a>
+                <a href="/proveedores">Proveedores</a>
+                <a href="/empleados">Empleados</a>
+                <a href="/tareas">Tareas</a>
             </main>
         </>
     )

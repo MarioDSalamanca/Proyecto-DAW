@@ -12,7 +12,7 @@ export default function Header({ sesion }) {
         <>
             <header>
                 <div className="divLogo">
-                    <img src={ logo } alt="" />
+                    <a href="/"><img src={ logo } alt="" /></a>
                 </div>
                 <div className="divSesion">
                     { sesion }
@@ -22,11 +22,12 @@ export default function Header({ sesion }) {
                 </div>
             </header>
             <nav>
-                <div>Productos</div>
-                <div>Ventas</div>
-                <div>Compras</div>
-                <div>Proveedores</div>
-                <div>Empleados</div>
+                <div><a href="/productos">Productos</a></div>
+                <div><a href="/ventas">Ventas</a></div>
+                <div><a href="/compras">Compras</a></div>
+                <div><a href="/proveedores">Proveedores</a></div>
+                <div><a href="/empleados">Empleados</a></div>
+                <div><a href="/tareas">Tareas</a></div>
             </nav>
         </>
     )

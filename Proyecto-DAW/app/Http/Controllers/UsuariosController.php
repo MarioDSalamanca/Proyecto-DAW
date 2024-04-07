@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Empleados;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Usuarios;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class UsuariosController extends Controller
-{
+class UsuariosController extends Controller {
     public function index() {
         // Recoger todos los registros de la tabla usuarios refiriendonos al modelo Usuarios
         $usuarios = Usuarios::all();
@@ -43,7 +40,9 @@ class UsuariosController extends Controller
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
         $usuario->correo = $request->input('correo');
-        $usuario->contrasena = Hash::make($request->input('contrasena'));;
+        if (!Hash::check($request->contrasena, $usuario->contrasena)) {
+            $usuario->contrasena = Hash::make($request->input('contrasena'));
+        }
         $usuario->rol = $request->input('rol');
         
         $usuario->save();
@@ -58,11 +57,5 @@ class UsuariosController extends Controller
 
         return redirect()->route('empleados.index');
         //return Inertia::render('Empleados/Empleados', ['mensaje' => ['Se ha eliminado el usuario '. $request->input('correo') .'']]);
-    }
-
-    // Cerrar sesión
-    public function logout() {
-        session()->forget('usuario_autenticado');
-        return redirect()->route('login');
     }
 }

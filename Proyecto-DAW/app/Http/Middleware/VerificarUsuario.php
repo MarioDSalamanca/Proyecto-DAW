@@ -6,8 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerificarUsuario
-{
+class VerificarUsuario {
     /**
      * Handle an incoming request.
      *
