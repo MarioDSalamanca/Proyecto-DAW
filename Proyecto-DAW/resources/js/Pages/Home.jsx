@@ -5,12 +5,14 @@ export default function Home({ sesionUsuario }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                <a href="/productos">Productos</a>
-                <a href="/ventas">Ventas</a>
-                <a href="/compras">Compras</a>
-                <a href="/proveedores">Proveedores</a>
-                <a href="/empleados">Empleados</a>
-                <a href="/tareas">Tareas</a>
+                <div className="home">
+                    <a className="link-home" href="/productos">Productos</a>
+                    <a className="link-home" href="/ventas">Ventas</a>
+                    <a className="link-home" href="/compras">Compras</a>
+                    <a className="link-home" href="/proveedores">Proveedores</a>
+                    <a className="link-home" href="/empleados">Empleados</a>
+                    <a className="link-home" href="/tareas">Tareas</a>
+                </div>
             </main>
         </>
     )

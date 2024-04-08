@@ -21,7 +21,7 @@ class empleadosController extends Controller {
         if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
             return Inertia::render('Empleados/Empleados', compact('empleados', 'sesionUsuario'));
         } else {
-            return 'No tienes permisos para entrar aquí';
+            return Inertia::render('SinPermisos');
         }
     }
 
@@ -43,9 +43,6 @@ class empleadosController extends Controller {
     // Editar empleados de la tabla empleados
     public function update(Request $request) {
 
-
-        $sesionUsuario = session()->get('usuario_autenticado');
-
         $usuario = Empleados::where('idEmpleado', $request->input('idEmpleado'))->first();
 
         $usuario->nombre = $request->input('nombre');
@@ -59,7 +56,7 @@ class empleadosController extends Controller {
         $usuario->rol = $request->input('rol');
         
         $usuario->save();
-        return redirect()->route('empleados.index')->with('mensaje', 'Empleado actualizado!');
+        return redirect()->route('empleados.index');
     }
 
     // Eliminar empleados de la tabla empleados
