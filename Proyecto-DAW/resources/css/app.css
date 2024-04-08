@@ -285,3 +285,9 @@ nav div:hover {
 .popup .guardar button:hover {
     opacity: 1;
 }
+.popup.mensaje.visible {
+    display: block;
+}
+.popup.mensaje.oculto {
+    display: none;
+}

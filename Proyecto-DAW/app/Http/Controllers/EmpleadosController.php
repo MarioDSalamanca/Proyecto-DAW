@@ -14,8 +14,15 @@ class empleadosController extends Controller {
 
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
-        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop empleados
-        return Inertia::render('Empleados/Empleados', compact('empleados', 'sesionUsuario'));
+
+        $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
+        $rolUsuario = $rolUsuario->rol;
+
+        if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
+            return Inertia::render('Empleados/Empleados', compact('empleados', 'sesionUsuario'));
+        } else {
+            return 'No tienes permisos para entrar aquí';
+        }
     }
 
     // Añadir empleados a la tabla empleados
@@ -35,12 +42,16 @@ class empleadosController extends Controller {
 
     // Editar empleados de la tabla empleados
     public function update(Request $request) {
+
+
+        $sesionUsuario = session()->get('usuario_autenticado');
+
         $usuario = Empleados::where('idEmpleado', $request->input('idEmpleado'))->first();
 
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
         $usuario->correo = $request->input('correo');
-        if (!Hash::check($request->contrasena, $usuario->contrasena)) {
+        if ($request->contrasena != $usuario->contrasena) {
             //dd($request->contrasena, $usuario->contrasena);
             $usuario->contrasena = Hash::make($request->input('contrasena'));
             //dd($request->contrasena, $usuario->contrasena);
@@ -48,8 +59,7 @@ class empleadosController extends Controller {
         $usuario->rol = $request->input('rol');
         
         $usuario->save();
-        dd($request->contrasena, $usuario->contrasena);
-        return redirect()->route('empleados.index');
+        return redirect()->route('empleados.index')->with('mensaje', 'Empleado actualizado!');
     }
 
     // Eliminar empleados de la tabla empleados
