@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuarios;
+use App\Models\Empleados;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -15,10 +15,10 @@ class LoginController extends Controller {
     public function auth(Request $request) {
         
         // Buscar al usuario por su dirección de correo electrónico
-        $usuario = Usuarios::where('correo', $request->correo)->first();
+        $usuario = Empleados::where('correo', $request->correo)->first();
         //dd($request->contrasena, $usuario->Contrasena);
         if ($usuario) { 
-            
+
             // Verificar si se encontró un usuario y si la contraseña proporcionada es correcta
             if (Hash::check($request->contrasena, $usuario->contrasena)) {
 

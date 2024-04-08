@@ -5,16 +5,16 @@ import PopupAñadir from "./Popups/PopupAñadir";
 import PopupEditar from "./Popups/PopupEditar";
 import PopupEliminar from "./Popups/PopupEliminar";
 
-export default function Empleados({ usuarios, sesionUsuario }) {
+export default function Empleados({ empleados, sesionUsuario }) {
 
     // Estados para los Popups
     const [popupAñadir, setPopupAñadir] = useState(false);
     const [popupEditar, setPopupEditar] = useState(false);
     const [popupEliminar, setPopupEliminar] = useState(false);
 
-    // Estado para guardar el correo del usuario para eliminarlo
+    // Estado para guardar el correo del empleado para eliminarlo
     const [correoEliminar, setCorreoEliminar] = useState('');
-    // Estado para guardar la información del usuario
+    // Estado para guardar la información del empleado
     const [formData, setFormData] = useState({});
 
     // Funciones para mostrar u ocultar los popups
@@ -31,21 +31,21 @@ export default function Empleados({ usuarios, sesionUsuario }) {
         }));
     }
 
-    // Solicitud POST para añadir usuario
+    // Solicitud POST para añadir empleado
     function confirmarAñadir(e) {
         e.preventDefault();
         mostrarPopupAñadir();
         router.post('/empleados/añadir', formData)
         setFormData({});
     };
-    // Solicitud POST para editar usuario
+    // Solicitud POST para editar empleado
     function confirmarEditar(e) {
         e.preventDefault();
         mostrarPopupEditar();
         router.post('/empleados/editar', formData);
         setFormData({});
     };
-    // Solicitud POST para eliminar usuario
+    // Solicitud POST para eliminar empleado
     function confirmarEliminar() {
         mostrarPopupEliminar(); 
         router.post('/empleados/eliminar', { correo: correoEliminar });
@@ -57,9 +57,9 @@ export default function Empleados({ usuarios, sesionUsuario }) {
         setFormData({});
     }
     // Para setear los datos del usuaio seleccionado y mostrar el Popup
-    function editar(usuario) {
+    function editar(empleado) {
         mostrarPopupEditar();
-        setFormData(usuario);
+        setFormData(empleado);
     };
     // Para setear el correo seleccionado y mostrar el Popup
     function eliminar(correo) {
@@ -74,13 +74,13 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                 { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formData={ formData } handleChange={ handleChange } /> }
                 { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formData={ formData } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } correoEliminar={ correoEliminar } /> }
-                { usuarios &&  
+                { empleados &&  
                     <table className="tablaEmpleados">
                         <caption>Empleados</caption>
                         <tbody>
                             <tr>
                                 <td style={{ border: 0 }}>
-                                    <button className="añadirEmpleado" onClick={ añadir }>Añadir usuario</button>
+                                    <button className="añadirEmpleado" onClick={ añadir }>Añadir empleado</button>
                                 </td>
                             </tr>
                             <tr>
@@ -93,16 +93,16 @@ export default function Empleados({ usuarios, sesionUsuario }) {
                                 <th></th>
                                 <th></th>
                             </tr>
-                            { usuarios.map(usuario => (
-                                <tr key={usuario.idUsuario}>
-                                    <td>{usuario.nombre}</td>
-                                    <td>{usuario.apellido}</td>
-                                    <td>{usuario.correo}</td>
-                                    <td>{usuario.rol}</td>
-                                    <td>{new Date(usuario.created_at).toLocaleString()}</td>
-                                    <td>{new Date(usuario.updated_at).toLocaleString()}</td>
-                                    <td className="botonesEmpleados editar"><button onClick={() => editar(usuario) }>Editar</button></td>
-                                    <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(usuario.correo) }>Eliminar</button></td>
+                            { empleados.map(empleado => (
+                                <tr key={empleado.idEmpleado}>
+                                    <td>{empleado.nombre}</td>
+                                    <td>{empleado.apellido}</td>
+                                    <td>{empleado.correo}</td>
+                                    <td>{empleado.rol}</td>
+                                    <td>{new Date(empleado.created_at).toLocaleString()}</td>
+                                    <td>{new Date(empleado.updated_at).toLocaleString()}</td>
+                                    <td className="botonesEmpleados editar"><button onClick={() => editar(empleado) }>Editar</button></td>
+                                    <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(empleado.correo) }>Eliminar</button></td>
                                 </tr>
                             ))}
                         </tbody>

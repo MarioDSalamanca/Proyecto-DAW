@@ -3,26 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuarios;
+use App\Models\Empleados;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class UsuariosController extends Controller {
+class empleadosController extends Controller {
     public function index() {
-        // Recoger todos los registros de la tabla usuarios refiriendonos al modelo Usuarios
-        $usuarios = Usuarios::all();
+        // Recoger todos los registros de la tabla empleados refiriendonos al modelo empleados
+        $empleados = empleados::all();
 
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
-        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
-        return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
+        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop empleados
+        return Inertia::render('Empleados/Empleados', compact('empleados', 'sesionUsuario'));
     }
 
-    // Añadir empleados a la tabla usuarios
+    // Añadir empleados a la tabla empleados
     public function insert(Request $request) {
         
         // Crear un objeto para guardar los datos
-        $usuario = new Usuarios();
+        $usuario = new Empleados();
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
         $usuario->correo = $request->input('correo');
@@ -33,26 +33,29 @@ class UsuariosController extends Controller {
         return redirect()->route('empleados.index');
     }
 
-    // Editar empleados de la tabla usuarios
+    // Editar empleados de la tabla empleados
     public function update(Request $request) {
-        $usuario = Usuarios::where('idUsuario', $request->input('idUsuario'))->first();
+        $usuario = Empleados::where('idEmpleado', $request->input('idEmpleado'))->first();
 
         $usuario->nombre = $request->input('nombre');
         $usuario->apellido = $request->input('apellido');
         $usuario->correo = $request->input('correo');
         if (!Hash::check($request->contrasena, $usuario->contrasena)) {
+            //dd($request->contrasena, $usuario->contrasena);
             $usuario->contrasena = Hash::make($request->input('contrasena'));
+            //dd($request->contrasena, $usuario->contrasena);
         }
         $usuario->rol = $request->input('rol');
         
         $usuario->save();
+        dd($request->contrasena, $usuario->contrasena);
         return redirect()->route('empleados.index');
     }
 
-    // Eliminar empleados de la tabla usuarios
+    // Eliminar empleados de la tabla empleados
     public function delete(Request $request) {
 
-        $usuario = Usuarios::where('correo', $request->input('correo'));
+        $usuario = Empleados::where('correo', $request->input('correo'));
         $usuario->delete();
 
         return redirect()->route('empleados.index');

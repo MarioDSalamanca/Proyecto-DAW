@@ -3,14 +3,14 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Usuarios;
+use App\Models\Empleados;
 
-class UsuariosSeeder extends Seeder
+class EmpleadosSeeder extends Seeder
 {
     public function run() {
-        if (Usuarios::count() === 0) {
+        if (Empleados::count() === 0) {
             
-            Usuarios::create([
+            Empleados::create([
                 'nombre' => 'Mario',
                 'apellido' => 'Dieguez',
                 'correo' => 'mario@example.com',
@@ -18,7 +18,7 @@ class UsuariosSeeder extends Seeder
                 'rol' => 'titular',
             ]);
 
-            Usuarios::create([
+            Empleados::create([
                 'nombre' => 'Sandra',
                 'apellido' => 'Bujak',
                 'correo' => 'sandra@example.com',
@@ -26,7 +26,7 @@ class UsuariosSeeder extends Seeder
                 'rol' => 'adjunto',
             ]);
     
-            Usuarios::create([
+            Empleados::create([
                 'nombre' => 'Iker',
                 'apellido' => 'Casillas',
                 'correo' => 'iker@example.com',

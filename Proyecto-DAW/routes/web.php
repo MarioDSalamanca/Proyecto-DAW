@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedoresController;
@@ -27,10 +27,10 @@ Route::middleware(['verificar_usuario'])->group(function () {
     Route::get('/compras', [ComprasController::class, 'index'])->name('compras.index');
 
     // Empleados/Usuarios
-    Route::get('/empleados', [UsuariosController::class, 'index'])->name('empleados.index');
-    Route::post('/empleados/añadir', [UsuariosController::class, 'insert'])->name('empleados.insert');
-    Route::post('/empleados/editar', [UsuariosController::class, 'update'])->name('empleados.update');
-    Route::post('/empleados/eliminar', [UsuariosController::class, 'delete'])->name('empleados.delete');
+    Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+    Route::post('/empleados/añadir', [EmpleadosController::class, 'insert'])->name('empleados.insert');
+    Route::post('/empleados/editar', [EmpleadosController::class, 'update'])->name('empleados.update');
+    Route::post('/empleados/eliminar', [EmpleadosController::class, 'delete'])->name('empleados.delete');
 
     // Productos
     Route::get('/productos', [ProductosController::class, 'index'])->name('productos.index');
