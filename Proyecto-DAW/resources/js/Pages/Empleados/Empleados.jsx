@@ -82,6 +82,9 @@ export default function Empleados({ empleados, sesionUsuario }) {
                                 <td style={{ border: 0 }}>
                                     <button className="añadirEmpleado" onClick={ añadir }>Añadir empleado</button>
                                 </td>
+                                <td style={{ border: 0 }} colSpan={5}>
+                                    <input type='text' name='buscado' className='buscador' placeholder='Buscar...'/>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Nombre</th>

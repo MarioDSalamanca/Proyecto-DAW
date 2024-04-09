@@ -6,7 +6,7 @@ export default function Home({ sesionUsuario }) {
             <Header sesion={ sesionUsuario }/>
             <main>
                 <div className="home">
-                    <a className="link-home productos" href="/productos"><span>Productos</span></a>
+                    <a className="link-home inventario" href="/inventario"><span>Inventario</span></a>
                     <a className="link-home ventas" href="/ventas"><span>Ventas</span></a>
                     <a className="link-home compras" href="/compras"><span>Compras</span></a>
                     <a className="link-home proveedores" href="/proveedores"><span>Proveedores</span></a>

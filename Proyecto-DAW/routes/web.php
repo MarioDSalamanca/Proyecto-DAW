@@ -4,7 +4,7 @@ use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\TareasController;
 use App\Http\Controllers\VentasController;
@@ -33,8 +33,8 @@ Route::middleware(['verificar_usuario'])->group(function () {
     Route::post('/empleados/editar', [EmpleadosController::class, 'update'])->name('empleados.update');
     Route::post('/empleados/eliminar', [EmpleadosController::class, 'delete'])->name('empleados.delete');
 
-    // Productos
-    Route::get('/productos', [ProductosController::class, 'index'])->name('productos.index');
+    // Inventario
+    Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
 
     // Proveedores
     Route::get('/proveedores', [ProveedoresController::class, 'index'])->name('proveedores.index');

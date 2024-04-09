@@ -22,7 +22,7 @@ export default function Header({ sesion }) {
                 </div>
             </header>
             <nav>
-                <div><a href="/productos">Productos</a></div>
+                <div><a href="/inventario">Inventario</a></div>
                 <div><a href="/ventas">Ventas</a></div>
                 <div><a href="/compras">Compras</a></div>
                 <div><a href="/proveedores">Proveedores</a></div>

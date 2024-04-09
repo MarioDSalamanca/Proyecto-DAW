@@ -1,11 +1,11 @@
 import Header from "../Componentes/Header";
 
-export default function Productos({ sesionUsuario }) {
+export default function Inventario({ sesionUsuario }) {
     return (
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                <h1>Productos de la farmacia de sandra</h1>
+                <h1>Inventario de la farmacia de sandra</h1>
             </main>
         </>
     )
