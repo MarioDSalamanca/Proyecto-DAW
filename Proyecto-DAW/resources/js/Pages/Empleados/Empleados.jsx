@@ -7,20 +7,34 @@ import PopupEliminar from "./Popups/PopupEliminar";
 
 export default function Empleados({ empleados, sesionUsuario }) {
 
-    // Estados para los Popups
-    const [popupAñadir, setPopupAñadir] = useState(false);
-    const [popupEditar, setPopupEditar] = useState(false);
-    const [popupEliminar, setPopupEliminar] = useState(false);
-
-    // Estado para guardar el correo del empleado para eliminarlo
-    const [correoEliminar, setCorreoEliminar] = useState('');
-    // Estado para guardar la información del empleado
-    const [formData, setFormData] = useState({});
+    // ESTADOS
+        // Estados para los Popups
+        const [popupAñadir, setPopupAñadir] = useState(false);
+        const [popupEditar, setPopupEditar] = useState(false);
+        const [popupEliminar, setPopupEliminar] = useState(false);
+        // Estado para guardar el correo del empleado para eliminarlo
+        const [correoEliminar, setCorreoEliminar] = useState('');
+        // Estado para guardar la información del empleado
+        const [formData, setFormData] = useState({});
+        // Estado para el buscador
+        const [buscar, setBuscar] = useState('');
 
     // Funciones para mostrar u ocultar los popups
     const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
     const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
     const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
+
+    // Función para manejar el cambio en el buscador
+    function handleChangeBuscador(e) {
+        setBuscar(e.target.value.trim());
+    }
+
+    // Filtrar los empleados basados en la búsqueda
+    const empleadosFiltrados = buscar ? empleados.filter(empleado =>
+        empleado.nombre.toLowerCase().includes(buscar.toLowerCase()) ||
+        empleado.apellido.toLowerCase().includes(buscar.toLowerCase()) ||
+        empleado.correo.toLowerCase().includes(buscar.toLowerCase())
+    ) : empleados;
 
     // Actualizar valores de los inputs de los Popups
     function handleChange(e) {
@@ -83,7 +97,7 @@ export default function Empleados({ empleados, sesionUsuario }) {
                                     <button className="añadirEmpleado" onClick={ añadir }>Añadir empleado</button>
                                 </td>
                                 <td style={{ border: 0 }} colSpan={5}>
-                                    <input type='text' name='buscado' className='buscador' placeholder='Buscar...'/>
+                                    <input type='text' name='buscado' className='buscador' placeholder='Buscar...' onKeyUp={ handleChangeBuscador } />
                                 </td>
                             </tr>
                             <tr>
@@ -96,7 +110,7 @@ export default function Empleados({ empleados, sesionUsuario }) {
                                 <th></th>
                                 <th></th>
                             </tr>
-                            { empleados.map(empleado => (
+                            { empleadosFiltrados.map(empleado => (
                                 <tr key={empleado.idEmpleado}>
                                     <td>{empleado.nombre}</td>
                                     <td>{empleado.apellido}</td>
