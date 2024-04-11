@@ -246,7 +246,7 @@ nav div:hover {
 .tablaEmpleados caption {
     font-size: 220%;
     margin-left: 2%;
-    margin-bottom: 1.5vh;
+    margin-bottom: 2vh;
     text-align: left;
     font-style: italic;
     font-weight: 800;
@@ -256,7 +256,7 @@ nav div:hover {
     padding: 1vh 2vw;
     background-color: green;
     color: white;
-    margin: 2% 4%;
+    margin: 3vh 1vw;
     font-size: 90%;
     font-weight: 600;
     font-size: 90%;
@@ -374,9 +374,27 @@ nav div:hover {
 .popup .guardar button:hover {
     opacity: 1;
 }
-.popup.mensaje.visible {
-    display: block;
+.popup.eliminar {
+    text-align: center;
 }
-.popup.mensaje.oculto {
-    display: none;
+.popup.eliminar button {
+    padding: 1vh 1vw; 
+    font-weight: 600;
+    font-size: 95%;
+    color: white;
+    cursor: pointer;
+    margin: 0 1vw;
+    border: 0;
+    border-radius: 5px;
+    opacity: .7;
+    transition: .3s;
+}
+.popup.eliminar button:hover {
+    opacity: 1;
+}
+.popup.eliminar .confirmar {
+    background-color: green;
+}
+.popup.eliminar .cancelar {
+    background-color: red;
 }

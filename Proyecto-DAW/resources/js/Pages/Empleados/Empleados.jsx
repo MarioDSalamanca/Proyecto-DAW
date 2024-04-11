@@ -77,7 +77,7 @@ export default function Empleados({ empleados, sesionUsuario }) {
                         <caption>Empleados</caption>
                         <tbody>
                             <tr>
-                                <td style={{ border: 0 }}>
+                                <td style={{ border: 0 }} colSpan={2}>
                                     <button className="añadirEmpleado" onClick={ añadir }>Añadir empleado</button>
                                 </td>
                                 <td style={{ border: 0 }} colSpan={5}>
