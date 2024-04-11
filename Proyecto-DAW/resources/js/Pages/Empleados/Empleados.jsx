@@ -1,28 +1,21 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Header from "../Componentes/Header";
-import { router } from '@inertiajs/react';
 import PopupAñadir from "./Popups/PopupAñadir";
 import PopupEditar from "./Popups/PopupEditar";
 import PopupEliminar from "./Popups/PopupEliminar";
+import Buscador from './Buscador';
 
 export default function Empleados({ empleados, sesionUsuario }) {
-
-    // Estados para los Popups
     const [popupAñadir, setPopupAñadir] = useState(false);
     const [popupEditar, setPopupEditar] = useState(false);
     const [popupEliminar, setPopupEliminar] = useState(false);
-
-    // Estado para guardar el correo del empleado para eliminarlo
     const [correoEliminar, setCorreoEliminar] = useState('');
-    // Estado para guardar la información del empleado
     const [formData, setFormData] = useState({});
 
-    // Funciones para mostrar u ocultar los popups
     const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
     const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
     const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
 
-    // Actualizar valores de los inputs de los Popups
     function handleChange(e) {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -31,42 +24,38 @@ export default function Empleados({ empleados, sesionUsuario }) {
         }));
     }
 
-    // Solicitud POST para añadir empleado
     function confirmarAñadir(e) {
         e.preventDefault();
         mostrarPopupAñadir();
         router.post('/empleados/añadir', formData)
         setFormData({});
     };
-    // Solicitud POST para editar empleado
     function confirmarEditar(e) {
         e.preventDefault();
         mostrarPopupEditar();
         router.post('/empleados/editar', formData);
         setFormData({});
     };
-    // Solicitud POST para eliminar empleado
     function confirmarEliminar() {
         mostrarPopupEliminar(); 
         router.post('/empleados/eliminar', { correo: correoEliminar });
     }
 
-    // Mostrar el Popup con los valores vacíos
     function añadir() {
         mostrarPopupAñadir();
         setFormData({});
     }
-    // Para setear los datos del usuaio seleccionado y mostrar el Popup
+
     function editar(empleado) {
         mostrarPopupEditar();
         setFormData(empleado);
     };
-    // Para setear el correo seleccionado y mostrar el Popup
+
     function eliminar(correo) {
         mostrarPopupEliminar();
         setCorreoEliminar(correo);
     };
-    
+
     return (
         <>
             <Header sesion={ sesionUsuario }/>
@@ -83,7 +72,7 @@ export default function Empleados({ empleados, sesionUsuario }) {
                                     <button className="añadirEmpleado" onClick={ añadir }>Añadir empleado</button>
                                 </td>
                                 <td style={{ border: 0 }} colSpan={5}>
-                                    <input type='text' name='buscado' className='buscador' placeholder='Buscar...'/>
+                                    <Buscador empleados={ empleados } setEmpleadosFiltrados={ setEmpleadosFiltrados } />
                                 </td>
                             </tr>
                             <tr>
