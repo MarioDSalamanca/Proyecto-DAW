@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { router } from '@inertiajs/react';
 import Header from "../Componentes/Header";
 import PopupAñadir from "./Popups/PopupAñadir";
 import PopupEditar from "./Popups/PopupEditar";
@@ -6,55 +7,63 @@ import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from './Buscador';
 
 export default function Empleados({ empleados, sesionUsuario }) {
-    const [popupAñadir, setPopupAñadir] = useState(false);
-    const [popupEditar, setPopupEditar] = useState(false);
-    const [popupEliminar, setPopupEliminar] = useState(false);
-    const [correoEliminar, setCorreoEliminar] = useState('');
-    const [formData, setFormData] = useState({});
 
-    const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
-    const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
-    const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
+    // Estados
+        const [popupAñadir, setPopupAñadir] = useState(false);
+        const [popupEditar, setPopupEditar] = useState(false);
+        const [popupEliminar, setPopupEliminar] = useState(false);
+        const [correoEliminar, setCorreoEliminar] = useState('');
+        const [formData, setFormData] = useState({});
+        const [empleadosFiltrados, setEmpleadosFiltrados] = useState(empleados);
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value.trim(),
-        }));
-    }
+    // Llamadas para iniciar las acciones
+        function añadir() {
+            mostrarPopupAñadir();
+            setFormData({});
+        }
+        function editar(empleado) {
+            mostrarPopupEditar();
+            setFormData(empleado);
+        };
+        function eliminar(correo) {
+            mostrarPopupEliminar();
+            setCorreoEliminar(correo);
+        };
 
-    function confirmarAñadir(e) {
-        e.preventDefault();
-        mostrarPopupAñadir();
-        router.post('/empleados/añadir', formData)
-        setFormData({});
-    };
-    function confirmarEditar(e) {
-        e.preventDefault();
-        mostrarPopupEditar();
-        router.post('/empleados/editar', formData);
-        setFormData({});
-    };
-    function confirmarEliminar() {
-        mostrarPopupEliminar(); 
-        router.post('/empleados/eliminar', { correo: correoEliminar });
-    }
+    // Funciones para mostrar los PopUps
+        const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
+        const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
+        const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
 
-    function añadir() {
-        mostrarPopupAñadir();
-        setFormData({});
-    }
+    // Setear los valores de los formularios de Añadir y Editar
+        function handleChange(e) {
+            const { name, value } = e.target;
+            setFormData(prev => ({
+                ...prev,
+                [name]: value.trim(),
+            }));
+        }
 
-    function editar(empleado) {
-        mostrarPopupEditar();
-        setFormData(empleado);
-    };
-
-    function eliminar(correo) {
-        mostrarPopupEliminar();
-        setCorreoEliminar(correo);
-    };
+    // Solicitudes POST al servidor
+        function confirmarAñadir(e) {
+            e.preventDefault();
+            mostrarPopupAñadir();
+            router.post('/empleados/añadir', formData)
+            setFormData({});
+            window.location.reload()
+        };
+        function confirmarEditar(e) {
+            e.preventDefault();
+            mostrarPopupEditar();
+            router.post('/empleados/editar', formData);
+            setFormData({});
+            window.location.reload()
+        };
+        function confirmarEliminar() {
+            mostrarPopupEliminar(); 
+            router.post('/empleados/eliminar', { correo: correoEliminar });
+            window.location.reload()
+        }
 
     return (
         <>
@@ -85,7 +94,7 @@ export default function Empleados({ empleados, sesionUsuario }) {
                                 <th></th>
                                 <th></th>
                             </tr>
-                            { empleados.map(empleado => (
+                            { empleadosFiltrados.map(empleado => (
                                 <tr key={empleado.idEmpleado}>
                                     <td>{empleado.nombre}</td>
                                     <td>{empleado.apellido}</td>

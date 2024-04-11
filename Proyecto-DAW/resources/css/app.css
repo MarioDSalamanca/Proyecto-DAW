@@ -349,9 +349,10 @@ nav div:hover {
 }
 .popup.añadir-editar input, select {
     font-size: 100%;
-    padding: 2%;
+    padding: .5vw;
     width: 29vh;
     margin-top: 2%;
+    border-radius: .3vw;
 }
 .popup .guardar {
     display: flex;
