@@ -12,9 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tareas', function (Blueprint $table) {
-            $table->id();
+            $table->id('idTarea');
+            $table->string('nombre');
+            $table->dateTime('fecha');
+            $table->text('descripcion');
+            $table->enum('estado', ['pendiente', 'hecho']);
+            $table->unsignedBigInteger('idEmpleado');
+            $table->foreign('idEmpleado')
+                ->references('idEmpleado')
+                ->on('empleados')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
+        
     }
 
     /**
