@@ -73,7 +73,7 @@ export default function Empleados({ empleados, sesionUsuario }) {
                 { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formData={ formData } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } correoEliminar={ correoEliminar } /> }
                 { empleados &&  
-                    <table className="tablaEmpleados">
+                    <table className="tablaDatos">
                         <caption>Empleados</caption>
                         <tbody>
                             <tr>

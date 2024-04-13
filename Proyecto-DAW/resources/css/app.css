@@ -230,29 +230,32 @@ nav div:hover {
 
 /************* EMPLEADOS *************/
 
-.tablaEmpleados {
+.tablaDatos {
     position: relative;
     z-index: 1;
     margin: auto;
     margin-top: 6vh;
     margin-bottom: 6vh;
-    font-size: 1.1vw;
+    font-size: 1vw;
     width: 90%;
     text-align: center;
     border-collapse: collapse;
 }
-.tablaEmpleados td, th {
+.tablaDatos td, th {
     padding: .6vw;
-    width: 12.5%;
     border-bottom: 1px solid black;
 }
-.tablaEmpleados caption {
+.tablaDatos caption {
     font-size: 220%;
     margin-left: 2%;
     margin-bottom: 2vh;
     text-align: left;
     font-style: italic;
     font-weight: 800;
+}
+.tablaDatos textarea {
+    font-size: 80%;
+    padding: .3vw;
 }
 .añadirEmpleado {
     width: 15vw;
@@ -262,7 +265,7 @@ nav div:hover {
     margin: 3vh 1vw;
     font-size: 90%;
     font-weight: 600;
-    font-size: 90%;
+    font-size: 85%;
     border: 0;
     cursor: pointer;
     border-radius: .3vw;
@@ -285,10 +288,10 @@ nav div:hover {
     font-size: 1.2vw;
     border-bottom: 2px solid black;
 }
-.tablaEmpleados .botonesEmpleados {
+.tablaDatos .botonesEmpleados {
     text-align: center;
 }
-.tablaEmpleados .botonesEmpleados button {
+.tablaDatos .botonesEmpleados button {
     font-size: 90%;
     padding: .6vh 1.2vw;
     color: white;

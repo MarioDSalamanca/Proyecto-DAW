@@ -10,7 +10,7 @@ use Inertia\Inertia;
 class empleadosController extends Controller {
     public function index() {
         // Recoger todos los registros de la tabla empleados refiriendonos al modelo empleados
-        $empleados = empleados::all();
+        $empleados = Empleados::all();
 
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Tareas;
 
 class Empleados extends Model
 {
@@ -14,4 +15,10 @@ class Empleados extends Model
 
     // Añadir los campos accesibles por los usuarios ('IdEmpleado' no es modificable)
     protected $fillable = ['nombre', 'apellido', 'correo', 'contrasena', 'rol'];
+
+    public function tareas() {
+        // Cada empleado tiene una tarea (clave foránea / clave primaria)
+        return $this->hasMany(Tareas::class, 'idEmpleado', 'idTarea');
+    }
+
 }
