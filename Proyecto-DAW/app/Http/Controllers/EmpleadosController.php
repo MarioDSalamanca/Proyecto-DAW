@@ -10,7 +10,7 @@ use Inertia\Inertia;
 class empleadosController extends Controller {
     public function index() {
         // Recoger todos los registros de la tabla empleados refiriendonos al modelo empleados
-        $empleados = Empleados::all();
+        $datosServidor = Empleados::all();
 
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
@@ -19,7 +19,7 @@ class empleadosController extends Controller {
         $rolUsuario = $rolUsuario->rol;
 
         if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
-            return Inertia::render('Empleados/Empleados', compact('empleados', 'sesionUsuario'));
+            return Inertia::render('Empleados/Empleados', compact('datosServidor', 'sesionUsuario'));
         } else {
             return Inertia::render('SinPermisos');
         }

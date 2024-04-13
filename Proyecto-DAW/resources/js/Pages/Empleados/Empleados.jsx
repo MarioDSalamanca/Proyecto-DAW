@@ -4,26 +4,26 @@ import Header from "../Componentes/Header";
 import PopupAñadir from "./Popups/PopupAñadir";
 import PopupEditar from "./Popups/PopupEditar";
 import PopupEliminar from "./Popups/PopupEliminar";
-import Buscador from './Buscador';
+import Buscador from '../Componentes/Buscador';
 
-export default function Empleados({ empleados, sesionUsuario }) {
+export default function Empleados({ datosServidor, sesionUsuario }) {
 
     // Estados
         const [popupAñadir, setPopupAñadir] = useState(false);
         const [popupEditar, setPopupEditar] = useState(false);
         const [popupEliminar, setPopupEliminar] = useState(false);
         const [correoEliminar, setCorreoEliminar] = useState('');
-        const [formData, setFormData] = useState({});
-        const [empleadosFiltrados, setEmpleadosFiltrados] = useState(empleados);
+        const [formDatos, setFormDatos] = useState({});
+        const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
     // Llamadas para iniciar las acciones
         function añadir() {
             mostrarPopupAñadir();
-            setFormData({});
+            setFormDatos({});
         }
         function editar(empleado) {
             mostrarPopupEditar();
-            setFormData(empleado);
+            setFormDatos(empleado);
         };
         function eliminar(correo) {
             mostrarPopupEliminar();
@@ -38,7 +38,7 @@ export default function Empleados({ empleados, sesionUsuario }) {
     // Setear los valores de los formularios de Añadir y Editar
         function handleChange(e) {
             const { name, value } = e.target;
-            setFormData(prev => ({
+            setFormDatos(prev => ({
                 ...prev,
                 [name]: value.trim(),
             }));
@@ -48,15 +48,15 @@ export default function Empleados({ empleados, sesionUsuario }) {
         function confirmarAñadir(e) {
             e.preventDefault();
             mostrarPopupAñadir();
-            router.post('/empleados/añadir', formData)
-            setFormData({});
+            router.post('/empleados/añadir', formDatos)
+            setFormDatos({});
             window.location.reload()
         };
         function confirmarEditar(e) {
             e.preventDefault();
             mostrarPopupEditar();
-            router.post('/empleados/editar', formData);
-            setFormData({});
+            router.post('/empleados/editar', formDatos);
+            setFormDatos({});
             window.location.reload()
         };
         function confirmarEliminar() {
@@ -69,19 +69,20 @@ export default function Empleados({ empleados, sesionUsuario }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formData={ formData } handleChange={ handleChange } /> }
-                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formData={ formData } handleChange={ handleChange } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
+                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } correoEliminar={ correoEliminar } /> }
-                { empleados &&  
+                { datosServidor &&  
                     <table className="tablaDatos">
                         <caption>Empleados</caption>
                         <tbody>
                             <tr>
-                                <td style={{ border: 0 }} colSpan={2}>
+                                <td style={{ border: 0 }} colSpan="2">
                                     <button className="añadirEmpleado" onClick={ añadir }>Añadir empleado</button>
                                 </td>
-                                <td style={{ border: 0 }} colSpan={5}>
-                                    <Buscador empleados={ empleados } setEmpleadosFiltrados={ setEmpleadosFiltrados } />
+                                <td style={{ border: 0 }} colSpan="5">
+                                    <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados } 
+                                    campos={[ 'nombre', 'apellido', 'correo', 'rol' ]} />
                                 </td>
                             </tr>
                             <tr>
@@ -94,7 +95,11 @@ export default function Empleados({ empleados, sesionUsuario }) {
                                 <th></th>
                                 <th></th>
                             </tr>
-                            { empleadosFiltrados.map(empleado => (
+                            { datosFiltrados.length === 0 ? (
+                                    <tr>
+                                        <td colSpan="9"><p className="sin-resultados">No se encontraron resultados</p></td>
+                                    </tr>
+                                ) : ( datosFiltrados.map(empleado => (
                                 <tr key={empleado.idEmpleado}>
                                     <td>{empleado.nombre}</td>
                                     <td>{empleado.apellido}</td>
@@ -105,7 +110,8 @@ export default function Empleados({ empleados, sesionUsuario }) {
                                     <td className="botonesEmpleados editar"><button onClick={() => editar(empleado) }>Editar</button></td>
                                     <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(empleado.correo) }>Eliminar</button></td>
                                 </tr>
-                            ))}
+                                ))
+                            )}
                         </tbody>
                     </table>
                 }

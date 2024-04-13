@@ -22,12 +22,14 @@ export default function Header({ sesion }) {
                 </div>
             </header>
             <nav>
-                <div><a href="/inventario">Inventario</a></div>
-                <div><a href="/ventas">Ventas</a></div>
-                <div><a href="/compras">Compras</a></div>
-                <div><a href="/proveedores">Proveedores</a></div>
-                <div><a href="/empleados">Empleados</a></div>
-                <div><a href="/tareas">Tareas</a></div>
+                <ul>
+                    <a href="/inventario"><li>Inventario</li></a>
+                    <a href="/ventas"><li>Ventas</li></a>
+                    <a href="/compras"><li>Compras</li></a>
+                    <a href="/proveedores"><li>Proveedores</li></a>
+                    <a href="/empleados"><li>Empleados</li></a>
+                    <a href="/tareas"><li>Tareas</li></a>
+                </ul>
             </nav>
         </>
     )

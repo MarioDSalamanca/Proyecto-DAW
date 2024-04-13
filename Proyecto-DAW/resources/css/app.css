@@ -207,13 +207,15 @@ nav {
     height: 75vh;
     font-size: 1vw;
 }
-nav div > a:link,
-nav div > a:visited {
+nav ul {
+    list-style: none;
+}
+nav ul > a:link,
+nav ul > a:visited {
     text-decoration: none;
     color: white;
 }
-nav div {
-    margin: auto;
+nav li {
     margin: 0 1vw;
     margin-bottom: 3vh;
     padding: 1.5vh 1vw;
@@ -223,7 +225,7 @@ nav div {
     border-radius: 3px;
     cursor: pointer;
 }
-nav div:hover {
+nav li:hover {
     background-color: green;
     letter-spacing: .1vw;
 }
@@ -254,7 +256,7 @@ nav div:hover {
     font-weight: 800;
 }
 .tablaDatos textarea {
-    font-size: 80%;
+    font-size: 90%;
     padding: .3vw;
 }
 .añadirEmpleado {
@@ -262,7 +264,7 @@ nav div:hover {
     padding: 1vh 2vw;
     background-color: green;
     color: white;
-    margin: 3vh 1vw;
+    margin: 3vh 0vw;
     font-size: 90%;
     font-weight: 600;
     font-size: 85%;
@@ -310,6 +312,11 @@ nav div:hover {
 }
 .botonesEmpleados.eliminar button{
     background-color: red;
+}
+.sin-resultados {
+    color: red;
+    font-size: 100%;
+    padding: 2vw 0;
 }
 .popup {
     position: fixed;
