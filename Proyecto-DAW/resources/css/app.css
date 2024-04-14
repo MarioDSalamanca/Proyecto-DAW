@@ -11,9 +11,10 @@ body {
     z-index: 0;
 }
 main {
-    height: 80vh;
+    height: 64vh;
     overflow-y: auto;
     font-size: 1vw;
+    padding: 8vh 5vw;
 }
 .sin-permisos {
     text-align: center;
@@ -230,41 +231,25 @@ nav li:hover {
     letter-spacing: .1vw;
 }
 
-/************* EMPLEADOS *************/
+/************* CUERPO *************/
 
-.tablaDatos {
-    position: relative;
-    z-index: 1;
-    margin: auto;
-    margin-top: 6vh;
-    margin-bottom: 6vh;
-    font-size: 1vw;
-    width: 90%;
-    text-align: center;
-    border-collapse: collapse;
-}
-.tablaDatos td, th {
-    padding: .6vw;
-    border-bottom: 1px solid black;
-}
-.tablaDatos caption {
-    font-size: 220%;
-    margin-left: 2%;
+
+h1 {
     margin-bottom: 2vh;
-    text-align: left;
     font-style: italic;
-    font-weight: 800;
+    margin-bottom: 5vh;
 }
-.tablaDatos textarea {
-    font-size: 90%;
-    padding: .3vw;
+.cabecera-tabla {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 3vh;
 }
 .añadirEmpleado {
     width: 15vw;
     padding: 1vh 2vw;
     background-color: green;
     color: white;
-    margin: 3vh 0vw;
     font-size: 90%;
     font-weight: 600;
     font-size: 85%;
@@ -277,8 +262,12 @@ nav li:hover {
 .añadirEmpleado:hover {
     opacity: 1;
 }
+.div-buscador {
+    flex: 2;
+    text-align: center;
+}
 .buscador {
-    width: 90%;
+    width: 80%;
     font-size: 1vw;
     padding: 1vh 1vw;
     border: 0;
@@ -289,6 +278,22 @@ nav li:hover {
     outline: none;
     font-size: 1.2vw;
     border-bottom: 2px solid black;
+}
+.tablaDatos {
+    position: relative;
+    z-index: 1;
+    font-size: 1vw;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+.tablaDatos td, th {
+    padding: .6vw;
+    border-bottom: 1px solid black;
+}
+.tablaDatos textarea {
+    font-size: 90%;
+    padding: .3vw;
 }
 .tablaDatos .botonesEmpleados {
     text-align: center;
@@ -325,7 +330,6 @@ nav li:hover {
     margin: auto;
     width: 100vh;
     z-index: 2;
-    margin-top: 18vh;
     border: .5vh solid black;
     background-color: white;
     padding: 3vh;

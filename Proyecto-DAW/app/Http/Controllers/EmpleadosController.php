@@ -62,10 +62,9 @@ class empleadosController extends Controller {
     // Eliminar empleados de la tabla empleados
     public function delete(Request $request) {
 
-        $usuario = Empleados::where('correo', $request->input('correo'));
+        $usuario = Empleados::where('correo', $request->input('dato'));
         $usuario->delete();
 
         return redirect()->route('empleados.index');
-        //return Inertia::render('Empleados/Empleados', ['mensaje' => ['Se ha eliminado el usuario '. $request->input('correo') .'']]);
     }
 }
