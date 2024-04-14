@@ -6,7 +6,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                 <button onClick={ mostrarPopupAñadir }>x</button>
             </div>
             <h2>Añadir un usuario</h2>
-            <form onSubmit={ confirmarAñadir }>
+            <form onSubmit={ (e) => confirmarAñadir(e, '/empleados/añadir') }>
                 <table>
                     <tbody>
                         <tr>

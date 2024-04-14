@@ -38,23 +38,24 @@ export default function FuncionesPopUps() {
     }
 
     // Solicitudes POST al servidor
-    function confirmarAñadir(e) {
+    function confirmarAñadir(e, url) {
         e.preventDefault();
         mostrarPopupAñadir();
-        router.post('/empleados/añadir', formDatos)
+        router.post(url, formDatos)
         setFormDatos({});
         window.location.reload()
     };
-    function confirmarEditar(e) {
+    function confirmarEditar(e, url) {
         e.preventDefault();
         mostrarPopupEditar();
-        router.post('/empleados/editar', formDatos);
+        router.post(url, formDatos);
         setFormDatos({});
         window.location.reload()
     };
-    function confirmarEliminar() {
+    function confirmarEliminar(e, url) {
+        e.preventDefault();
         mostrarPopupEliminar(); 
-        router.post('/empleados/eliminar', { dato: datoEliminar });
+        router.post(url, { dato: datoEliminar });
         window.location.reload()
     }
 

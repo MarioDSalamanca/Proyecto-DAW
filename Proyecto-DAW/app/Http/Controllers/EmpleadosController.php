@@ -15,6 +15,7 @@ class empleadosController extends Controller {
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
 
+        // Comporbar el rol del usuario de sesión
         $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
         $rolUsuario = $rolUsuario->rol;
 
@@ -30,11 +31,11 @@ class empleadosController extends Controller {
         
         // Crear un objeto para guardar los datos
         $usuario = new Empleados();
-        $usuario->nombre = $request->input('nombre');
-        $usuario->apellido = $request->input('apellido');
-        $usuario->correo = $request->input('correo');
-        $usuario->contrasena = Hash::make($request->input('contrasena'));;
-        $usuario->rol = $request->input('rol');
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->correo = $request->correo;
+        $usuario->contrasena = Hash::make($request->contrasena);;
+        $usuario->rol = $request->rol;
 
         $usuario->save();
         return redirect()->route('empleados.index');
@@ -43,17 +44,13 @@ class empleadosController extends Controller {
     // Editar empleados de la tabla empleados
     public function update(Request $request) {
 
-        $usuario = Empleados::where('idEmpleado', $request->input('idEmpleado'))->first();
+        $usuario = Empleados::where('idEmpleado', $request->idEmpleado)->first();
 
-        $usuario->nombre = $request->input('nombre');
-        $usuario->apellido = $request->input('apellido');
-        $usuario->correo = $request->input('correo');
-        if ($request->contrasena != $usuario->contrasena) {
-            //dd($request->contrasena, $usuario->contrasena);
-            $usuario->contrasena = Hash::make($request->input('contrasena'));
-            //dd($request->contrasena, $usuario->contrasena);
-        }
-        $usuario->rol = $request->input('rol');
+        ($request->nombre != $usuario->nombre) ? $usuario->nombre = $request->nombre : null;
+        ($request->apellido != $usuario->apellido) ? $usuario->apellido = $request->apellido : null;
+        ($request->correo != $usuario->correo) ? $usuario->correo = $request->correo : null;
+        ($request->contrasena != $usuario->contrasena) ? $usuario->contrasena = Hash::make($request->contrasena) : null;
+        ($request->rol != $usuario->rol) ? $usuario->rol = $request->rol : null;
         
         $usuario->save();
         return redirect()->route('empleados.index');
@@ -62,7 +59,7 @@ class empleadosController extends Controller {
     // Eliminar empleados de la tabla empleados
     public function delete(Request $request) {
 
-        $usuario = Empleados::where('correo', $request->input('dato'));
+        $usuario = Empleados::where('correo', $request->dato);
         $usuario->delete();
 
         return redirect()->route('empleados.index');

@@ -364,7 +364,7 @@ h1 {
 .popup.añadir-editar label {
     font-size: 90%;
 }
-.popup.añadir-editar input, select {
+.popup.añadir-editar input, select, textarea {
     font-size: 100%;
     padding: .5vw;
     width: 29vh;

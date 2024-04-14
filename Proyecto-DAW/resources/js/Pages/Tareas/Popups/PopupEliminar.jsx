@@ -1,7 +1,7 @@
-export default function popupEliminar({ mostrarPopupEliminar, confirmarEliminar, datoEliminar }) {
+export default function popupEliminar({ mostrarPopupEliminar, confirmarEliminar }) {
     return (
         <div className="popup eliminar">
-            <h2>Deseas eliminar al usuario { datoEliminar }?</h2>
+            <h2>¿Deseas eliminar la tarea?</h2>
             <button className="confirmar" onClick={ confirmarEliminar }>Confirmar</button>
             <button className="cancelar" onClick={ mostrarPopupEliminar }>Cancelar</button>
         </div>

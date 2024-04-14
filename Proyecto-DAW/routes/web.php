@@ -41,6 +41,9 @@ Route::middleware(['verificar_usuario'])->group(function () {
 
     // Tareas
     Route::get('/tareas', [TareasController::class, 'index'])->name('tareas.index');
+    Route::post('/tareas/añadir', [EmpleadosController::class, 'insert'])->name('empleados.insert');
+    Route::post('/tareas/editar', [EmpleadosController::class, 'update'])->name('empleados.update');
+    Route::post('/tareas/eliminar', [EmpleadosController::class, 'delete'])->name('empleados.delete');
 
     // Ventas
     Route::get('/ventas', [VentasController::class, 'index'])->name('ventas.index');

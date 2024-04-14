@@ -33,11 +33,10 @@ export default function Tareas({ sesionUsuario, datosServidor }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                <h1>Empleados</h1>
+                <h1>Tareas</h1>
                 { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
-                { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } datoEliminar={ datoEliminar } /> }
-                <h1>Tareas</h1>
+                { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&
                 <>
                     <div className="cabecera-tabla">
