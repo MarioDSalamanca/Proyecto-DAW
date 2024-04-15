@@ -16,11 +16,11 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                             </td>
                             <td>
                                 <label>Empleado</label><br />
-                                <input type="email" name='empleado' value={ formDatos.correo || '' } onChange={ handleChange } minLength={5} />
+                                <input type="email" name='correo' value={ formDatos.correo || '' } onChange={ handleChange } minLength={5} />
                             </td>
                             <td>
-                                <label>Correo</label><br />
-                                <input type="datetime" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
+                                <label>fecha</label><br />
+                                <input type="datetime-local" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
                             </td>
                         </tr>
                         <tr>

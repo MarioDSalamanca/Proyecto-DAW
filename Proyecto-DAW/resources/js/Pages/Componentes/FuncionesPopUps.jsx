@@ -31,10 +31,17 @@ export default function FuncionesPopUps() {
     // Setear los valores de los formularios de Añadir y Editar
     function handleChange(e) {
         const { name, value } = e.target;
-        setFormDatos(prev => ({
-            ...prev,
-            [name]: value.trim(),
-        }));
+        if (name == 'descripcion') {
+            setFormDatos(prev => ({
+                ...prev,
+                [name]: value,
+            }));
+        } else {
+            setFormDatos(prev => ({
+                ...prev,
+                [name]: value.trim(),
+            }));
+        }
     }
 
     // Solicitudes POST al servidor
@@ -43,7 +50,7 @@ export default function FuncionesPopUps() {
         mostrarPopupAñadir();
         router.post(url, formDatos)
         setFormDatos({});
-        window.location.reload()
+        //window.location.reload()
     };
     function confirmarEditar(e, url) {
         e.preventDefault();

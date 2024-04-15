@@ -16,6 +16,9 @@ main {
     font-size: 1vw;
     padding: 8vh 5vw;
 }
+.main-home {
+    padding: 2vh 1vw;
+}
 .sin-permisos {
     text-align: center;
     margin-top: 20vh;
@@ -168,7 +171,8 @@ header {
     flex: 5;
 }
 .divLogo img {
-    width: 8vw;
+    padding: .5vh;
+    width: 18vh;
     margin-left: 2vw;
     border-radius: 50%;
 }
