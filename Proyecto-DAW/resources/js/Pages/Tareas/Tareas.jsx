@@ -6,7 +6,7 @@ import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
 import { useState } from "react";
 
-export default function Tareas({ sesionUsuario, datosServidor }) {
+export default function Tareas({ sesionUsuario, datosServidor, empleados }) {
 
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
@@ -27,15 +27,15 @@ export default function Tareas({ sesionUsuario, datosServidor }) {
         confirmarEliminar,
         datoEliminar,
         formDatos
-    } = FuncionesPopUps();
+    } = FuncionesPopUps({ empleados });
 
     return (
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
                 <h1>Tareas</h1>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
-                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } empleados={ empleados } /> }
+                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } empleados={ empleados } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&
                 <>
@@ -45,7 +45,7 @@ export default function Tareas({ sesionUsuario, datosServidor }) {
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
-                                campos={['nombre', 'empleados.nombre', 'fecha', 'descripcion', 'estado' ]} />
+                                campos={['nombre', 'empleados', 'fecha', 'descripcion', 'estado' ]} />
                         </div>
                     </div>
                     <table className="tablaDatos">

@@ -1,12 +1,14 @@
-export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange }) {
+export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, empleados }) {
     
+    console.log('popupañadir')
+
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
                 <button onClick={ mostrarPopupAñadir }>x</button>
             </div>
             <h2>Añadir una tarea</h2>
-            <form onSubmit={ confirmarAñadir }>
+            <form onSubmit={ (e) => confirmarAñadir(e, '/tareas/añadir') }>
                 <table>
                     <tbody>
                         <tr>
@@ -16,7 +18,12 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                             </td>
                             <td>
                                 <label>Empleado</label><br />
-                                <input type="email" name='correo' value={ formDatos.correo || '' } onChange={ handleChange } minLength={5} />
+                                <select name='empleado' value={ formDatos.empleado || '' } onChange={ handleChange } required >
+                                    <option value=""></option>
+                                    {empleados.map((empleado) => (
+                                        <option key={empleado} value={empleado}>{empleado}</option>
+                                    ))}
+                                </select>
                             </td>
                             <td>
                                 <label>fecha</label><br />
