@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { router } from "@inertiajs/react";
 
-export default function FuncionesPopUps({ empleados }) {
+export default function FuncionesPopUps() {
     
     // Estados
         const [popupAñadir, setPopupAñadir] = useState(false);
@@ -39,16 +39,6 @@ export default function FuncionesPopUps({ empleados }) {
                     ...prev,
                     [name]: value
                 }));
-            } else if (name === 'empleado') {
-                // Si el nombre del campo es 'empleado', actualiza el correo del empleado seleccionado
-                const empleado = empleados.find(empleado => empleado === value);
-                setFormDatos(prev => ({
-                    ...prev,
-                    empleados: {
-                        ...prev.empleados,
-                        correo: empleado
-                    }
-                }));
             } else {
                 // Para otros campos
                 setFormDatos(prev => ({
@@ -69,15 +59,13 @@ export default function FuncionesPopUps({ empleados }) {
         function confirmarEditar(e, url) {
             e.preventDefault();
             mostrarPopupEditar();
-
-            console.log('confirmar', url, formDatos)
             router.post(url, formDatos);
             setFormDatos({});
-            //window.location.reload()
+            window.location.reload()
         };
         function confirmarEliminar(e, url) {
             e.preventDefault();
-            mostrarPopupEliminar(); 
+            mostrarPopupEliminar();
             router.post(url, { dato: datoEliminar });
             window.location.reload()
         }

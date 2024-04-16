@@ -42,22 +42,25 @@ class TareasController extends Controller {
 
     // Editar tareas de la tabla tareas
     public function update(Request $request) {
+        
+        // Comprobar si se ha modificado o no el correo al editar
+        if (isset($request->empleados['correo'])) {
+            $empleado = Empleados::where('correo', $request->empleados['correo'])->value('idEmpleado');
 
-        $empleado = Empleados::where('correo', $request->empleados['correo'])->first();
+        } else if (isset($request->empleados)) {
+            $empleado = Empleados::where('correo', $request->empleados)->value('idEmpleado');
 
+        }
+
+        // Sacar el id de la tarea que se va a modificar
         $tarea = Tareas::where('idTarea', $request->idTarea)->first();
 
         ($request->nombre != $tarea->nombre) ? $tarea->nombre = $request->nombre : null;
         ($request->fecha != $tarea->fecha) ? $tarea->fecha = $request->fecha : null;
         ($request->descripcion != $tarea->descripcion) ? $tarea->descripcion = $request->descripcion : null;
         ($request->estado != $tarea->estado) ? $tarea->estado = $request->estado : null;
-
-        // Falta comparar el correo anterior con el correo nuevo y si es distinto actualizar el idEmpleado que le corresponda
-        /***************************************************************************************************************** */
-        /***************************************************************************************************************** */
-        /***************************************************************************************************************** */
-        /***************************************************************************************************************** */
-        ($request->estado != $tarea->estado) ? $tarea->estado = $request->estado : null;
+        // Comprueba si $empleados es null (si se ha ingresado un empleado válido) y si es distinto del que había
+        ($empleado != null && $empleado != $tarea->idEmpleado) ? $tarea->idEmpleado = $empleado : null;
         
         $tarea->save();
         return redirect()->route('tareas.index');
@@ -66,8 +69,8 @@ class TareasController extends Controller {
     // Eliminar tareas de la tabla tareas
     public function delete(Request $request) {
 
-        $usuario = Tareas::where('correo', $request->dato);
-        $usuario->delete();
+        $tarea = Tareas::where('idTarea', $request->dato)->first();
+        $tarea->delete();
 
         return redirect()->route('tareas.index');
     }

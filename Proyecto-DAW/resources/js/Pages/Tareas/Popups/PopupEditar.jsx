@@ -1,5 +1,5 @@
-export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formDatos, handleChange, empleados }) {
-    
+export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formDatos, handleChange }) {
+        console.log(formDatos)
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
@@ -16,16 +16,11 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formD
                             </td>
                             <td>
                                 <label>Empleado</label><br />
-                                <select name='empleado' value={ formDatos.empleados.correo || '' } onChange={ handleChange } required >
-                                    <option value=""></option>
-                                    {empleados.map((empleado) => (
-                                        <option key={empleado} value={empleado}>{empleado}</option>
-                                    ))}
-                                </select>
+                                <input type="email" name='empleados' value={ formDatos.empleados.correo } onChange={ handleChange } minLength={5} />
                             </td>
                             <td>
                                 <label>Correo</label><br />
-                                <input type="datetime" name='fecha' value={ formDatos.fecha } onChange={ handleChange } minLength={8} />
+                                <input type="datetime-local" name='fecha' value={ formDatos.fecha } onChange={ handleChange } minLength={8} />
                             </td>
                         </tr>
                         <tr>

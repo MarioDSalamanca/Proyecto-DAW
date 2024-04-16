@@ -1,7 +1,5 @@
 export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, empleados }) {
     
-    console.log('popupañadir')
-
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
