@@ -50,8 +50,8 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                     <table className="tablaDatos">
                         <tbody>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Empleado</th>
+                                <th>Empresa</th>
+                                <th>Especialidad</th>
                                 <th>Creado</th>
                                 <th>Actualizado</th>
                                 <th></th>
@@ -72,7 +72,6 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                                     </tr>
                                 ))
                             )}
-
                         </tbody>
                     </table>
                 </>

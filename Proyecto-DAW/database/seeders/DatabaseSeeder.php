@@ -7,6 +7,7 @@ use App\Models\Empleados;
 use App\Models\Inventario;
 use App\Models\Proveedores;
 use App\Models\Tareas;
+use App\Models\Compras;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,33 +34,6 @@ class DatabaseSeeder extends Seeder
             Empleados::create($empleado);
         }
 
-        /*$inventario = [
-            []
-        ];
-
-        // Crear registros de inventario
-        foreach ($inventario as $producto) {
-            Inventario::create($producto);
-        }*/
-
-        $proveedores = [
-            ['empresa' => 'Pfizer', 'especialidad' => 'Vacunas y medicamentos'],
-            ['empresa' => 'Johnson & Johnson', 'especialidad' => 'Productos médicos y farmacéuticos'],
-            ['empresa' => 'Roche', 'especialidad' => 'Productos farmacéuticos y diagnósticos'],
-            ['empresa' => 'Novartis', 'especialidad' => 'Medicamentos y productos oftalmológicos'],
-            ['empresa' => 'Merck & Co.', 'especialidad' => 'Productos farmacéuticos'],
-            ['empresa' => 'Sanofi', 'especialidad' => 'Vacunas y productos farmacéuticos'],
-            ['empresa' => 'GlaxoSmithKline', 'especialidad' => 'Medicamentos y vacunas'],
-            ['empresa' => 'AstraZeneca', 'especialidad' => 'Medicamentos para enfermedades respiratorias y cardiovasculares'],
-            ['empresa' => 'Bayer', 'especialidad' => 'Medicamentos y productos de salud animal'],
-            ['empresa' => 'AbbVie', 'especialidad' => 'Medicamentos biotecnológicos']
-        ];
-
-        // Crear registros de proveedores
-        foreach ($proveedores as $proveedor) {
-            Proveedores::create($proveedor);
-        }
-
         $tareas = [
             [ 'nombre' => 'Fórmula magistral', 'fecha' => '2024-04-30 14:30:00', 'descripcion' => 'Elaborar fórmula magistral de "Disolución de Lugol"', 'idEmpleado' => 1 ],
             [ 'nombre' => 'Fórmula magistral', 'fecha' => '2024-05-10 14:30:00', 'descripcion' => 'Elaborar fórmula magistral de "Cápsulas de sulfato de Zinc"', 'idEmpleado' => 2 ],
@@ -78,5 +52,40 @@ class DatabaseSeeder extends Seeder
             Tareas::create($tarea);
         }
 
+        $inventario = [
+            [ 'nombre' => 'ibufen', 'farmaco' => 'ibuprofeno', 'precio' => 2, 'stock' => 56 ]
+        ];
+
+        // Crear registros de inventario
+        foreach ($inventario as $producto) {
+            Inventario::create($producto);
+        }
+
+        $proveedores = [
+            [ 'empresa' => 'Pfizer', 'especialidad' => 'Vacunas y medicamentos'] ,
+            [ 'empresa' => 'Johnson & Johnson', 'especialidad' => 'Productos médicos y farmacéuticos'] ,
+            [ 'empresa' => 'Roche', 'especialidad' => 'Productos farmacéuticos y diagnósticos'] ,
+            [ 'empresa' => 'Novartis', 'especialidad' => 'Medicamentos y productos oftalmológicos'] ,
+            [ 'empresa' => 'Merck & Co.', 'especialidad' => 'Productos farmacéuticos'] ,
+            [ 'empresa' => 'Sanofi', 'especialidad' => 'Vacunas y productos farmacéuticos'] ,
+            [ 'empresa' => 'GlaxoSmithKline', 'especialidad' => 'Medicamentos y vacunas'] ,
+            [ 'empresa' => 'AstraZeneca', 'especialidad' => 'Medicamentos para enfermedades respiratorias y cardiovasculares'] ,
+            [ 'empresa' => 'Bayer', 'especialidad' => 'Medicamentos y productos de salud animal'] ,
+            [ 'empresa' => 'AbbVie', 'especialidad' => 'Medicamentos biotecnológicos' ]
+        ];
+
+        // Crear registros de proveedores
+        foreach ($proveedores as $proveedor) {
+            Proveedores::create($proveedor);
+        }
+
+        $compras = [
+            [ 'importe' => 400, 'unidades' => 220, 'fecha' => '2024-04-10 14:30:00', 'idProveedor' => '2', 'idInventario' => '1' ]
+        ];
+
+        // Crear registros de compras
+        foreach ($compras as $compra) {
+            Compras::create($compra);
+        }
     }
 }

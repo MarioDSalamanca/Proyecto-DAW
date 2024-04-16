@@ -79,7 +79,6 @@ export default function Tareas({ sesionUsuario, datosServidor, empleados }) {
                                     </tr>
                                 ))
                             )}
-
                         </tbody>
                     </table>
                 </>

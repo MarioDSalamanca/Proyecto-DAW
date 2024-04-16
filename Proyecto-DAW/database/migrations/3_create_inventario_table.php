@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('inventario', function (Blueprint $table) {
             $table->id('idInventario');
             $table->string('nombre')->unique();
-            $table->string('marca');
+            $table->string('farmaco');
             $table->decimal('precio');
             $table->integer('stock');
             $table->timestamps();

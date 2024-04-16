@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('compras', function (Blueprint $table) {
             $table->id('idCompras');
             $table->decimal('importe');
-            $table->string('Unidades');
+            $table->string('unidades');
             $table->dateTime('fecha');
             $table->unsignedBigInteger('idProveedor')->nullable();
             $table->foreign('idProveedor')

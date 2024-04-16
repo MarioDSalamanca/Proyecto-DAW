@@ -9,6 +9,8 @@ class Inventario extends Model
 {
     use HasFactory;
 
+    protected $table = 'inventario';
+
     // Nombre de la clave primaria
     protected $primaryKey = 'idInventario';
 
