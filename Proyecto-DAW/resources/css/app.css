@@ -249,7 +249,7 @@ h1 {
     align-items: center;
     margin-bottom: 3vh;
 }
-.añadirEmpleado {
+.añadir {
     width: 15vw;
     padding: 1vh 2vw;
     background-color: green;
@@ -263,7 +263,7 @@ h1 {
     opacity: .7;
     transition: .3s;
 }
-.añadirEmpleado:hover {
+.añadir:hover {
     opacity: 1;
 }
 .div-buscador {
@@ -300,10 +300,10 @@ h1 {
     font-size: 90%;
     padding: .3vw;
 }
-.tablaDatos .botonesEmpleados {
+.tablaDatos .botones {
     text-align: center;
 }
-.tablaDatos .botonesEmpleados button {
+.tablaDatos .botones button {
     font-size: 90%;
     padding: .6vh 1.2vw;
     color: white;
@@ -314,13 +314,13 @@ h1 {
     opacity: .7;
     transition: .3s;
 }
-.botonesEmpleados button:hover {
+.botones button:hover {
     opacity: 1;
 }
-.botonesEmpleados.editar button{
+.botones.editar button{
     background-color: green;
 }
-.botonesEmpleados.eliminar button{
+.botones.eliminar button{
     background-color: red;
 }
 .sin-resultados {

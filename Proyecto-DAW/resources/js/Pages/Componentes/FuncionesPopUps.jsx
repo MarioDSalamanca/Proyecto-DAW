@@ -52,9 +52,10 @@ export default function FuncionesPopUps() {
         function confirmarAñadir(e, url) {
             e.preventDefault();
             mostrarPopupAñadir();
+            console.log(formDatos)
             router.post(url, formDatos)
             setFormDatos({});
-            window.location.reload()
+            //window.location.reload()
         };
         function confirmarEditar(e, url) {
             e.preventDefault();

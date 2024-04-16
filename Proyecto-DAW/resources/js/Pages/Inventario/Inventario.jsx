@@ -32,7 +32,7 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                <h1>Inventarios</h1>
+                <h1>Inventario</h1>
                 { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
@@ -40,7 +40,7 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
                 <>
                     <div className="cabecera-tabla">
                         <div>
-                            <button className="añadirEmpleado" onClick={ añadir }>Añadir inventario</button>
+                            <button className="añadir" onClick={ añadir }>Añadir inventario</button>
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
@@ -69,8 +69,8 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
                                         <td>{inventario.stock}</td>
                                         <td>{new Date(inventario.created_at).toLocaleString()}</td>
                                         <td>{new Date(inventario.updated_at).toLocaleString()}</td>
-                                        <td className="botonesEmpleados editar"><button onClick={() => editar(inventario) } >Editar</button></td>
-                                        <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(inventario.idInventario) }>Eliminar</button></td>
+                                        <td className="botones editar"><button onClick={() => editar(inventario) } >Editar</button></td>
+                                        <td className="botones eliminar"><button onClick={() => eliminar(inventario.idInventario) }>Eliminar</button></td>
                                     </tr>
                                 ))
                             )}

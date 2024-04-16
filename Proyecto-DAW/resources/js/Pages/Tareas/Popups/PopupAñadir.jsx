@@ -24,7 +24,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 </select>
                             </td>
                             <td>
-                                <label>fecha</label><br />
+                                <label>Fecha</label><br />
                                 <input type="datetime-local" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
                             </td>
                         </tr>

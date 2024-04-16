@@ -18,8 +18,7 @@ class TareasController extends Controller {
 
         $empleados = Empleados::pluck('correo');
 
-        // Invocar la vista de Inertia en 'resources/Pages/Tareas' pasando la prop usuarios
-        // return Inertia::render('Tareas/Tareas', compact('usuarios', 'sesionUsuario'));
+        // Invocar la vista de Inertia en 'resources/Pages/Tareas' pasando las prop
         return Inertia::render('Tareas/Tareas', compact('sesionUsuario', 'datosServidor', 'empleados'));
     }
     

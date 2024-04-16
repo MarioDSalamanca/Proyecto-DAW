@@ -40,7 +40,7 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                 <>
                     <div className="cabecera-tabla">
                         <div>
-                            <button className="añadirEmpleado" onClick={ añadir }>Añadir proveedor</button>
+                            <button className="añadir" onClick={ añadir }>Añadir proveedor</button>
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
@@ -67,8 +67,8 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                                         <td>{proveedor.especialidad}</td>
                                         <td>{new Date(proveedor.created_at).toLocaleString()}</td>
                                         <td>{new Date(proveedor.updated_at).toLocaleString()}</td>
-                                        <td className="botonesEmpleados editar"><button onClick={() => editar(proveedor) } >Editar</button></td>
-                                        <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(proveedor.idproveedor) }>Eliminar</button></td>
+                                        <td className="botones editar"><button onClick={() => editar(proveedor) } >Editar</button></td>
+                                        <td className="botones eliminar"><button onClick={() => eliminar(proveedor.idproveedor) }>Eliminar</button></td>
                                     </tr>
                                 ))
                             )}

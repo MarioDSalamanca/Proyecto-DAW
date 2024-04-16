@@ -41,7 +41,7 @@ export default function Empleados({ datosServidor, sesionUsuario }) {
                 <>
                     <div className="cabecera-tabla">
                         <div>
-                        <button className="añadirEmpleado" onClick={ añadir }>Añadir empleado</button>
+                        <button className="añadir" onClick={ añadir }>Añadir empleado</button>
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados } 
@@ -72,8 +72,8 @@ export default function Empleados({ datosServidor, sesionUsuario }) {
                                     <td>{empleado.rol}</td>
                                     <td>{new Date(empleado.created_at).toLocaleString()}</td>
                                     <td>{new Date(empleado.updated_at).toLocaleString()}</td>
-                                    <td className="botonesEmpleados editar"><button onClick={() => editar(empleado) } >Editar</button></td>
-                                    <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(empleado.correo) }>Eliminar</button></td>
+                                    <td className="botones editar"><button onClick={() => editar(empleado) } >Editar</button></td>
+                                    <td className="botones eliminar"><button onClick={() => eliminar(empleado.correo) }>Eliminar</button></td>
                                 </tr>
                                 ))
                             )}

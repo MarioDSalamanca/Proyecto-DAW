@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+USE App\Models\Compras;
 
 class Inventario extends Model
 {
@@ -15,9 +16,9 @@ class Inventario extends Model
     protected $primaryKey = 'idInventario';
 
     // Añadir los campos accesibles
-    protected $fillable = ['nombre', 'marca', 'precio', 'stock'];
+    protected $fillable = ['nombre', 'farmaco', 'precio', 'stock'];
 
-    public function tareas() {
+    public function compras() {
         // Cada empleado tiene una tarea (clave foránea / clave primaria)
         return $this->hasMany(Compras::class, 'idCompra', 'idInventario');
     }

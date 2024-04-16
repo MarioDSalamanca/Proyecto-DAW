@@ -41,7 +41,7 @@ export default function Tareas({ sesionUsuario, datosServidor, empleados }) {
                 <>
                     <div className="cabecera-tabla">
                         <div>
-                            <button className="añadirEmpleado" onClick={ añadir }>Añadir tarea</button>
+                            <button className="añadir" onClick={ añadir }>Añadir tarea</button>
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
@@ -74,8 +74,8 @@ export default function Tareas({ sesionUsuario, datosServidor, empleados }) {
                                         <td>{tarea.estado}</td>
                                         <td>{new Date(tarea.created_at).toLocaleString()}</td>
                                         <td>{new Date(tarea.updated_at).toLocaleString()}</td>
-                                        <td className="botonesEmpleados editar"><button onClick={() => editar(tarea) } >Editar</button></td>
-                                        <td className="botonesEmpleados eliminar"><button onClick={() => eliminar(tarea.idTarea) }>Eliminar</button></td>
+                                        <td className="botones editar"><button onClick={() => editar(tarea) } >Editar</button></td>
+                                        <td className="botones eliminar"><button onClick={() => eliminar(tarea.idTarea) }>Eliminar</button></td>
                                     </tr>
                                 ))
                             )}
