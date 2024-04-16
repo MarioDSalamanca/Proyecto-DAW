@@ -44,7 +44,7 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
-                                campos={['nombre', 'empleados', 'fecha', 'descripcion', 'estado' ]} />
+                                campos={['empresa', 'especialidad' ]} />
                         </div>
                     </div>
                     <table className="tablaDatos">
