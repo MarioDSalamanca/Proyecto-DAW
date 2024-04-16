@@ -9,11 +9,11 @@ use App\Models\Compras;
 class Proveedores extends Model
 {
     use HasFactory;
-    // Nombre de la clave primaria
     
+    // Nombre de la clave primaria
     protected $primaryKey = 'idProveedor';
 
-    // Añadir los campos accesibles por los usuarios ('IdEmpleado' no es modificable)
+    // Añadir los campos accesibles
     protected $fillable = ['empresa', 'especialidad'];
 
     public function tareas() {

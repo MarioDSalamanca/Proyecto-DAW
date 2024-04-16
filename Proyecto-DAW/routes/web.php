@@ -26,6 +26,9 @@ Route::middleware(['verificar_usuario'])->group(function () {
 
     // Compras
     Route::get('/compras', [ComprasController::class, 'index'])->name('compras.index');
+    Route::post('/compras/añadir', [ComprasController::class, 'insert'])->name('empleados.insert');
+    Route::post('/compras/editar', [ComprasController::class, 'update'])->name('empleados.update');
+    Route::post('/compras/eliminar', [ComprasController::class, 'delete'])->name('empleados.delete');
 
     // Empleados/Usuarios
     Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
@@ -35,6 +38,9 @@ Route::middleware(['verificar_usuario'])->group(function () {
 
     // Inventario
     Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
+    Route::post('/inventario/añadir', [InventarioController::class, 'insert'])->name('empleados.insert');
+    Route::post('/inventario/editar', [InventarioController::class, 'update'])->name('empleados.update');
+    Route::post('/inventario/eliminar', [InventarioController::class, 'delete'])->name('empleados.delete');
 
     // Proveedores
     Route::get('/proveedores', [ProveedoresController::class, 'index'])->name('proveedores.index');

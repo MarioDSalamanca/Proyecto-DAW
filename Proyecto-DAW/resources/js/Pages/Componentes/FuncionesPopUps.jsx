@@ -15,9 +15,9 @@ export default function FuncionesPopUps() {
             mostrarPopupAñadir();
             setFormDatos({});
         }
-        function editar(empleado) {
+        function editar(registro) {
             mostrarPopupEditar();
-            setFormDatos(empleado);
+            setFormDatos(registro);
         };
         function eliminar(dato) {
             mostrarPopupEliminar();

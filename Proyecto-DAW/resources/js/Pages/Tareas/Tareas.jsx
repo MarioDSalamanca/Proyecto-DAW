@@ -27,7 +27,7 @@ export default function Tareas({ sesionUsuario, datosServidor, empleados }) {
         confirmarEliminar,
         datoEliminar,
         formDatos
-    } = FuncionesPopUps({ empleados });
+    } = FuncionesPopUps();
 
     return (
         <>

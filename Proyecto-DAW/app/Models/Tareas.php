@@ -13,7 +13,7 @@ class Tareas extends Model
     // Nombre de la clave primaria
     protected $primaryKey = 'idTarea';
 
-    // Añadir los campos accesibles por los usuarios ('IdEmpleado' no es modificable)
+    // Añadir los campos accesibles
     protected $fillable = ['nombre', 'fecha', 'descripcion', 'estado', 'idEmpleado'];
 
     public function empleados() {

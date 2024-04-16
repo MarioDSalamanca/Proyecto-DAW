@@ -8,13 +8,13 @@ use Inertia\Inertia;
 
 class ProveedoresController extends Controller {
     public function index(){
-        // Recoger todos los registros de la tabla usuarios refiriendonos al modelo Usuarios
-        // $usuarios = Usuarios::all();
+        // Recoger todos los registros de la tabla
+        $datosServidor = Proveedores::all();
 
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
         // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
         // return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
-        return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario'));
+        return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario', 'datosServidor'));
     }
 }
