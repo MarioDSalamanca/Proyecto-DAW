@@ -22,8 +22,8 @@ class ComprasController extends Controller {
 
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
+
         // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
-        // return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
         return Inertia::render('Compras/Compras', compact('sesionUsuario', 'datosServidor', 'proveedores'));
     }
 
@@ -32,23 +32,56 @@ class ComprasController extends Controller {
         
         $proveedor = Proveedores::where('empresa', $request->proveedor)->first();
 
-        // NO ESTOY MUY CONVENCIDO DE QUE VAYA A FUNCIONAR ESTO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        $inventario = Inventario::where('farmaco', $request->farmaco && 'nombre', $request->nombre)->value('stock');
+        // Mirar si el proveedor existe
+        if ($proveedor) {
+
+            // Buscar el registro del producto
+            $inventario = Inventario::where('farmaco', $request->farmaco)->where('nombre', $request->nombre)->first();
         
-        dd($inventario);
+            // Verificar si se encontró el producto
+            if ($inventario) {
 
-        // Crear un objeto para guardar los datos
-        $compra = new Compras();
-        $compra->importe = $request->importe;
-        $compra->unidades = $request->unidades;
-        $compra->fecha = $request->fecha;
-        $compra->idProveedor = $proveedor->idProveedor;
-        ( count($inventario) == 1 ) ? $stock + $inventario
-        // HACER EL IF DE SI EXISTE EN EL INVENTARIO ESTA VAINA
-        // Falta sacar el idInventario!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // Si el inventario existe, actualiza el stock
+                $inventario->stock += $request->unidades;
+                
+                $inventario->save();
 
-        $compra->save();
+            } else {
+
+                // Si el inventario no existe, crea uno nuevo
+                $inventario = new Inventario();
+                $inventario->farmaco = $request->farmaco;
+                $inventario->nombre = $request->nombre;
+                // Calcular el precio del producto
+                /** PONER EL PRECIO DE CADA PRODUCTO AL INSERTAR LA COMPRA
+                 * EN EL MÓDULO DE INVENTARIO SE PODRÁ EDITAR CADA PRODUCTO Y BORRAR UN Nº ESPECÍFICO
+                 * 
+                 * TAREASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+                 * 
+                 */
+                $precioPorUnidad = ($request->importe / $request->unidades) + 1;
+                $inventario->precio = $precioPorUnidad;
+                $inventario->stock = $request->unidades;
+
+                $inventario->save();
+
+            }
+        
+            $compra = new Compras();
+            $compra->importe = $request->importe;
+            $compra->unidades = $request->unidades;
+            $compra->fecha = $request->fecha;
+            $compra->idProveedor = $proveedor->idProveedor;
+            $compra->idInventario = $inventario->idInventario;
+
+            $compra->save();
+
+        } else {
+            
+            return null;
+
+        }
+
         return redirect()->route('compras.index');
     }
 }
