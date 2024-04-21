@@ -13,8 +13,25 @@ class ProveedoresController extends Controller {
 
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
-        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
-        // return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
+        
         return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario', 'datosServidor'));
+    }
+
+    public function insert(Request $request) {
+        
+        $proveedor = new Proveedores();
+        $proveedor->empresa = $request->empresa;
+        $proveedor->especialidad = $request->especialidad;
+
+        $proveedor->save();
+        return redirect()->route('proveedores.index');
+    }
+
+    public function delete(Request $request) {
+
+        $compra = Proveedores::where('idProveedor', $request->dato)->first();
+        $compra->delete();
+
+        return redirect()->route('proveedores.index');
     }
 }

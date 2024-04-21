@@ -1,7 +1,6 @@
 import Header from "../Componentes/Header";
 import FuncionesPopUps from '../Componentes/FuncionesPopUps';
 import PopupAñadir from "./Popups/PopupAñadir";
-import PopupEditar from "./Popups/PopupEditar";
 import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
 import { useState } from "react";
@@ -16,14 +15,11 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
         popupEditar,
         popupEliminar,
         mostrarPopupAñadir,
-        mostrarPopupEditar,
         mostrarPopupEliminar,
         añadir,
-        editar,
         eliminar,
         handleChange,
         confirmarAñadir,
-        confirmarEditar,
         confirmarEliminar,
         formDatos
     } = FuncionesPopUps();
@@ -34,7 +30,6 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
             <main>
                 <h1>Proveedores</h1>
                 { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
-                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&
                 <>
@@ -55,7 +50,6 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                                 <th>Creado</th>
                                 <th>Actualizado</th>
                                 <th></th>
-                                <th></th>
                             </tr>
                             { datosFiltrados.length === 0 ? (
                                 <tr>
@@ -67,8 +61,7 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                                         <td>{proveedor.especialidad}</td>
                                         <td>{new Date(proveedor.created_at).toLocaleString()}</td>
                                         <td>{new Date(proveedor.updated_at).toLocaleString()}</td>
-                                        <td className="botones editar"><button onClick={() => editar(proveedor) } >Editar</button></td>
-                                        <td className="botones eliminar"><button onClick={() => eliminar(proveedor.idproveedor) }>Eliminar</button></td>
+                                        <td className="botones eliminar"><button onClick={() => eliminar(proveedor.idProveedor) }>Eliminar</button></td>
                                     </tr>
                                 ))
                             )}

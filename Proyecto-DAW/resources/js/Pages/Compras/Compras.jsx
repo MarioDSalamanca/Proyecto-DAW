@@ -38,7 +38,7 @@ export default function Compras({ sesionUsuario, datosServidor, proveedores }) {
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
-                                campos={['importe', 'unidades', 'fecha' ]} />
+                                campos={['farmaco', 'empresa', 'importe', 'unidades', 'fecha' ]} />
                         </div>
                     </div>
                     <table className="tablaDatos">
@@ -57,8 +57,8 @@ export default function Compras({ sesionUsuario, datosServidor, proveedores }) {
                                 </tr>
                             ) : ( datosFiltrados.map(compra => (
                                     <tr key={compra.idCompra}>
-                                        <td>{compra.inventario.farmaco}</td>
-                                        <td>{compra.proveedores.empresa}</td>
+                                        <td>{compra.inventario ? compra.inventario.farmaco : "Retirado"}</td>
+                                        <td>{compra.proveedores ? compra.proveedores.empresa : "Expirado"}</td>
                                         <td>{compra.importe}</td>
                                         <td>{compra.unidades}</td>
                                         <td>{new Date(compra.fecha).toLocaleString()}</td>

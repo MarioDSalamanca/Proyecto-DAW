@@ -6,39 +6,21 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formD
                 <button onClick={ mostrarPopupEditar }>x</button>
             </div>
             <h2>Editar una tarea</h2>
-            <form onSubmit={ (e) => confirmarEditar(e, '/tareas/editar') }>
+            <form onSubmit={ (e) => confirmarEditar(e, '/inventario/editar') }>
                 <table>
                     <tbody>
                         <tr>
                             <td>
-                                <label>Nombre</label><br />
-                                <input type="text" name='nombre' value={ formDatos.nombre } onChange={ handleChange } minLength={2} />
+                                <label>Precio de venta</label><br />
+                                <input type="number" name='precio' value={ formDatos.precio } onChange={ handleChange } min={1} step={0.1} />
                             </td>
                             <td>
-                                <label>Empleado</label><br />
-                                <input type="email" name='empleados' value={ formDatos.empleados.correo } onChange={ handleChange } minLength={5} />
-                            </td>
-                            <td>
-                                <label>Correo</label><br />
-                                <input type="datetime-local" name='fecha' value={ formDatos.fecha } onChange={ handleChange } minLength={8} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Descripción</label><br />
-                                <textarea name='descripcion' value={ formDatos.descripcion } onChange={ handleChange } minLength={8} />
-                            </td>
-                            <td>
-                                <label>Estado</label><br />
-                                <select name='estado' value={ formDatos.estado || '' } onChange={ handleChange } required >
-                                    <option value=""></option>
-                                    <option value="pendiente">pendiente</option>
-                                    <option value="hecho">hecho</option>
-                                </select>
+                                <label>Nuevo Stock</label><br />
+                                <input type="number" name='stock' value={ formDatos.stock } onChange={ handleChange } minLength={1} />
                             </td>
                             <td>
                                 <div className='guardar'>
-                                    <button type='submit'>Guardar</button>
+                                    <button type='submit' style={{width: "10vw"}}>Guardar</button>
                                 </div>
                             </td>
                         </tr>

@@ -13,10 +13,28 @@ class InventarioController extends Controller {
         // Recoger todos los registros de la tabla
         $datosServidor = Inventario::all();
 
-        // Coger la variable de sesión para pruebas
+        // Capturar la variable de sesión
         $sesionUsuario = session()->get('usuario_autenticado');
-        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
-        // return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
+
         return Inertia::render('Inventario/Inventario', compact('sesionUsuario', 'datosServidor'));
+    }
+
+    public function update(Request $request) {
+        
+        $inventrario = Inventario::where('idInventario', $request->idInventario)->first();
+
+        ($request->precio != $inventrario->precio) ? $inventrario->precio = $request->precio : null;
+        ($request->stock != $inventrario->stock) ? $inventrario->stock = $request->stock : null;
+        
+        $inventrario->save();
+        return redirect()->route('inventario.index');
+    }
+
+    public function delete(Request $request) {
+
+        $inventario = Inventario::where('idInventario', $request->dato)->first();
+        $inventario->delete();
+
+        return redirect()->route('inventario.index');
     }
 }

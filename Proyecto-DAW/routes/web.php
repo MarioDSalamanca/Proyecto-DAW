@@ -26,9 +26,9 @@ Route::middleware(['verificar_usuario'])->group(function () {
 
     // Compras
     Route::get('/compras', [ComprasController::class, 'index'])->name('compras.index');
-    Route::post('/compras/añadir', [ComprasController::class, 'insert'])->name('empleados.insert');
-    Route::post('/compras/editar', [ComprasController::class, 'update'])->name('empleados.update');
-    Route::post('/compras/eliminar', [ComprasController::class, 'delete'])->name('empleados.delete');
+    Route::post('/compras/añadir', [ComprasController::class, 'insert'])->name('compras.insert');
+    Route::post('/compras/editar', [ComprasController::class, 'update'])->name('compras.update');
+    Route::post('/compras/eliminar', [ComprasController::class, 'delete'])->name('compras.delete');
 
     // Empleados/Usuarios
     Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
@@ -38,21 +38,19 @@ Route::middleware(['verificar_usuario'])->group(function () {
 
     // Inventario
     Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
-    Route::post('/inventario/añadir', [InventarioController::class, 'insert'])->name('empleados.insert');
-    Route::post('/inventario/editar', [InventarioController::class, 'update'])->name('empleados.update');
-    Route::post('/inventario/eliminar', [InventarioController::class, 'delete'])->name('empleados.delete');
+    Route::post('/inventario/editar', [InventarioController::class, 'update'])->name('inventario.update');
+    Route::post('/inventario/eliminar', [InventarioController::class, 'delete'])->name('inventario.delete');
 
     // Proveedores
     Route::get('/proveedores', [ProveedoresController::class, 'index'])->name('proveedores.index');
-    Route::post('/proovedores/añadir', [ProveedoresController::class, 'insert'])->name('empleados.insert');
-    Route::post('/proovedores/editar', [ProveedoresController::class, 'update'])->name('empleados.update');
-    Route::post('/proovedores/eliminar', [ProveedoresController::class, 'delete'])->name('empleados.delete');
+    Route::post('/proveedores/añadir', [ProveedoresController::class, 'insert'])->name('proveedores.insert');
+    Route::post('/proveedores/eliminar', [ProveedoresController::class, 'delete'])->name('proveedores.delete');
 
     // Tareas
     Route::get('/tareas', [TareasController::class, 'index'])->name('tareas.index');
-    Route::post('/tareas/añadir', [TareasController::class, 'insert'])->name('empleados.insert');
-    Route::post('/tareas/editar', [TareasController::class, 'update'])->name('empleados.update');
-    Route::post('/tareas/eliminar', [TareasController::class, 'delete'])->name('empleados.delete');
+    Route::post('/tareas/añadir', [TareasController::class, 'insert'])->name('tareas.insert');
+    Route::post('/tareas/editar', [TareasController::class, 'update'])->name('tareas.update');
+    Route::post('/tareas/eliminar', [TareasController::class, 'delete'])->name('tareas.delete');
 
     // Ventas
     Route::get('/ventas', [VentasController::class, 'index'])->name('ventas.index');

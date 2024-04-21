@@ -1,4 +1,4 @@
-export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, empleados }) {
+export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange }) {
     
     return (
         <div className="popup añadir-editar">
@@ -6,44 +6,21 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                 <button onClick={ mostrarPopupAñadir }>x</button>
             </div>
             <h2>Añadir una tarea</h2>
-            <form onSubmit={ (e) => confirmarAñadir(e, '/tareas/añadir') }>
+            <form onSubmit={ (e) => confirmarAñadir(e, '/proveedores/añadir') }>
                 <table>
                     <tbody>
                         <tr>
                             <td>
-                                <label>Nombre</label><br />
-                                <input type="text" name='nombre' value={ formDatos.nombre || '' } onChange={ handleChange } minLength={2} />
+                                <label>Nombre empresa</label><br />
+                                <input type="text" name='empresa' value={ formDatos.empresa || '' } onChange={ handleChange } min={2} />
                             </td>
                             <td>
-                                <label>Empleado</label><br />
-                                <select name='empleado' value={ formDatos.empleado || '' } onChange={ handleChange } required >
-                                    <option value=""></option>
-                                    {empleados.map((empleado) => (
-                                        <option key={empleado} value={empleado}>{empleado}</option>
-                                    ))}
-                                </select>
-                            </td>
-                            <td>
-                                <label>fecha</label><br />
-                                <input type="datetime-local" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Descripción</label><br />
-                                <textarea name='descripcion' value={ formDatos.descripcion || '' } onChange={ handleChange } minLength={8} />
-                            </td>
-                            <td>
-                                <label>Estado</label><br />
-                                <select name='estado' value={ formDatos.estado || '' } onChange={ handleChange } required >
-                                    <option value=""></option>
-                                    <option value="pendiente">pendiente</option>
-                                    <option value="hecho">hecho</option>
-                                </select>
+                                <label>Especialidad</label><br />
+                                <textarea name='especialidad' value={ formDatos.especialidad || '' } onChange={ handleChange } minLength={4} />                            
                             </td>
                             <td>
                                 <div className='guardar'>
-                                    <button type='submit'>Guardar</button>
+                                    <button type='submit' style={{width: "8vw"}}>Guardar</button>
                                 </div>
                             </td>
                         </tr>

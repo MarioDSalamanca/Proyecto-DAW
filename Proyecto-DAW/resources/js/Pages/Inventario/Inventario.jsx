@@ -1,6 +1,5 @@
 import Header from "../Componentes/Header";
 import FuncionesPopUps from '../Componentes/FuncionesPopUps';
-import PopupAñadir from "./Popups/PopupAñadir";
 import PopupEditar from "./Popups/PopupEditar";
 import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
@@ -33,15 +32,11 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
             <Header sesion={ sesionUsuario }/>
             <main>
                 <h1>Inventario</h1>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&
                 <>
                     <div className="cabecera-tabla">
-                        <div>
-                            <button className="añadir" onClick={ añadir }>Añadir inventario</button>
-                        </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
                                 campos={['nombre', 'farmaco', 'precio', 'stock' ]} />
@@ -56,6 +51,8 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
                                 <th>stock</th>
                                 <th>Creado</th>
                                 <th>Actualizado</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             { datosFiltrados.length === 0 ? (
                                 <tr>

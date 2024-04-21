@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compras;
+use App\Models\Empleados;
 use App\Models\Proveedores;
 use App\Models\Inventario;
 use Illuminate\Http\Request;
@@ -23,8 +24,15 @@ class ComprasController extends Controller {
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
 
-        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
-        return Inertia::render('Compras/Compras', compact('sesionUsuario', 'datosServidor', 'proveedores'));
+        // Comporbar el rol del usuario de sesión
+        $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
+        $rolUsuario = $rolUsuario->rol;
+
+        if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
+            return Inertia::render('Compras/Compras', compact('sesionUsuario', 'datosServidor', 'proveedores'));
+        } else {
+            return Inertia::render('SinPermisos');
+        }
     }
 
     // Añadir compras a la tabla compras
@@ -43,6 +51,7 @@ class ComprasController extends Controller {
 
                 // Si el inventario existe, actualiza el stock
                 $inventario->stock += $request->unidades;
+                ($request->precio != $inventario->precio) ? $inventario->precio = $request->precio : null;
                 
                 $inventario->save();
 
@@ -52,15 +61,7 @@ class ComprasController extends Controller {
                 $inventario = new Inventario();
                 $inventario->farmaco = $request->farmaco;
                 $inventario->nombre = $request->nombre;
-                // Calcular el precio del producto
-                /** PONER EL PRECIO DE CADA PRODUCTO AL INSERTAR LA COMPRA
-                 * EN EL MÓDULO DE INVENTARIO SE PODRÁ EDITAR CADA PRODUCTO Y BORRAR UN Nº ESPECÍFICO
-                 * 
-                 * TAREASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-                 * 
-                 */
-                $precioPorUnidad = ($request->importe / $request->unidades) + 1;
-                $inventario->precio = $precioPorUnidad;
+                $inventario->precio = $request->precio;
                 $inventario->stock = $request->unidades;
 
                 $inventario->save();
@@ -76,11 +77,15 @@ class ComprasController extends Controller {
 
             $compra->save();
 
-        } else {
-            
-            return null;
-
         }
+
+        return redirect()->route('compras.index');
+    }
+
+    public function delete(Request $request) {
+
+        $compra = Compras::where('idCompra', $request->dato)->first();
+        $compra->delete();
 
         return redirect()->route('compras.index');
     }

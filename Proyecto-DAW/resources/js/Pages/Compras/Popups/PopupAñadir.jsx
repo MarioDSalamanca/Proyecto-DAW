@@ -19,19 +19,14 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <input type="text" name='nombre' value={ formDatos.nombre || '' } onChange={ handleChange } minLength={2} />
                             </td>
                             <td>
-                                <label>Proveedor</label><br />
-                                <select name='proveedor' value={ formDatos.proveedor || '' } onChange={ handleChange } required >
-                                    <option value=""></option>
-                                    {proveedores.map((proveedor) => (
-                                        <option key={proveedor} value={proveedor}>{proveedor}</option>
-                                    ))}
-                                </select>
+                                <label>Precio de venta</label><br />
+                                <input type="number" name='precio' value={ formDatos.precio || '' } onChange={ handleChange } step={0.1} min={1} />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>Importe</label><br />
-                                <input type="decimal" name='importe' value={ formDatos.importe || '' } onChange={ handleChange } min={1} />
+                                <input type="number" name='importe' value={ formDatos.importe || '' } onChange={ handleChange } step={0.1} min={1} />
                             </td>
                             <td>
                                 <label>Unidades</label><br />
@@ -43,6 +38,15 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                            <label>Proveedor</label><br />
+                                <select name='proveedor' value={ formDatos.proveedor || '' } onChange={ handleChange } required >
+                                    <option value=""></option>
+                                    {proveedores.map((proveedor) => (
+                                        <option key={proveedor} value={proveedor}>{proveedor}</option>
+                                    ))}
+                                </select>
+                            </td>
                             <td></td>
                             <td colSpan={1}>
                                 <div className='guardar'>
