@@ -12,7 +12,6 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
     // Usa las funciones de popup
     const {
         popupAñadir,
-        popupEditar,
         popupEliminar,
         mostrarPopupAñadir,
         mostrarPopupEliminar,

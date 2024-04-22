@@ -5,7 +5,7 @@ export default function Ventas({ sesionUsuario }) {
         <>
             <Header sesion={ sesionUsuario }/>
             <main>
-                <h1>Ventas de la farmacia de sandra</h1>
+                <h1>Ventas de la farmacia</h1>
             </main>
         </>
     )

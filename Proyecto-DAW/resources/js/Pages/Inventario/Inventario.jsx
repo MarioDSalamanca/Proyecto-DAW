@@ -11,17 +11,13 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
 
     // Usa las funciones de popup
     const {
-        popupAñadir,
         popupEditar,
         popupEliminar,
-        mostrarPopupAñadir,
         mostrarPopupEditar,
         mostrarPopupEliminar,
-        añadir,
         editar,
         eliminar,
         handleChange,
-        confirmarAñadir,
         confirmarEditar,
         confirmarEliminar,
         formDatos
