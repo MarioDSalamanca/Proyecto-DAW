@@ -1,5 +1,5 @@
 export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formDatos, handleChange }) {
-        console.log(formDatos)
+        
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>

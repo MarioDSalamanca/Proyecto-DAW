@@ -13,9 +13,6 @@ class ComprasController extends Controller {
     
     public function index(){
         
-        // Recoger todos los registros de la tabla
-        $datosServidor = Compras::all();
-
         // Obtener todas las compras con los nombres de los empleados asociados
         $datosServidor = Compras::with('inventario:idInventario,farmaco', 'proveedores:idProveedor,empresa')->get();
 

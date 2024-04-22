@@ -317,11 +317,14 @@ h1 {
 .botones button:hover {
     opacity: 1;
 }
-.botones.editar button{
+.botones.editar button {
     background-color: green;
 }
-.botones.eliminar button{
+.botones.eliminar button {
     background-color: red;
+}
+.botones.info button {
+    background-color: blue;
 }
 .sin-resultados {
     color: red;

@@ -8,13 +8,13 @@ use Inertia\Inertia;
 
 class VentasController extends Controller {
     public function index(){
-        // Recoger todos los registros de la tabla usuarios refiriendonos al modelo Usuarios
-        // $usuarios = Usuarios::all();
 
-        // Coger la variable de sesión para pruebas
+        // Obtener todas las compras con los nombres de los empleados asociados
+        $datosServidor = Ventas::with('clientes:idCliente,DNI/CIF', 'empleados:idEmpleado,correo')->get();
+        dd($datosServidor);
+
         $sesionUsuario = session()->get('usuario_autenticado');
-        // Invocar la vista de Inertia en 'resources/Pages/Empleados' pasando la prop usuarios
-        // return Inertia::render('Empleados/Empleados', compact('usuarios', 'sesionUsuario'));
-        return Inertia::render('Ventas/Ventas', compact('sesionUsuario'));
+
+        return Inertia::render('Ventas/Ventas', compact('sesionUsuario', 'datosServidor'));
     }
 }

@@ -7,6 +7,7 @@ export default function FuncionesPopUps() {
         const [popupAñadir, setPopupAñadir] = useState(false);
         const [popupEditar, setPopupEditar] = useState(false);
         const [popupEliminar, setPopupEliminar] = useState(false);
+        const [popupInfo, setPopupInfo] = useState(false);
         const [datoEliminar, setDatoEliminar] = useState('');
         const [formDatos, setFormDatos] = useState({});
 
@@ -23,11 +24,16 @@ export default function FuncionesPopUps() {
             mostrarPopupEliminar();
             setDatoEliminar(dato);
         };
+        function info(registro) {
+            mostrarPopupInfo();
+            setPopupInfo(registro);
+        };
 
     // Funciones para mostrar los PopUps
         const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
         const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
         const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
+        const mostrarPopupInfo = () => setPopupInfo(!popupInfo);
 
     // Setear los valores de los formularios de Añadir y Editar
         function handleChange(e) {
@@ -76,12 +82,15 @@ export default function FuncionesPopUps() {
             popupAñadir,
             popupEditar,
             popupEliminar,
+            popupInfo,
             mostrarPopupAñadir,
             mostrarPopupEditar,
             mostrarPopupEliminar,
+            mostrarPopupInfo,
             añadir,
             editar,
             eliminar,
+            info,
             handleChange,
             confirmarAñadir,
             confirmarEditar,
