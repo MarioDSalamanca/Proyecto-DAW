@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 USE App\Models\Compras;
+USE App\Models\Detalle_ventas;
 
 class Inventario extends Model
 {
@@ -21,5 +22,9 @@ class Inventario extends Model
     public function compras() {
         // Cada empleado tiene una tarea (clave foránea / clave primaria)
         return $this->hasMany(Compras::class, 'idCompra', 'idInventario');
+    }
+
+    public function detalle_ventas() {
+        return $this->hasMany(Detalle_ventas::class, 'idDetalleVenta', 'idInventario');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Tareas;
+use App\Models\Ventas;
 
 class Empleados extends Model
 {
@@ -19,6 +20,10 @@ class Empleados extends Model
     public function tareas() {
         // Cada empleado tiene una tarea (clave foránea / clave primaria)
         return $this->hasMany(Tareas::class, 'idEmpleado', 'idTarea');
+    }
+
+    public function ventas() {
+        return $this->hasMany(Ventas::class, 'idEmpleado', 'idVenta');
     }
 
 }

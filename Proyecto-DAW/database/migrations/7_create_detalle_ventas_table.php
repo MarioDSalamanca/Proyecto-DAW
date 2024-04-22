@@ -11,17 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('compras', function (Blueprint $table) {
-            $table->id('idCompra');
-            $table->decimal('importe');
+        Schema::create('detalle_ventas', function (Blueprint $table) {
+            $table->id('idDetalleVenta');
             $table->integer('unidades');
-            $table->dateTime('fecha');
-            $table->unsignedBigInteger('idProveedor')->nullable();
-            $table->foreign('idProveedor')
-                ->references('idProveedor')
-                ->on('proveedores')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
             $table->unsignedBigInteger('idInventario')->nullable();
             $table->foreign('idInventario')
                 ->references('idInventario')
@@ -37,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('compras');
+        Schema::dropIfExists('detalle_ventas');
     }
 };
