@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Empleados;
-use App\Models\Detalle_ventas;
+use App\Models\Inventario;
 use App\Models\Clientes;
+use App\Models\Detalle_ventas;
 
 class Ventas extends Model
 {
@@ -18,24 +19,19 @@ class Ventas extends Model
     // Añadir los campos accesibles
     protected $fillable = ['importe', 'fecha', 'idDetalleVenta', 'idCliente', 'idEmpleado'];
 
-    public function empleados() {
-        // Cada empleado tiene una tarea (clave primaria)
-        return $this->belongsTo(Empleados::class, 'idEmpleado');
-    }
-
     public function clientes() {
-        // Cada empleado tiene una tarea (clave primaria)
         return $this->belongsTo(Clientes::class, 'idCliente');
     }
 
-    public function detalle_ventas() {
-        return $this->hasMany(Detalle_ventas::class, 'idVenta');
+    public function empleados() {
+        return $this->belongsTo(Empleados::class, 'idEmpleado');
     }
 
     public function inventario() {
-        return $this->belongsToMany(Inventario::class, 'detalle_ventas', 'idVenta', 'idInventario')
-            ->withPivot('unidades');
+        return $this->belongsToMany(Inventario::class, 'idInventario');
     }
 
-    
+    public function detalle_venta() {
+        return $this->hasMany(Detalle_ventas::class, 'idDetalleVenta');
+    }
 }

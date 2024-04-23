@@ -15,13 +15,13 @@ class Detalle_ventas extends Model
     protected $primaryKey = 'idDetalleVenta';
 
     // Añadir los campos accesibles
-    protected $fillable = ['unidades', 'idInventario'];
+    protected $fillable = ['unidades', 'idInventario', 'idVenta'];
     
     public function inventario() {
         return $this->belongsTo(Inventario::class, 'idInventario');
     }
 
     public function ventas() {
-        return $this->belongsTo(Ventas::class, 'idVentas');
+        return $this->belongsTo(Ventas::class, 'idVenta');
     }
 }

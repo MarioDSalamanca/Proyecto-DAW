@@ -11,8 +11,9 @@ class VentasController extends Controller {
     public function index(){
 
         // Obtener todas las compras con los nombres de los empleados asociados
-        $datosServidor = Ventas::with('clientes:idCliente,dniCif,nombre,apellido', 'empleados:idEmpleado,correo', 
-        'detalle_ventas:idDetalleVenta,unidades,inventario:idInventario,nombre')->get();
+        $datosServidor = Ventas::with('clientes', 'empleados', 'detalle_venta', 'detalle_venta.inventario')->get();
+
+        //dd($datosServidor = Ventas::with('clientes', 'empleados', 'detalle_venta', 'detalle_venta.inventario')->get());
 
         $sesionUsuario = session()->get('usuario_autenticado');
 
