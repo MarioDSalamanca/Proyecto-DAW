@@ -27,6 +27,8 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
         formDatos
     } = FuncionesPopUps();
 
+    console.log(datosServidor)
+
     return (
         <>
             <Header sesion={ sesionUsuario }/>

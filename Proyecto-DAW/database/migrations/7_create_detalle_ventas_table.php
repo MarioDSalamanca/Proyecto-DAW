@@ -20,6 +20,12 @@ return new class extends Migration
                 ->on('inventario')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
+            $table->unsignedBigInteger('idVenta');
+            $table->foreign('idVenta')
+                ->references('idVenta')
+                ->on('detalle_ventas')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

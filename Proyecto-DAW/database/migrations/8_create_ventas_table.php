@@ -15,12 +15,6 @@ return new class extends Migration
             $table->id('idVenta');
             $table->decimal('importe');
             $table->dateTime('fecha');
-            $table->unsignedBigInteger('idDetalleVenta')->nullable();
-            $table->foreign('idDetalleVenta')
-                ->references('idDetalleVenta')
-                ->on('detalle_ventas')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
             $table->unsignedBigInteger('idCliente')->nullable();
             $table->foreign('idCliente')
                 ->references('idCliente')

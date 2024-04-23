@@ -23,13 +23,19 @@ class Ventas extends Model
         return $this->belongsTo(Empleados::class, 'idEmpleado');
     }
 
-    public function detalle_ventas() {
-        // Cada empleado tiene una tarea (clave primaria)
-        return $this->belongsTo(Detalle_ventas::class, 'idDetalleVenta');
-    }
-
     public function clientes() {
         // Cada empleado tiene una tarea (clave primaria)
         return $this->belongsTo(Clientes::class, 'idCliente');
     }
+
+    public function detalle_ventas() {
+        return $this->hasMany(Detalle_ventas::class, 'idVenta');
+    }
+
+    public function inventario() {
+        return $this->belongsToMany(Inventario::class, 'detalle_ventas', 'idVenta', 'idInventario')
+            ->withPivot('unidades');
+    }
+
+    
 }

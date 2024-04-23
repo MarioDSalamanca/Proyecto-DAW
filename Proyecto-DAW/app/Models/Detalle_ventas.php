@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 USE App\Models\Inventario;
+USE App\Models\Ventas;
 
 class Detalle_ventas extends Model
 {
@@ -18,5 +19,9 @@ class Detalle_ventas extends Model
     
     public function inventario() {
         return $this->belongsTo(Inventario::class, 'idInventario');
+    }
+
+    public function ventas() {
+        return $this->belongsTo(Ventas::class, 'idVentas');
     }
 }
