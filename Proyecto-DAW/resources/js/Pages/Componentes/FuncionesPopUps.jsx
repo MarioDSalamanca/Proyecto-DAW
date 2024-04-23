@@ -26,7 +26,7 @@ export default function FuncionesPopUps() {
         };
         function info(registro) {
             mostrarPopupInfo();
-            setPopupInfo(registro);
+            setFormDatos(registro);
         };
 
     // Funciones para mostrar los PopUps

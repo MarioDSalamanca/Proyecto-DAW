@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('idCliente');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('DNI/CIF');
+            $table->string('dniCif');
             $table->timestamps();
         });
     }

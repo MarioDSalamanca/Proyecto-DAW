@@ -33,7 +33,7 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
             <main>
                 <h1>Ventas</h1>
                 { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
-                { popupInfo && <PopupInfo mostrarPopupInfo={ mostrarPopupInfo } /> }
+                { popupInfo && <PopupInfo mostrarPopupInfo={ mostrarPopupInfo } formDatos={ formDatos } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&
                 <>
@@ -49,9 +49,9 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
                     <table className="tablaDatos">
                         <tbody>
                             <tr>
+                                <th>Cliente</th>
                                 <th>Importe</th>
                                 <th>Fecha</th>
-                                <th>Cliente</th>
                                 <th>Empleado</th>
                                 <th>Creado</th>
                                 <th></th>
@@ -63,10 +63,10 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
                                 </tr>
                             ) : ( datosFiltrados.map(venta => (
                                     <tr key={venta.idVenta}>
+                                        <td>{venta.clientes ? venta.clientes.dniCif : "Baja"}</td>
                                         <td>{venta.importe}</td>
                                         <td>{venta.fecha}</td>
-                                        <td>{venta.cliente ? venta.cliente.dniCif : "Baja"}</td>
-                                        <td>{venta.empleado ? venta.empleado.correo : "Baja"}</td>
+                                        <td>{venta.empleados ? venta.empleados.correo : "Baja"}</td>
                                         <td>{new Date(venta.created_at).toLocaleString()}</td>
                                         <td className="botones info"><button onClick={() => info(venta) }>Info</button></td>
                                         <td className="botones eliminar"><button onClick={() => eliminar(venta.idVenta) }>Eliminar</button></td>

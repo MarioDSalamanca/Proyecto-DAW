@@ -16,7 +16,7 @@ class Detalle_ventas extends Model
     // Añadir los campos accesibles
     protected $fillable = ['unidades', 'idInventario'];
     
-    public function detalle_ventas() {
+    public function inventario() {
         return $this->belongsTo(Inventario::class, 'idInventario');
     }
 }

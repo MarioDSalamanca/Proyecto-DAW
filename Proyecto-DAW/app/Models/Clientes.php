@@ -13,7 +13,7 @@ class Clientes extends Model
     protected $primaryKey = 'idCliente';
 
     // Añadir los campos accesibles
-    protected $fillable = ['nombre', 'apellido', 'DNI/CIF'];
+    protected $fillable = ['nombre', 'apellido', 'dniCif'];
     
     public function ventas() {
         return $this->hasMany(Ventas::class, 'idCliente', 'idVenta');
