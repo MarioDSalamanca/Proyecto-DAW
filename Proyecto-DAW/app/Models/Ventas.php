@@ -27,7 +27,7 @@ class Ventas extends Model
         return $this->belongsTo(Empleados::class, 'idEmpleado');
     }
     
-    public function detalle_venta() {
+    public function detalle_ventas() {
         return $this->hasMany(Detalle_ventas::class, 'idVenta');
     }
     
