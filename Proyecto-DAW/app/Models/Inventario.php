@@ -25,10 +25,6 @@ class Inventario extends Model
         return $this->hasMany(Compras::class, 'idCompra', 'idInventario');
     }
 
-    public function ventas() {
-        return $this->belongsToMany(Ventas::class, 'idVentas');
-    }
-
     public function detalle_venta() {
         return $this->hasMany(Detalle_ventas::class, 'idDetalleVenta');
     }

@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function Ventas({ sesionUsuario, datosServidor }) {
 
-    console.log(datosServidor)
+    //console.log(datosServidor)
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
     // Usa las funciones de popup
@@ -27,8 +27,6 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
         confirmarEliminar,
         formDatos
     } = FuncionesPopUps();
-
-    console.log(datosServidor)
 
     return (
         <>

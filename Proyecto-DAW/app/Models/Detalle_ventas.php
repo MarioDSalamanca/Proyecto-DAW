@@ -20,7 +20,7 @@ class Detalle_ventas extends Model
     public function inventario() {
         return $this->belongsTo(Inventario::class, 'idInventario');
     }
-
+    
     public function ventas() {
         return $this->belongsTo(Ventas::class, 'idVenta');
     }

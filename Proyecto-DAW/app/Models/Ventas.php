@@ -22,16 +22,13 @@ class Ventas extends Model
     public function clientes() {
         return $this->belongsTo(Clientes::class, 'idCliente');
     }
-
+    
     public function empleados() {
         return $this->belongsTo(Empleados::class, 'idEmpleado');
     }
-
-    public function inventario() {
-        return $this->belongsToMany(Inventario::class, 'idInventario');
-    }
-
+    
     public function detalle_venta() {
-        return $this->hasMany(Detalle_ventas::class, 'idDetalleVenta');
+        return $this->hasMany(Detalle_ventas::class, 'idVenta');
     }
+    
 }
