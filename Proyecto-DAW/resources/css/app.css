@@ -423,3 +423,22 @@ h1 {
 .popup.eliminar .cancelar {
     background-color: red;
 }
+.detallesVenta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5vh 3vw;
+    font-size: 1.1vw;
+}
+.detallesVenta span {
+    font-size: .8vw;
+    font-weight: 400;
+}
+.detallesVenta p {
+    font-weight: 600;
+}
+.popup hr {
+    width: 90%;
+    margin: auto;
+    border-bottom: .2vh solid black;
+}

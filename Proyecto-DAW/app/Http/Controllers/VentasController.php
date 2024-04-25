@@ -15,7 +15,7 @@ class VentasController extends Controller {
             'clientes:idCliente,nombre,apellido,dniCif',
             'empleados:idEmpleado,correo',
             'detalle_ventas:idDetalleVenta,unidades,idVenta,idInventario',
-            'detalle_ventas.inventario:idInventario,nombre'
+            'detalle_ventas.inventario:idInventario,nombre,farmaco,stock'
         )->get();
 
         $sesionUsuario = session()->get('usuario_autenticado');

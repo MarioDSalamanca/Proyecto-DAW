@@ -44,7 +44,7 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
-                                campos={['importe', 'fecha', 'dniCif', 'correo' ]} />
+                                campos={['clientes.dniCif', 'importe', 'empleados.correo', 'correo' ]} />
                         </div>
                     </div>
                     <table className="tablaDatos">

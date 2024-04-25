@@ -45,7 +45,7 @@ export default function Tareas({ sesionUsuario, datosServidor, empleados }) {
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
-                                campos={['nombre', 'empleados', 'fecha', 'descripcion', 'estado' ]} />
+                                campos={['nombre', 'empleados.correo', 'fecha', 'descripcion', 'estado' ]} />
                         </div>
                     </div>
                     <table className="tablaDatos">
