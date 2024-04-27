@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('farmaco');
             $table->decimal('precio');
+            $table->boolean('prescripcion')->default(false);
             $table->integer('stock');
             $table->timestamps();
         });

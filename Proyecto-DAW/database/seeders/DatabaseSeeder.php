@@ -56,16 +56,16 @@ class DatabaseSeeder extends Seeder
         }
 
         $inventario = [
-            ['nombre' => 'ibufen', 'farmaco' => 'ibuprofeno', 'precio' => 2, 'stock' => 56],
-            ['nombre' => 'norlevo', 'farmaco' => 'levonogestrel', 'precio' => 1.5, 'stock' => 70],
-            ['nombre' => 'eutirox', 'farmaco' => 'levotiroxina', 'precio' => 3, 'stock' => 45],
-            ['nombre' => 'lumigan', 'farmaco' => 'Bimatoprost', 'precio' => 2.5, 'stock' => 60],
-            ['nombre' => 'Viread', 'farmaco' => 'Tenofovir', 'precio' => 4, 'stock' => 30],
-            ['nombre' => 'Valium', 'farmaco' => 'Diazepam', 'precio' => 3.5, 'stock' => 25],
-            ['nombre' => 'Plenur', 'farmaco' => 'Carbonato de Calcio', 'precio' => 5, 'stock' => 20],
-            ['nombre' => 'Sintrom', 'farmaco' => 'Acenocumarol', 'precio' => 4, 'stock' => 40],
-            ['nombre' => 'Nolotil', 'farmaco' => 'Metamizol magnésico', 'precio' => 6, 'stock' => 15],
-            ['nombre' => 'Ebastina', 'farmaco' => 'Ebastina', 'precio' => 4.2, 'stock' => 25],
+            ['nombre' => 'ibufen', 'farmaco' => 'ibuprofeno', 'precio' => 2, 'prescripcion' => false, 'stock' => 56],
+            ['nombre' => 'norlevo', 'farmaco' => 'levonogestrel', 'precio' => 1.5, 'prescripcion' => true, 'stock' => 70],
+            ['nombre' => 'eutirox', 'farmaco' => 'levotiroxina', 'precio' => 3, 'prescripcion' => true, 'stock' => 45],
+            ['nombre' => 'lumigan', 'farmaco' => 'Bimatoprost', 'precio' => 2.5, 'prescripcion' => true, 'stock' => 60],
+            ['nombre' => 'Viread', 'farmaco' => 'Tenofovir', 'precio' => 4, 'prescripcion' => true, 'stock' => 30],
+            ['nombre' => 'Valium', 'farmaco' => 'Diazepam', 'precio' => 3.5, 'prescripcion' => true, 'stock' => 25],
+            ['nombre' => 'Plenur', 'farmaco' => 'Carbonato de Calcio', 'precio' => 5, 'prescripcion' => true, 'stock' => 20],
+            ['nombre' => 'Sintrom', 'farmaco' => 'Acenocumarol', 'precio' => 4, 'prescripcion' => true, 'stock' => 40],
+            ['nombre' => 'Nolotil', 'farmaco' => 'Metamizol magnésico', 'precio' => 6, 'prescripcion' => true, 'stock' => 15],
+            ['nombre' => 'Ebastina', 'farmaco' => 'Ebastina', 'precio' => 4.2, 'prescripcion' => true, 'stock' => 25],
         ];
 
         // Crear registros de inventario
@@ -134,20 +134,20 @@ class DatabaseSeeder extends Seeder
         }
 
         $clientes = [
-            ["nombre" => "Thibaut", "apellido" => "Courtois", "dniCif" => "23456789B"],
-            ["nombre" => "Daniel", "apellido" => "Carvajañ", "dniCif" => "01234567D"],        
-            ["nombre" => "Luka", "apellido" => "Modric", "dniCif" => "D2345678E"],        
-            ["nombre" => "Vinicius", "apellido" => "Junior", "dniCif" => "13456789F"],        
-            ["nombre" => "Toni", "apellido" => "Kroos", "dniCif" => "4567890G"],       
-            ["nombre" => "Jude", "apellido" => "Bellingham", "dniCif" => "12345678A"], 
-            ["nombre" => "Ferland", "apellido" => "Mendy", "dniCif" => "G5678901H"],        
-            ["nombre" => "Rodrygo", "apellido" => "Goes", "dniCif" => "H6789012I"],        
-            ["nombre" => "Eder", "apellido" => "Militao", "dniCif" => "78901235J"],        
-            ["nombre" => "Lucas", "apellido" => "Vazquez", "dniCif" => "J8901234K"],        
-            ["nombre" => "Federico", "apellido" => "Valverde", "dniCif" => "K9012345L"],        
-            ["nombre" => "David", "apellido" => "Alaba", "dniCif" => "L0123456M"],        
-            ["nombre" => "Eduardo", "apellido" => "Camavinga", "dniCif" => "51234567N"],        
-            ["nombre" => "Carlo", "apellido" => "Ancelotti", "dniCif" => "01234567N"],
+            ["nombre" => "Thibaut", "apellido" => "Courtois", "cipa" => "2345678952"],
+            ["nombre" => "Daniel", "apellido" => "Carvajal", "cipa" => "0123456716"],        
+            ["nombre" => "Luka", "apellido" => "Modric", "cipa" => "2345678167"],        
+            ["nombre" => "Vinicius", "apellido" => "Junior", "cipa" => "1345678994"],        
+            ["nombre" => "Toni", "apellido" => "Kroos", "cipa" => "4567890154"],       
+            ["nombre" => "Jude", "apellido" => "Bellingham", "cipa" => "1234567878"], 
+            ["nombre" => "Ferland", "apellido" => "Mendy", "cipa" => "5678901648"],
+            ["nombre" => "Rodrygo", "apellido" => "Goes", "cipa" => "6789012794"],        
+            ["nombre" => "Eder", "apellido" => "Militao", "cipa" => "7890123543"],        
+            ["nombre" => "Lucas", "apellido" => "Vazquez", "cipa" => "8901234468"],        
+            ["nombre" => "Federico", "apellido" => "Valverde", "cipa" => "9012345798"],        
+            ["nombre" => "David", "apellido" => "Alaba", "cipa" => "0123456287"],        
+            ["nombre" => "Eduardo", "apellido" => "Camavinga", "cipa" => "5123456752"],        
+            ["nombre" => "Carlo", "apellido" => "Ancelotti", "cipa" => "0123456729"],
         ];
 
         // Crear registros de clientes

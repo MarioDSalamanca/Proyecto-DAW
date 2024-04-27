@@ -33,13 +33,17 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <input type="number" name='unidades' value={ formDatos.unidades || '' } onChange={ handleChange } min={1} />
                             </td>
                             <td>
-                                <label>Fecha</label><br />
-                                <input type="datetime-local" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
+                                <label>Necesita prescripción</label><br />
+                                <input type="checkbox" name='prescripcion' value={ formDatos.prescripcion || '' } onChange={ handleChange } />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                            <label>Proveedor</label><br />
+                                <label>Fecha</label><br />
+                                <input type="datetime-local" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
+                            </td>
+                            <td>
+                                <label>Proveedor</label><br />
                                 <select name='proveedor' value={ formDatos.proveedor || '' } onChange={ handleChange } required >
                                     <option value=""></option>
                                     {proveedores.map((proveedor) => (
@@ -47,7 +51,6 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                     ))}
                                 </select>
                             </td>
-                            <td></td>
                             <td colSpan={1}>
                                 <div className='guardar'>
                                     <button type='submit'>Guardar</button>

@@ -423,12 +423,16 @@ h1 {
 .popup.eliminar .cancelar {
     background-color: red;
 }
+.popup.info {
+    max-height: 45vh;
+    overflow-y: auto;
+}
 .detallesVenta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1.5vh 3vw;
-    font-size: 1.1vw;
+    font-size: 1vw;
 }
 .detallesVenta span {
     font-size: .8vw;

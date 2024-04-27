@@ -44,6 +44,7 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
                                 <th>Nombre</th>
                                 <th>Farmaco</th>
                                 <th>Precio</th>
+                                <th>Prescripción</th>
                                 <th>stock</th>
                                 <th>Creado</th>
                                 <th>Actualizado</th>
@@ -59,6 +60,7 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
                                         <td>{inventario.nombre}</td>
                                         <td>{inventario.farmaco}</td>
                                         <td>{inventario.precio}</td>
+                                        <td>{inventario.prescripcion ? 'Sí' : 'No'}</td>
                                         <td>{inventario.stock}</td>
                                         <td>{new Date(inventario.created_at).toLocaleString()}</td>
                                         <td>{new Date(inventario.updated_at).toLocaleString()}</td>

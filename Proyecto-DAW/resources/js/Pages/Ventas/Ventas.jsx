@@ -44,7 +44,7 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
                         </div>
                         <div className="div-buscador">
                             <Buscador datosServidor={ datosServidor } setDatosFiltrados={ setDatosFiltrados }
-                                campos={['clientes.dniCif', 'importe', 'empleados.correo', 'correo' ]} />
+                                campos={['clientes.cipa', 'importe', 'empleados.correo', 'correo' ]} />
                         </div>
                     </div>
                     <table className="tablaDatos">
@@ -64,7 +64,7 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
                                 </tr>
                             ) : ( datosFiltrados.map(venta => (
                                     <tr key={venta.idVenta}>
-                                        <td>{venta.clientes ? venta.clientes.dniCif : "Baja"}</td>
+                                        <td>{venta.clientes ? venta.clientes.cipa : "Baja"}</td>
                                         <td>{venta.importe}</td>
                                         <td>{venta.fecha}</td>
                                         <td>{venta.empleados ? venta.empleados.correo : "Baja"}</td>
