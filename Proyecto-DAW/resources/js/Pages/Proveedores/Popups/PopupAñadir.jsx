@@ -15,10 +15,6 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <input type="text" name='empresa' value={ formDatos.empresa || '' } onChange={ handleChange } min={2} />
                             </td>
                             <td>
-                                <label>Especialidad</label><br />
-                                <textarea name='especialidad' value={ formDatos.especialidad || '' } onChange={ handleChange } minLength={4} />                            
-                            </td>
-                            <td>
                                 <div className='guardar'>
                                     <button type='submit' style={{width: "8vw"}}>Guardar</button>
                                 </div>

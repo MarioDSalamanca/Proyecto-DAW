@@ -1,5 +1,5 @@
 export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, proveedores }) {
-    
+    console.log(formDatos)
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
@@ -30,11 +30,15 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                             </td>
                             <td>
                                 <label>Unidades</label><br />
-                                <input type="number" name='unidades' value={ formDatos.unidades || '' } onChange={ handleChange } min={1} />
+                                <input type="number" name='unidades' value={ formDatos.unidades || '' } onChange={ handleChange } step={10} min={10} />
                             </td>
                             <td>
-                                <label>Necesita prescripción</label><br />
-                                <input type="checkbox" name='prescripcion' value={ formDatos.prescripcion || '' } onChange={ handleChange } />
+                                <label>¿Necesita prescripción?</label><br />
+                                <select name='prescripcion' value={ formDatos.prescripcion || '' } onChange={ handleChange } required >
+                                    <option value=""></option>
+                                    <option value="1">Sí</option>
+                                    <option value="0">No</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>

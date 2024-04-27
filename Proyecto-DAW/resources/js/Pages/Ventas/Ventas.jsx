@@ -50,7 +50,7 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
                     <table className="tablaDatos">
                         <tbody>
                             <tr>
-                                <th>Cliente</th>
+                                <th>CIPA</th>
                                 <th>Importe</th>
                                 <th>Fecha</th>
                                 <th>Empleado</th>
@@ -64,7 +64,7 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
                                 </tr>
                             ) : ( datosFiltrados.map(venta => (
                                     <tr key={venta.idVenta}>
-                                        <td>{venta.clientes ? venta.clientes.cipa : "Baja"}</td>
+                                        <td>{venta.clientes ? venta.clientes.cipa : "-"}</td>
                                         <td>{venta.importe}</td>
                                         <td>{venta.fecha}</td>
                                         <td>{venta.empleados ? venta.empleados.correo : "Baja"}</td>

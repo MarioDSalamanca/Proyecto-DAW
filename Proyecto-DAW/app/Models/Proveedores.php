@@ -14,7 +14,7 @@ class Proveedores extends Model
     protected $primaryKey = 'idProveedor';
 
     // Añadir los campos accesibles
-    protected $fillable = ['empresa', 'especialidad'];
+    protected $fillable = ['empresa'];
 
     public function tareas() {
         // Cada empleado tiene una tarea (clave foránea / clave primaria)

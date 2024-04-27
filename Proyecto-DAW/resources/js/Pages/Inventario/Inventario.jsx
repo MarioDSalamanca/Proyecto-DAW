@@ -56,7 +56,7 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
                                     <td colSpan="9"><p className="sin-resultados">No se encontraron resultados</p></td>
                                 </tr>
                             ) : ( datosFiltrados.map(inventario => (
-                                    <tr key={inventario.idInventario}>
+                                    <tr key={inventario.idInventario}  style={{ backgroundColor: inventario.stock < 10 ? 'orange' : 'inherit' }} >
                                         <td>{inventario.nombre}</td>
                                         <td>{inventario.farmaco}</td>
                                         <td>{inventario.precio}</td>

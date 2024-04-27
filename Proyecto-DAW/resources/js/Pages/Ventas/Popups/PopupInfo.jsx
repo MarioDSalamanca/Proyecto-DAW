@@ -30,11 +30,16 @@ export default function PopupInfo({ mostrarPopupInfo, formDatos }) {
             </div>
             <h2>Detalle de la venta</h2>
             <div>
-                <div className="detallesVenta usuarios">
-                    <p><span>Nombre cliente: </span><br />{formDatos.clientes.nombre}</p>
-                    <p><span>Apellido cliente: </span><br />{formDatos.clientes.apellido}</p>
-                    <p><span>DNI/CIF cliente: </span><br />{formDatos.clientes.cipa}</p>
+                {formDatos.clientes && (
+                    <div className="detallesVenta cliente">
+                        <p><span>Nombre cliente: </span><br />{formDatos.clientes.nombre}</p>
+                        <p><span>Apellido cliente: </span><br />{formDatos.clientes.apellido}</p>
+                        <p><span>CIPA cliente: </span><br />{formDatos.clientes.cipa}</p>
+                    </div>
+                )}
+                <div className="detallesVenta empleado">
                     <p><span>Correo empleado: </span><br />{formDatos.empleados.correo}</p>
+                    <p><span>Importe: </span><br />{formDatos.fecha}</p>
                     <p><span>Importe: </span><br />{formDatos.importe}€</p>
                 </div>
                 <hr />

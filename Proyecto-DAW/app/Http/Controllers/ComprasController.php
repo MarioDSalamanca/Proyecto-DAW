@@ -59,6 +59,7 @@ class ComprasController extends Controller {
                 $inventario->farmaco = $request->farmaco;
                 $inventario->nombre = $request->nombre;
                 $inventario->precio = $request->precio;
+                $inventario->prescripcion = $request->prescripcion;
                 $inventario->stock = $request->unidades;
 
                 $inventario->save();
