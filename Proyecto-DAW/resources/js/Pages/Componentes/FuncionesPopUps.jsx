@@ -61,7 +61,7 @@ export default function FuncionesPopUps() {
             console.log(formDatos)
             router.post(url, formDatos)
             setFormDatos({});
-            //window.location.reload();
+            window.location.reload();
         };
         function confirmarEditar(e, url) {
             e.preventDefault();
@@ -74,7 +74,7 @@ export default function FuncionesPopUps() {
             e.preventDefault();
             mostrarPopupEliminar();
             router.post(url, { dato: datoEliminar });
-            window.location.reload();
+            //window.location.reload();
         }
 
     // Retornar las funciones a los componentes

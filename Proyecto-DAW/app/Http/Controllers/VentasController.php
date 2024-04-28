@@ -38,13 +38,13 @@ class VentasController extends Controller {
 
         $tarea->save();
         return redirect()->route('tareas.index');
-    }
+    }*/
 
     public function delete(Request $request) {
 
-        $tarea = Tareas::where('idTarea', $request->dato)->first();
+        $tarea = Ventas::where('idVenta', $request->dato)->first();
         $tarea->delete();
 
-        return redirect()->route('tareas.index');
-    }*/
+        return redirect()->route('ventas.index');
+    }
 }

@@ -54,5 +54,8 @@ Route::middleware(['verificar_usuario'])->group(function () {
 
     // Ventas
     Route::get('/ventas', [VentasController::class, 'index'])->name('ventas.index');
+    Route::post('/ventas/añadir', [VentasController::class, 'insert'])->name('ventas.insert');
+    Route::post('/ventas/editar', [VentasController::class, 'update'])->name('ventas.update');
+    Route::post('/ventas/eliminar', [VentasController::class, 'delete'])->name('ventas.delete');
 
 });
