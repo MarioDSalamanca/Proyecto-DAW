@@ -6,7 +6,7 @@ import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
 import { useState } from "react";
 
-export default function Ventas({ sesionUsuario, datosServidor }) {
+export default function Ventas({ sesionUsuario, datosServidor, empleados, clientes, productos }) {
 
     //console.log(datosServidor)
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
@@ -33,7 +33,8 @@ export default function Ventas({ sesionUsuario, datosServidor }) {
             <Header sesion={ sesionUsuario }/>
             <main>
                 <h1>Ventas</h1>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } 
+                formDatos={ formDatos } handleChange={ handleChange } clientes={ clientes } empleados={ empleados } productos={ productos } /> }
                 { popupInfo && <PopupInfo mostrarPopupInfo={ mostrarPopupInfo } formDatos={ formDatos } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&

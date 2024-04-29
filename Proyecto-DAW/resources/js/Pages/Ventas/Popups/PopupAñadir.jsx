@@ -1,26 +1,40 @@
 import { useState } from "react";
 
-export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, empleados }) {
+export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, empleados, clientes, productos }) {
     
-    /* PRUEBAASSSS */
-
-    const [productos, setProductos] = useState({
+    const [lista, setProductos] = useState({
         productosSeleccionados: [''] // Inicialmente, un select vacío
     });
 
-    // Maneja el cambio en el select de productos
+    // Maneja el cambio en el select de lista
     const handleChangeProducto = (index, e) => {
-        const nuevosProductos = [...productos.productosSeleccionados];
+        const nuevosProductos = [...lista.productosSeleccionados];
         nuevosProductos[index] = e.target.value;
         setProductos(prev => ({ ...prev, productosSeleccionados: nuevosProductos }));
     };
 
     // Agrega otro select para seleccionar un producto
-    const agregarProducto = () => {
+    const añadirProducto = () => {
         setProductos(prev => ({
             ...prev,
             productosSeleccionados: [...prev.productosSeleccionados, '']
         }));
+        console.log(lista)
+    };
+
+    // Elimina el último select de la lista
+    const eliminarProducto = (index) => {
+        if (index === 0 && lista.productosSeleccionados.length === 1) {
+            return;
+        }
+        setProductos(prev => ({
+            ...prev,
+            productosSeleccionados: [
+                ...prev.productosSeleccionados.slice(0, index),
+                ...prev.productosSeleccionados.slice(index + 1)
+            ]
+        }));
+        console.log(lista)
     };
 
     return (
@@ -51,17 +65,18 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <input type="datetime-local" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
                             </td>
                         </tr>
-                        {productos.productosSeleccionados.map((producto, index) => (
+                        {lista.productosSeleccionados.map((producto, index) => (
                             <tr key={index}>
                                 <td>
-                                    <button onClick={agregarProducto}>+</button>
+                                    <button onClick={ añadirProducto }>Añadir producto</button>
+                                    <button onClick={() => eliminarProducto(index)}>Eliminar producto</button>
                                 </td>
                                 <td>
                                     <label>Producto</label><br />
                                     <select
                                         name={`producto-${index}`}
-                                        value={producto}
-                                        onChange={(e) => handleChange(index, e)}
+                                        value={`formDatos.producto-${index}`}
+                                        onChange={(e) => handleChangeProducto(index, e)}
                                         required
                                     >
                                         <option value=""></option>
@@ -72,7 +87,8 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 </td>
                             </tr>
                         ))}
-                        <tr>                            <td>
+                        <tr>
+                            <td>
                                 <div className='guardar'>
                                     <button type='submit'>Guardar</button>
                                 </div>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clientes;
 use App\Models\Ventas;
 use App\Models\Detalle_ventas;
+use App\Models\Empleados;
+use App\Models\Inventario;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -18,9 +21,15 @@ class VentasController extends Controller {
             'detalle_ventas.inventario:idInventario,nombre,farmaco,stock'
         )->get();
 
+        $empleados = Empleados::pluck('correo');
+
+        $clientes = Clientes::pluck('cipa');
+
+        $productos = Inventario::pluck('nombre');
+
         $sesionUsuario = session()->get('usuario_autenticado');
 
-        return Inertia::render('Ventas/Ventas', compact('sesionUsuario', 'datosServidor'));
+        return Inertia::render('Ventas/Ventas', compact('sesionUsuario', 'datosServidor', 'empleados', 'clientes', 'productos'));
     }
 
     // Añadir tareas a la tabla tareas
