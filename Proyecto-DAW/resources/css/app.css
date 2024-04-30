@@ -457,3 +457,19 @@ h1 {
     margin: 1vh auto;
     border-bottom: .2vh solid black;
 }
+#contenedor-selects p {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+#contenedor-selects button {
+    margin-right: 2%;
+    padding: 0 1%;
+}
+#contenedor-selects select {
+    width: 50%;
+}
+#contenedor-selects input {
+    width: 20%;
+}

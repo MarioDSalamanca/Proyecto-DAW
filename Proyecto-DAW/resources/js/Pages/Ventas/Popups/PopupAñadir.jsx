@@ -1,41 +1,90 @@
-import { useState } from "react";
-
 export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, empleados, clientes, productos }) {
+
+    console.log(formDatos)
+
+    let aux = 1;
+    let lista = [];
+
+    function handleChangeProductos(e) {
+
+        /* Tengo que pasar un objeto a formDatos con productos y unidades */
+    }    
+
+    function agregarSelect(productos) {
+
+        // Obtener el elemento donde quieres agregar HTML
+        const contenedor = document.createElement('p');
+        contenedor.id = aux;
+        
+        aux++;
+
+        // Crear el elemento select
+        const select = document.createElement('select');
+        select.id = 'productos' + aux;
+        select.name = 'productos-' + aux;
+        select.value = formDatos.productos;
+        select.addEventListener('change', handleChangeProductos );
+        select.required = true;
+        
+        // Agregar opciones al select
+        const opcionVacia = document.createElement('option');
+        opcionVacia.value = '';
+        opcionVacia.textContent = '';
+        select.appendChild(opcionVacia);
+
+        productos.forEach(producto => {
+            const option = document.createElement('option');
+            option.value = producto;
+            option.textContent = producto;
+            select.appendChild(option);
+        });
+
+        // Crear el elemento select
+        const unidades = document.createElement('input');
+        unidades.type = 'number';
+        unidades.id = 'unidades' + aux;
+        unidades.name = 'unidades-' + aux;
+        unidades.value = '';
+        unidades.addEventListener('change', handleChange );
+        unidades.required = true;
+
+        // Crear el botón de agregar
+        const botonAgregar = document.createElement('button');
+        botonAgregar.id = 'agregar' + aux;
+        botonAgregar.textContent = '+';
+        botonAgregar.addEventListener('click', function() {
+            agregarSelect(productos);
+        });
+
+        // Crear el botón de eliminar
+        const botonEliminar = document.createElement('button');
+        botonEliminar.id = 'eliminar' + aux;
+        botonEliminar.textContent = '-';
+        botonEliminar.addEventListener('click', function() {
+            eliminarSelect(contenedor.id); // Pasar el ID del contenedor al eliminarSelect
+        });
+
+        // Agregar los botones al contenedor
+        contenedor.appendChild(botonEliminar);
+
+        // Agregar el select al contenedor
+        contenedor.appendChild(select);
+
+        // Agregar unidades al contenedor
+        contenedor.appendChild(unidades);
+
+        // Agregar el contenedor al contenedor-selects
+        document.getElementById('contenedor-selects').appendChild(contenedor);
+    }
+
+    function eliminarSelect(id) {
     
-    const [lista, setProductos] = useState({
-        productosSeleccionados: [''] // Inicialmente, un select vacío
-    });
-
-    // Maneja el cambio en el select de lista
-    const handleChangeProducto = (index, e) => {
-        const nuevosProductos = [...lista.productosSeleccionados];
-        nuevosProductos[index] = e.target.value;
-        setProductos(prev => ({ ...prev, productosSeleccionados: nuevosProductos }));
-    };
-
-    // Agrega otro select para seleccionar un producto
-    const añadirProducto = () => {
-        setProductos(prev => ({
-            ...prev,
-            productosSeleccionados: [...prev.productosSeleccionados, '']
-        }));
-        console.log(lista)
-    };
-
-    // Elimina el último select de la lista
-    const eliminarProducto = (index) => {
-        if (index === 0 && lista.productosSeleccionados.length === 1) {
-            return;
-        }
-        setProductos(prev => ({
-            ...prev,
-            productosSeleccionados: [
-                ...prev.productosSeleccionados.slice(0, index),
-                ...prev.productosSeleccionados.slice(index + 1)
-            ]
-        }));
-        console.log(lista)
-    };
+        // Obtener el elemento que quieres eliminar
+        const elementoEliminar = document.getElementById(id);
+    
+        // Eliminar el elemento del DOM
+        elementoEliminar.parentNode.removeChild(elementoEliminar);
+    }
 
     return (
         <div className="popup añadir-editar">
@@ -49,7 +98,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                         <tr>
                             <td>
                                 <label>CIPA</label><br />
-                                <input type="text" name='cipa' value={ formDatos.cipa || '' } onChange={ handleChange } minLength={10} maxLength={10} />
+                                <input type="number" name='cipa' value={ formDatos.cipa || '' } onChange={ handleChange } minLength={10} maxLength={10} />
                             </td>
                             <td>
                                 <label>Empleado</label><br />
@@ -65,28 +114,23 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <input type="datetime-local" name='fecha' value={ formDatos.fecha || '' } onChange={ handleChange } minLength={8} />
                             </td>
                         </tr>
-                        {lista.productosSeleccionados.map((producto, index) => (
-                            <tr key={index}>
-                                <td>
-                                    <button onClick={ añadirProducto }>Añadir producto</button>
-                                    <button onClick={() => eliminarProducto(index)}>Eliminar producto</button>
-                                </td>
-                                <td>
-                                    <label>Producto</label><br />
-                                    <select
-                                        name={`producto-${index}`}
-                                        value={`formDatos.producto-${index}`}
-                                        onChange={(e) => handleChangeProducto(index, e)}
-                                        required
-                                    >
-                                        <option value=""></option>
-                                        {productos.map((producto) => (
-                                            <option key={producto} value={producto}>{producto}</option>
-                                        ))}
-                                    </select>
-                                </td>
-                            </tr>
-                        ))}
+                        <tr>
+                            <td colSpan={3}>
+                                <label>Productos</label><br />
+                                <div id="contenedor-selects">
+                                    <p>
+                                        <button id="agregar1" onClick={ () => agregarSelect(productos) }>+</button>
+                                        <select id="productos1" name="productos1" value={formDatos.productos} onChange={ handleChange } required >
+                                            <option value=""></option>
+                                            {productos.map((producto) => (
+                                                <option key={producto} value={producto}>{producto}</option>
+                                            ))}
+                                        </select>
+                                        <input type="number" name="unidades-1" onChange={ handleChange } min={1} required />
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <div className='guardar'>
