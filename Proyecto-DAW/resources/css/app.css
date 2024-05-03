@@ -333,10 +333,12 @@ h1 {
 }
 .popup {
     position: fixed;
+    overflow-y: auto;
     left: 0;
     right: 0;
     margin: auto;
     width: 100vh;
+    max-height: 45vh;
     z-index: 2;
     border: .5vh solid black;
     background-color: white;

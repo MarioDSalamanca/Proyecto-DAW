@@ -60,12 +60,12 @@ class DatabaseSeeder extends Seeder
             ['nombre' => 'norlevo', 'farmaco' => 'levonogestrel', 'precio' => 1.5, 'prescripcion' => true, 'stock' => 70],
             ['nombre' => 'eutirox', 'farmaco' => 'levotiroxina', 'precio' => 3, 'prescripcion' => true, 'stock' => 5],
             ['nombre' => 'lumigan', 'farmaco' => 'Bimatoprost', 'precio' => 2.5, 'prescripcion' => true, 'stock' => 60],
-            ['nombre' => 'Viread', 'farmaco' => 'Tenofovir', 'precio' => 4, 'prescripcion' => true, 'stock' => 30],
-            ['nombre' => 'Valium', 'farmaco' => 'Diazepam', 'precio' => 3.5, 'prescripcion' => true, 'stock' => 25],
-            ['nombre' => 'Plenur', 'farmaco' => 'Carbonato de Calcio', 'precio' => 5, 'prescripcion' => true, 'stock' => 20],
-            ['nombre' => 'Sintrom', 'farmaco' => 'Acenocumarol', 'precio' => 4, 'prescripcion' => true, 'stock' => 40],
-            ['nombre' => 'Nolotil', 'farmaco' => 'Metamizol magnésico', 'precio' => 6, 'prescripcion' => true, 'stock' => 15],
-            ['nombre' => 'Ebastina', 'farmaco' => 'Ebastina', 'precio' => 4.2, 'prescripcion' => true, 'stock' => 25],
+            ['nombre' => 'viread', 'farmaco' => 'Tenofovir', 'precio' => 4, 'prescripcion' => true, 'stock' => 30],
+            ['nombre' => 'valium', 'farmaco' => 'Diazepam', 'precio' => 3.5, 'prescripcion' => true, 'stock' => 25],
+            ['nombre' => 'plenur', 'farmaco' => 'Carbonato de Calcio', 'precio' => 5, 'prescripcion' => true, 'stock' => 20],
+            ['nombre' => 'sintrom', 'farmaco' => 'Acenocumarol', 'precio' => 4, 'prescripcion' => true, 'stock' => 40],
+            ['nombre' => 'nolotil', 'farmaco' => 'Metamizol magnésico', 'precio' => 6, 'prescripcion' => true, 'stock' => 15],
+            ['nombre' => 'ebastina', 'farmaco' => 'Ebastina', 'precio' => 4.2, 'prescripcion' => true, 'stock' => 25],
         ];
 
         // Crear registros de inventario

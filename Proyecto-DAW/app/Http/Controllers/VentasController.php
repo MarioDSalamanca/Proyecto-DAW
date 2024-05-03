@@ -25,8 +25,8 @@ class VentasController extends Controller {
 
         $clientes = Clientes::pluck('cipa');
 
-        $productos = Inventario::pluck('nombre');
-
+        $productos = Inventario::all(['idInventario', 'nombre', 'prescripcion']);
+        
         $sesionUsuario = session()->get('usuario_autenticado');
 
         return Inertia::render('Ventas/Ventas', compact('sesionUsuario', 'datosServidor', 'empleados', 'clientes', 'productos'));
