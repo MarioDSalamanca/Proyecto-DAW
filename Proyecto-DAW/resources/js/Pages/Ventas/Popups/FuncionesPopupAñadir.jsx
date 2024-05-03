@@ -4,30 +4,62 @@ export default function FuncionesPopupAñadir() {
     let lista = {};
     
     function handleChangeProductos(e, productos) {
-    const { name, value } = e.target;
-    const productoObj = productos.find(producto => producto.nombre === value);
-    
-    // Verificar si el producto ya está en la lista
-    const productoExistente = Object.values(lista).find(obj => obj.nombre === value);
-    
-    if (productoExistente) {
-        document.getElementsByName(name)[0].value = '';
-        alert("Este producto ya está en la lista");
-        return;
-    }
-    
-    if (Object.keys(lista).length !== 0) {
-        if (lista[name]) {
-            delete lista[name];
+        const { name, value } = e.target;
+        const productoObj = productos.find(producto => producto.nombre === value);
+        
+        // Verificar si el producto ya está en la lista
+        const productoExistente = Object.values(lista).find(obj => obj.producto.nombre === value);
+        
+        if (productoExistente) {
+            document.getElementsByName(name)[0].value = '';
+            let unidades = 'unidades-' + name.split('-')[1];
+            document.getElementsByName(unidades)[0].value = '';
+            alert("Este producto ya está en la lista");
+            return;
         }
-        lista[name] = productoObj;
-    } else {
-        lista[name] = productoObj;
-    }
-            
-    console.log("Lista:", lista);
+        
+        if (Object.keys(lista).length !== 0) {
+            if (lista[name]) {
+                delete lista[name];
+                let unidades = 'unidades-' + name.split('-')[1];
+                document.getElementsByName(unidades)[0].value = '';
+            }
+            lista[name] = {
+                producto: productoObj,
+                unidades: 0
+            };
+        } else {
+            lista[name] = {
+                producto: productoObj,
+                unidades: 0
+            };
+        }
+        console.log(lista[name].producto.prescripcion)
+        console.log(document.getElementsByName('cipa')[0].length)
+        if (lista[name].producto.prescripcion == 1) {
+            if (document.getElementsByName('cipa')[0].value.length != 10) {
+                document.getElementsByName(name)[0].value = '';
+                document.getElementsByName(name)[0].style.border = '2px solid orange';
+                alert("El fármaco "+ lista[name].producto.nombre +" necesita prescripción médica");
+            } else {
+                document.getElementsByName(name)[0].style.border = '1px solid black';
+                document.getElementsByName(name)[0].style.backgroundColor = 'white';
+            }
+        }
+                
+        console.log("Lista:", lista);
     }
     
+    function handleChangeUnidades(e) {
+        const { name, value } = e.target;
+        const producto = 'productos-'+name.split('-')[1];
+    
+        // Actualizar las unidades asociadas al producto en el objeto lista
+        lista[producto].unidades = value;
+    
+        console.log("Lista:", lista);
+    }
+
     function agregarSelect(productos, formDatos) {
     
         aux++;
@@ -39,7 +71,7 @@ export default function FuncionesPopupAñadir() {
         // Crear el elemento select
         const select = document.createElement('select');
         select.id = 'productos' + aux;
-        select.name = 'productos' + aux;
+        select.name = 'productos-' + aux;
         select.value = formDatos.productos;
         select.addEventListener('change', (e) => handleChangeProductos(e, productos) );
         select.required = true;
@@ -62,9 +94,9 @@ export default function FuncionesPopupAñadir() {
         const unidades = document.createElement('input');
         unidades.type = 'number';
         unidades.id = 'unidades' + aux;
-        unidades.name = 'unidades' + aux;
+        unidades.name = 'unidades-' + aux;
         unidades.value = '';
-        unidades.addEventListener('change', (e) => handleChangeProductos(e, productos) );
+        unidades.addEventListener('change', (e) => handleChangeUnidades(e) );
         unidades.required = true;
     
         // Crear el botón de agregar
@@ -98,10 +130,10 @@ export default function FuncionesPopupAñadir() {
     
     function eliminarSelect(id) {
     
-        let select = 'productos'+id
+        let select = 'productos-'+id
         
         // Obtener el valor del select
-        const valorSelect = document.getElementById(select).value;
+        const valorSelect = document.getElementsByName(select)[0].value;
     
         // Eliminar el elemento del DOM
         const contenedor = document.getElementById(id);
@@ -116,6 +148,7 @@ export default function FuncionesPopupAñadir() {
 
     return {
         handleChangeProductos,
+        handleChangeUnidades,
         agregarSelect,
         eliminarSelect,
     };

@@ -4,6 +4,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
 
     const {
         handleChangeProductos,
+        handleChangeUnidades,
         agregarSelect,
         eliminarSelect,
     } = FuncionesPopupAñadir();
@@ -42,13 +43,13 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <div id="contenedor-selects">
                                     <p>
                                         <button id="agregar1" type="button" onClick={ () => agregarSelect(productos, formDatos) }>+</button> {/* Pasé 'productos' y 'formDatos' como argumentos a la función 'agregarSelect' */}
-                                        <select id="productos1" name="productos1" value={formDatos.productos} onChange={ (e) => handleChangeProductos(e, productos) } required > {/* Pasé 'productos' como argumento a la función 'handleChangeProductos' */}
+                                        <select id="productos1" name="productos-1" value={formDatos.productos} onChange={ (e) => handleChangeProductos(e, productos) } required > {/* Pasé 'productos' como argumento a la función 'handleChangeProductos' */}
                                             <option value=""></option>
                                             {productos.map((producto) => (
                                             <option key={producto.idInventario} value={producto.nombre}>{producto.nombre}</option>
                                             ))}
                                         </select>
-                                        <input type="number" name="unidades-1" onChange={ (e) => handleChangeProductos(e, productos) } min={1} required />
+                                        <input type="number" name="unidades-1" onChange={ (e) => handleChangeUnidades(e) } min={1} required /> {/* Usé handleChangeUnidades para el cambio de unidades */}
                                     </p>
                                 </div>
                             </td>
