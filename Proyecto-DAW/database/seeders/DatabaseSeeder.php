@@ -188,9 +188,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         // Crear registros de ventas
-        /* foreach ($ventas as $venta) {
+        foreach ($ventas as $venta) {
             Ventas::create($venta);
-        } */
+        }
 
         $detalle_ventas = [["unidades" => 2, "idInventario" => 1, "idVenta" => 1]];
         
@@ -206,18 +206,28 @@ class DatabaseSeeder extends Seeder
             Detalle_ventas::create($detalle_venta);
         }
 
-        foreach ($ventas as $venta) {
-            // Añadir la lógica para calcular el importe de la venta
-            $productos = Detalle_ventas::where('idVenta', $venta['id'])->get();
-            $importe = 0;
-        
-            foreach ($productos as $producto) {
-                $inventario = Inventario::find($producto->idInventario);
-                $importe += $inventario->precio * $producto->unidades;
-            }
-        
-            $venta['importe'] = $importe;
-            Ventas::create($venta);
-        }
+        $ventas = Ventas::pluck('idVenta', 'importe');
+
+        $ventas = Ventas::pluck('importe', 'idVenta');
+
+foreach ($ventas as $idVenta => $importe) {
+    // Buscamos todos los productos vendidos en esta venta
+    $productos = Detalle_ventas::where('idVenta', $idVenta)->get();
+
+    // Inicializamos la suma del importe para esta venta
+    $importeVenta = 0;
+
+    // Iteramos sobre los productos y calculamos el importe para esta venta
+    foreach ($productos as $producto) {
+        // Obtenemos el precio del producto desde el inventario
+        $precioProducto = $producto->inventario->precio;
+
+        // Sumamos el importe del producto (precio * unidades) a la suma total
+        $importeVenta += $precioProducto * $producto->unidades;
+    }
+
+    // Actualizamos el importe de la venta en la base de datos
+    Ventas::where('idVenta', $idVenta)->update(['importe' => $importeVenta]);
+}
     }
 }

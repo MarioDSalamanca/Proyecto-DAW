@@ -2,13 +2,14 @@ import FuncionesPopupAñadir from './FuncionesPopupAñadir';
 
 export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, formDatos, handleChange, empleados, clientes, productos }) {  
 
+    //console.log("FormDatos: ",formDatos)
+
     const {
         handleChangeProductos,
         handleChangeUnidades,
         agregarSelect,
         eliminarSelect,
-        enviar,
-    } = FuncionesPopupAñadir();
+    } = FuncionesPopupAñadir(handleChange);
 
     return (
         <div className="popup añadir-editar">
@@ -16,7 +17,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                 <button onClick={ mostrarPopupAñadir }>x</button>
             </div>
             <h2>Añadir una tarea</h2>
-            <form onSubmit={ enviar }>
+            <form onSubmit={ (e) => confirmarAñadir(e, '/ventas/añadir') }>
                 <table>
                     <tbody>
                         <tr>
@@ -43,14 +44,14 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <label>Productos</label><br />
                                 <div id="contenedor-selects">
                                     <p>
-                                        <button id="agregar1" type="button" onClick={ () => agregarSelect(productos, formDatos) }>+</button> {/* Pasé 'productos' y 'formDatos' como argumentos a la función 'agregarSelect' */}
-                                        <select id="productos1" name="productos-1" value={formDatos.productos} onChange={ (e) => handleChangeProductos(e, productos) } required > {/* Pasé 'productos' como argumento a la función 'handleChangeProductos' */}
+                                        <button id="agregar1" type="button" onClick={ () => agregarSelect(productos, formDatos) }>+</button>
+                                        <select id="productos1" name="productos-1" value={formDatos.productos} onChange={ (e) => handleChangeProductos(e, productos) } required >
                                             <option value=""></option>
                                             {productos.map((producto) => (
                                             <option key={producto.idInventario} value={producto.nombre}>{producto.nombre}</option>
                                             ))}
                                         </select>
-                                        <input type="number" name="unidades-1" onChange={ (e) => handleChangeUnidades(e) } min={1} required /> {/* Usé handleChangeUnidades para el cambio de unidades */}
+                                        <input type="number" name="unidades-1" onChange={ (e) => handleChangeUnidades(e) } min={1} required />
                                     </p>
                                 </div>
                             </td>

@@ -36,7 +36,12 @@ export default function FuncionesPopUps() {
         const mostrarPopupInfo = () => setPopupInfo(!popupInfo);
 
     // Setear los valores de los formularios de Añadir y Editar
-        function handleChange(e) {
+        function handleChange(e, lista) {
+
+            if (lista) {
+                console.log("lista: ",lista);
+            }
+
             const { name, value } = e.target;
         
             // Si el nombre del campo es 'descripcion', actualiza
