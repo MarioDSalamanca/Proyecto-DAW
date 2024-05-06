@@ -1,16 +1,16 @@
 export default function FuncionesPopupAñadir(handleChange) {
 
     let n = 1;
+    let x = 1;
     let lista = {};
     
     function handleChangeProductos(e, productos) {
+
         const { name, value } = e.target;
-        console.log(name, " / ", value);
     
         // Buscar el producto seleccionado en el select
         const productoObj = productos.find(producto => producto.nombre === value);
 
-        // Capturar el select
         const farmaco = document.getElementsByName(name)[0];
 
         // Si la lista no está vacía
@@ -21,6 +21,7 @@ export default function FuncionesPopupAñadir(handleChange) {
 
             if (productoExistente) {
 
+                // Vaciar el select y las unidades
                 farmaco.value = '';
                 const unidades = 'unidades-' + name.split('-')[1];
                 document.getElementsByName(unidades)[0].value = '';
@@ -42,14 +43,11 @@ export default function FuncionesPopupAñadir(handleChange) {
             // Verificar si necesita prescripción médica
             if (productoObj.prescripcion == 1) {
 
-                cipa.setAttribute('required', '');
-
                 if (cipa.value.length !== 10) {
 
-                    cipa.value = '';
-                    cipa.focus();
                     farmaco.value = '';
                     alert("El fármaco " + productoObj.nombre + " necesita prescripción médica");
+                    cipa.focus();
                     return;
 
                 } else {
@@ -66,6 +64,7 @@ export default function FuncionesPopupAñadir(handleChange) {
                         producto: productoObj,
                         unidades: 0
                     };
+
                 }
             } else {
 
@@ -74,7 +73,6 @@ export default function FuncionesPopupAñadir(handleChange) {
                     delete lista[name];
                     const unidades = 'unidades-' + name.split('-')[1];
                     document.getElementsByName(unidades)[0].value = '';
-                    console.log("Lista despues de borrar: ",lista);
                 }
 
                 // Agregar el producto seleccionado a la lista
@@ -85,8 +83,10 @@ export default function FuncionesPopupAñadir(handleChange) {
             }
         }
 
+        x++;
         console.log("Lista: ",lista);
-        console.log(n)
+        console.log("ENE: ",n);
+        console.log("EXIS: ",x);
     }
     
     
@@ -114,9 +114,9 @@ export default function FuncionesPopupAñadir(handleChange) {
         select.id = 'productos' + n;
         select.name = 'productos-' + n;
         select.value = formDatos.productos;
-        select.addEventListener('change', function(e) {
-            handleChangeProductos(e, productos)
-        });
+        select.onchange = (e) => {
+            handleChangeProductos(e, productos);
+        };
         select.required = true;
         
         // Agregar opciones al select
@@ -139,27 +139,19 @@ export default function FuncionesPopupAñadir(handleChange) {
         unidades.id = 'unidades' + n;
         unidades.name = 'unidades-' + n;
         unidades.value = '';
-        unidades.addEventListener('change', function(e) {
-            handleChangeUnidades(e)
-        });
+        unidades.onchange = function(e) {
+            handleChangeUnidades(e);
+        };
         unidades.min = 1;
         unidades.required = true;
-    
-        // Crear el botón de agregar
-        const botonAgregar = document.createElement('button');
-        botonAgregar.id = 'agregar' + n;
-        botonAgregar.textContent = '+';
-        botonAgregar.addEventListener('click', function() {
-            agregarSelect(productos, formDatos);
-        });
     
         // Crear el botón de eliminar
         const botonEliminar = document.createElement('button');
         botonEliminar.id = 'eliminar' + n;
         botonEliminar.textContent = '-';
-        botonEliminar.addEventListener('click', function() {
+        botonEliminar.onclick = function() {
             eliminarSelect(contenedor.id);
-        });
+        };
     
         // Agregar los botones al contenedor
         contenedor.appendChild(botonEliminar);
