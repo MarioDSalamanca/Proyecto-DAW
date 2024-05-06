@@ -39,7 +39,7 @@ export default function PopupInfo({ mostrarPopupInfo, formDatos }) {
                 )}
                 <div className="detallesVenta empleado">
                     <p><span>Correo empleado </span><br />{formDatos.empleados.correo}</p>
-                    <p><span>Fecha </span><br />{formDatos.fecha}</p>
+                    <p><span>Fecha </span><br />{new Date (formDatos.fecha).toLocaleString()}</p>
                     <p><span>Importe </span><br />{formDatos.importe}€</p>
                 </div>
                 <hr />

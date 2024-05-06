@@ -67,7 +67,7 @@ export default function Ventas({ sesionUsuario, datosServidor, empleados, client
                                     <tr key={venta.idVenta}>
                                         <td>{venta.clientes ? venta.clientes.cipa : "-"}</td>
                                         <td>{venta.importe}</td>
-                                        <td>{venta.fecha}</td>
+                                        <td>{new Date(venta.fecha).toLocaleString()}</td>
                                         <td>{venta.empleados ? venta.empleados.correo : "Baja"}</td>
                                         <td>{new Date(venta.created_at).toLocaleString()}</td>
                                         <td className="botones info"><button onClick={() => info(venta) }>Info</button></td>

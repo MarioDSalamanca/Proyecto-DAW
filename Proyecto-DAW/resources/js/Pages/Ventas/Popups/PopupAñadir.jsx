@@ -7,6 +7,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
         handleChangeUnidades,
         agregarSelect,
         eliminarSelect,
+        enviar,
     } = FuncionesPopupAñadir();
 
     return (
@@ -15,7 +16,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                 <button onClick={ mostrarPopupAñadir }>x</button>
             </div>
             <h2>Añadir una tarea</h2>
-            <form onSubmit={ (e) => confirmarAñadir(e, '/ventas/añadir') }>
+            <form onSubmit={ enviar }>
                 <table>
                     <tbody>
                         <tr>

@@ -26,15 +26,17 @@ class VentasController extends Controller {
         $clientes = Clientes::pluck('cipa');
 
         $productos = Inventario::all(['idInventario', 'nombre', 'prescripcion']);
-        
+
         $sesionUsuario = session()->get('usuario_autenticado');
 
         return Inertia::render('Ventas/Ventas', compact('sesionUsuario', 'datosServidor', 'empleados', 'clientes', 'productos'));
     }
 
     // Añadir tareas a la tabla tareas
-    /*public function insert(Request $request) {
+    public function insert(Request $request) {
         
+        dd("HOLA");
+
         $empleado = Empleados::where('correo', $request->empleado)->first();
         
         // Crear un objeto para guardar los datos
@@ -47,7 +49,7 @@ class VentasController extends Controller {
 
         $tarea->save();
         return redirect()->route('tareas.index');
-    }*/
+    }
 
     public function delete(Request $request) {
 

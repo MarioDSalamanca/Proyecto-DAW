@@ -6,12 +6,13 @@ export default function FuncionesPopupAñadir() {
     function handleChangeProductos(e, productos) {
         const { name, value } = e.target;
         const productoObj = productos.find(producto => producto.nombre === value);
+        const farmaco = document.getElementsByName(name)[0];
         
         // Verificar si el producto ya está en la lista
         const productoExistente = Object.values(lista).find(obj => obj.producto.nombre === value);
         
         if (productoExistente) {
-            document.getElementsByName(name)[0].value = '';
+            farmaco.value = '';
             let unidades = 'unidades-' + name.split('-')[1];
             document.getElementsByName(unidades)[0].value = '';
             alert("Este producto ya está en la lista");
@@ -34,20 +35,19 @@ export default function FuncionesPopupAñadir() {
                 unidades: 0
             };
         }
-        console.log(lista[name].producto.prescripcion)
-        console.log(document.getElementsByName('cipa')[0].length)
-        if (lista[name].producto.prescripcion == 1) {
-            if (document.getElementsByName('cipa')[0].value.length != 10) {
-                document.getElementsByName(name)[0].value = '';
-                document.getElementsByName(name)[0].style.border = '2px solid orange';
-                alert("El fármaco "+ lista[name].producto.nombre +" necesita prescripción médica");
-            } else {
-                document.getElementsByName(name)[0].style.border = '1px solid black';
-                document.getElementsByName(name)[0].style.backgroundColor = 'white';
+        
+        const cipa = document.getElementsByName('cipa')[0];
+
+        for (let n in lista) {
+            let elemento = lista[n];
+            if (elemento.producto.prescripcion === 1 && cipa.value.length !== 10) {
+                cipa.setAttribute('required', '');
+                cipa.focus();
+                farmaco.value = '';
+                alert("El fármaco " + elemento.producto.nombre + " necesita prescripción médica");
+                break;
             }
         }
-                
-        console.log("Lista:", lista);
     }
     
     function handleChangeUnidades(e) {
@@ -146,10 +146,16 @@ export default function FuncionesPopupAñadir() {
         }
     }  
 
+    function enviar() {
+        handleChange(lista)
+        confirmarAñadir(e, '/ventas/añadir')
+    }
+
     return {
         handleChangeProductos,
         handleChangeUnidades,
         agregarSelect,
         eliminarSelect,
+        enviar,
     };
 }
