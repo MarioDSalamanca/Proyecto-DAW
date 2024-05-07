@@ -1,12 +1,22 @@
+import FuncionesPopUps from '../../Componentes/FuncionesPopUps';
+import { useState } from "react";
+
 export default function FuncionesPopupAñadir() {
         
-    console.log("AÑAIDR");
+    const [venta, setVenta] = useState({});
 
-    var n = 1;
-    console.log("La N:",n)
-    var lista = {};
+    const {
+        handleChange
+    } = FuncionesPopUps();
 
-    
+    function handleChangeDatos(e) {
+        const { name, value } = e.target;
+        setVenta(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    }
+
     function handleChangeProductos(e, productos) {
         
         const { name, value } = e.target;
@@ -16,11 +26,22 @@ export default function FuncionesPopupAñadir() {
 
         const farmaco = document.getElementsByName(name)[0];
 
-        // Si la lista no está vacía
-        if (Object.keys(lista).length !== 0) {
+        // Si la venta no está vacía
+        if (Object.keys(venta).length !== 0) {
 
-            // Verificar si el producto ya está en la lista 
-            const productoExistente = Object.values(lista).find(obj => obj.producto.nombre === value);
+            // Verificar si el producto ya está en la venta 
+            let productoExistente = false;
+
+            for (const key in venta) {
+                if (key.startsWith('productos-')) {
+                    const nombreProducto = venta[key].producto.nombre;
+                    
+                    if (nombreProducto === value) {
+                        productoExistente = true;
+                        break;
+                    }
+                }
+            }
 
             if (productoExistente) {
 
@@ -28,7 +49,7 @@ export default function FuncionesPopupAñadir() {
                 farmaco.value = '';
                 const unidades = 'unidades-' + name.split('-')[1];
                 document.getElementsByName(unidades)[0].value = '';
-                alert("Este producto ya está en la lista");
+                alert("Este producto ya está en la venta");
                 return;
 
             } else {
@@ -56,67 +77,85 @@ export default function FuncionesPopupAñadir() {
                 } else {
 
                     // Eliminar el producto anterior
-                    if (lista[name]) {
-                        delete lista[name];
+                    if (venta[name]) {
+                        delete venta[name];
                         const unidades = 'unidades-' + name.split('-')[1];
                         document.getElementsByName(unidades)[0].value = '';
                     }
 
-                    // Agregar el producto seleccionado a la lista
-                    lista[name] = {
-                        producto: productoObj,
-                        unidades: 0
-                    };
+                    // Agregar el producto seleccionado a la venta
+                    setVenta(prev => ({
+                        ...prev,
+                        [name]: {
+                            producto: productoObj,
+                            unidades: 0
+                        }
+                    }));
 
                 }
             } else {
 
                 // Eliminar el producto anterior
-                if (lista[name]) {
-                    delete lista[name];
+                if (venta[name]) {
+                    delete venta[name];
                     const unidades = 'unidades-' + name.split('-')[1];
                     document.getElementsByName(unidades)[0].value = '';
                 }
 
-                // Agregar el producto seleccionado a la lista
-                lista[name] = {
-                    producto: productoObj,
-                    unidades: 0
-                };
+                // Agregar el producto seleccionado a la venta
+                setVenta(prev => ({
+                    ...prev,
+                    [name]: {
+                        producto: productoObj,
+                        unidades: 0
+                    }
+                }));
             }
         }
 
-        handleChange(lista);
+        console.log("Ventaaa: ", venta);
+        handleChange(venta);
     }
     
     
     function handleChangeUnidades(e) {
-        console.log("UBNCUSDNCHBNDHSNCDIUZH");
+
         const { name, value } = e.target;
         const producto = 'productos-'+name.split('-')[1];
     
-        // Actualizar las unidades asociadas al producto en el objeto lista
-        lista[producto].unidades = parseInt(value);
+        // Actualizar las unidades asociadas al producto en el objeto venta
+        venta[producto].unidades = parseInt(value);
 
-        handleChange(lista);
+        console.log("Ventaaa: ", venta);
+        //handleChange(venta);
 
     }
 
-    function agregarSelect(productos, formDatos) {
-    
-        console.log(lista);
-        n++;
+    function agregarSelect(productos) {
 
-        console.log("ENE: ",n);
-        
+        let ultimoSelect = null;
+
+        for (let i = 10; i >= 0; i--) {
+            const selects = document.getElementsByName('productos-'+i);
+            
+            if (selects.length > 0) {
+                ultimoSelect = selects[0];
+                break;
+            }
+        };
+
+        ultimoSelect = ultimoSelect.name;
+        let ultimoCaracter = ultimoSelect.slice(-1);
+        let ultimoNumero = parseInt(ultimoCaracter, 10);
+        let nuevoSelect = ultimoNumero + 1;
+
         const contenedor = document.createElement('p');
-        contenedor.id = n;
+        contenedor.id = nuevoSelect;
     
         // Crear el select
         const select = document.createElement('select');
-        select.id = 'productos' + n;
-        select.name = 'productos-' + n;
-        select.value = formDatos.productos;
+        select.id = 'productos' + nuevoSelect;
+        select.name = 'productos-' + nuevoSelect;
         select.onchange = (e) => {
             handleChangeProductos(e, productos);
         };
@@ -139,8 +178,8 @@ export default function FuncionesPopupAñadir() {
         // Crear el atr select
         const unidades = document.createElement('input');
         unidades.type = 'number';
-        unidades.id = 'unidades' + n;
-        unidades.name = 'unidades-' + n;
+        unidades.id = 'unidades' + nuevoSelect;
+        unidades.name = 'unidades-' + nuevoSelect;
         unidades.value = '';
         unidades.onchange = function(e) {
             handleChangeUnidades(e);
@@ -150,7 +189,7 @@ export default function FuncionesPopupAñadir() {
     
         // Crear el botón de eliminar
         const botonEliminar = document.createElement('button');
-        botonEliminar.id = 'eliminar' + n;
+        botonEliminar.id = 'eliminar' + nuevoSelect;
         botonEliminar.textContent = '-';
         botonEliminar.onclick = function() {
             eliminarSelect(contenedor.id);
@@ -180,16 +219,24 @@ export default function FuncionesPopupAñadir() {
         const contenedor = document.getElementById(id);
         contenedor.parentNode.removeChild(contenedor);
     
-        // Eliminar el registro del objeto lista si el valor no está vacío
+        // Eliminar el registro del objeto venta si el valor no está vacío
         if (valorSelect !== '') {
-            delete lista[select];
+            delete venta[select];
         }
+
+        console.log(venta)
     }  
 
+    function enviar() {
+        confirmarAñadir(e, '/ventas/añadir')
+    }
+
     return {
+        handleChangeDatos,
         handleChangeProductos,
         handleChangeUnidades,
         agregarSelect,
-        eliminarSelect
+        eliminarSelect,
+        venta
     };
 }

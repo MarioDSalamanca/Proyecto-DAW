@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { router } from "@inertiajs/react";
 
 export default function FuncionesPopUps() {
-    
-    console.log("POPUPs");
 
     // Estados
         const [popupAñadir, setPopupAñadir] = useState(false);
@@ -38,7 +36,11 @@ export default function FuncionesPopUps() {
         const mostrarPopupInfo = () => setPopupInfo(!popupInfo);
 
     // Setear los valores de los formularios de Añadir y Editar
-        function handleChange(e, lista) {
+        function handleChange(e, venta) {
+
+            if (venta) {
+                console.log(venta);
+            }
 
             const { name, value } = e.target;
         
