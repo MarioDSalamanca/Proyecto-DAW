@@ -86,8 +86,7 @@ export default function FuncionesPopupAñadir() {
             }
         }
 
-        console.log("Lista: ",lista);
-        console.log("ENE: ",n);
+        handleChange(lista);
     }
     
     
@@ -98,6 +97,8 @@ export default function FuncionesPopupAñadir() {
     
         // Actualizar las unidades asociadas al producto en el objeto lista
         lista[producto].unidades = parseInt(value);
+
+        handleChange(lista);
 
     }
 
