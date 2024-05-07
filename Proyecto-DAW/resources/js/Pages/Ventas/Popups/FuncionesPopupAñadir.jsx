@@ -1,11 +1,14 @@
-export default function FuncionesPopupAñadir(handleChange) {
+export default function FuncionesPopupAñadir() {
+        
+    console.log("AÑAIDR");
 
-    let n = 1;
-    let x = 1;
-    let lista = {};
+    var n = 1;
+    console.log("La N:",n)
+    var lista = {};
+
     
     function handleChangeProductos(e, productos) {
-
+        
         const { name, value } = e.target;
     
         // Buscar el producto seleccionado en el select
@@ -29,10 +32,10 @@ export default function FuncionesPopupAñadir(handleChange) {
                 return;
 
             } else {
-                añadir(productoObj);
+                añadir();
             }
         } else {
-            añadir(productoObj);
+            añadir();
         }
 
         function añadir() {
@@ -83,28 +86,27 @@ export default function FuncionesPopupAñadir(handleChange) {
             }
         }
 
-        x++;
         console.log("Lista: ",lista);
         console.log("ENE: ",n);
-        console.log("EXIS: ",x);
     }
     
     
     function handleChangeUnidades(e) {
+        console.log("UBNCUSDNCHBNDHSNCDIUZH");
         const { name, value } = e.target;
         const producto = 'productos-'+name.split('-')[1];
     
         // Actualizar las unidades asociadas al producto en el objeto lista
         lista[producto].unidades = parseInt(value);
 
-        handleChange(e, lista);
     }
 
     function agregarSelect(productos, formDatos) {
     
         console.log(lista);
-        console.log(n)
         n++;
+
+        console.log("ENE: ",n);
         
         const contenedor = document.createElement('p');
         contenedor.id = n;

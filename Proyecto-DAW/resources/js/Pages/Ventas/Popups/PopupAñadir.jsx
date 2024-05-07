@@ -9,7 +9,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
         handleChangeUnidades,
         agregarSelect,
         eliminarSelect,
-    } = FuncionesPopupAñadir(handleChange);
+    } = FuncionesPopupAñadir();
 
     return (
         <div className="popup añadir-editar">
@@ -51,7 +51,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                             <option key={producto.idInventario} value={producto.nombre}>{producto.nombre}</option>
                                             ))}
                                         </select>
-                                        <input type="number" name="unidades-1" onChange={ (e) => handleChangeUnidades(e) } min={1} required />
+                                        <input type="number" name="unidades-1" onChange={ handleChangeUnidades } min={1} required />
                                     </p>
                                 </div>
                             </td>
