@@ -11,8 +11,6 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, em
         venta
     } = FuncionesPopupAñadir();
 
-    console.log("Venta: ",venta)
-
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>

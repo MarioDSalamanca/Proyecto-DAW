@@ -36,45 +36,37 @@ export default function FuncionesPopUps() {
         const mostrarPopupInfo = () => setPopupInfo(!popupInfo);
 
     // Setear los valores de los formularios de Añadir y Editar
-        function handleChange(e, venta) {
-
-            console.log(venta)
-
-            if (venta) {
+        function handleChange(e) {
+            
+            const { name, value } = e.target;
+    
+            // Si el nombre del campo es 'descripcion', actualiza
+            if (name === 'descripcion') {
                 setFormDatos(prev => ({
                     ...prev,
-                    venta
+                    [name]: value
                 }));
-            } 
-            
-            if (e && e.target) {
-                
-                const { name, value } = e.target;
-        
-                // Si el nombre del campo es 'descripcion', actualiza
-                if (name === 'descripcion') {
-                    setFormDatos(prev => ({
-                        ...prev,
-                        [name]: value
-                    }));
-                } else {
-                    // Para otros campos
-                    setFormDatos(prev => ({
-                        ...prev,
-                        [name]: value.trim()
-                    }));
-                }
+            } else {
+                // Para otros campos
+                setFormDatos(prev => ({
+                    ...prev,
+                    [name]: value.trim()
+                }));
             }
-            console.log("FormDatos: ",formDatos);
+        }
+
+        function handleChangeVenta(venta) {
+            setFormDatos(venta);
         }
     
     // Solicitudes POST al servidor
         function confirmarAñadir(e, url) {
             e.preventDefault();
-            mostrarPopupAñadir();
+            console.log(formDatos);
+            /* mostrarPopupAñadir();
             router.post(url, formDatos)
             setFormDatos({});
-            window.location.reload();
+            window.location.reload(); */
         };
         function confirmarEditar(e, url) {
             e.preventDefault();
@@ -87,7 +79,7 @@ export default function FuncionesPopUps() {
             e.preventDefault();
             mostrarPopupEliminar();
             router.post(url, { dato: datoEliminar });
-            //window.location.reload();
+            window.location.reload();
         }
 
     // Retornar las funciones a los componentes
@@ -105,6 +97,7 @@ export default function FuncionesPopUps() {
             eliminar,
             info,
             handleChange,
+            handleChangeVenta,
             confirmarAñadir,
             confirmarEditar,
             confirmarEliminar,
