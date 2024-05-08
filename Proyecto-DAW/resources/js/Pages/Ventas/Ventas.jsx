@@ -33,7 +33,7 @@ export default function Ventas({ sesionUsuario, datosServidor, empleados, client
             <Header sesion={ sesionUsuario }/>
             <main>
                 <h1>Ventas</h1>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } clientes={ clientes } empleados={ empleados } productos={ productos } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } clientes={ clientes } empleados={ empleados } productos={ productos } /> }
                 { popupInfo && <PopupInfo mostrarPopupInfo={ mostrarPopupInfo } formDatos={ formDatos } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&

@@ -475,6 +475,7 @@ h1 {
     width: 50%;
 }
 #contenedor-selects input {
+    display: none;
     margin-left: 1vw;
     width: 10%;
 }

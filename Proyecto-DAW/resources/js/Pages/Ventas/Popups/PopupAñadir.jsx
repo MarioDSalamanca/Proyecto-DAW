@@ -1,6 +1,6 @@
 import FuncionesPopupAñadir from './FuncionesPopupAñadir';
 
-export default function PopupAñadir({ mostrarPopupAñadir, empleados, clientes, productos }) {  
+export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, empleados, clientes, productos }) {  
 
     const {
         handleChangeDatos,
@@ -19,7 +19,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, empleados, clientes,
                 <button onClick={ mostrarPopupAñadir }>x</button>
             </div>
             <h2>Añadir una tarea</h2>
-            <form onSubmit={ () => enviar() }>
+            <form onSubmit={ (e) => confirmarAñadir(e, '/ventas/añadir') }>
                 <table>
                     <tbody>
                         <tr>
@@ -47,13 +47,15 @@ export default function PopupAñadir({ mostrarPopupAñadir, empleados, clientes,
                                 <div id="contenedor-selects">
                                     <p>
                                         <button id="agregar1" type="button" onClick={ () => agregarSelect(productos, venta) }>+</button>
-                                        <select id="productos1" name="productos-1" value={venta.productos} onChange={ (e) => handleChangeProductos(e, productos) } required >
-                                            <option value=""></option>
-                                            {productos.map((producto) => (
-                                            <option key={producto.idInventario} value={producto.nombre}>{producto.nombre}</option>
-                                            ))}
+                                        <select id="productos1" name="productos-1" onChange={(e) => { handleChangeProductos(e, productos); }} required >
+                                        <option value=""></option>
+                                        {productos.map((producto) => (
+                                            <option key={producto.idInventario} value={producto.nombre}>
+                                                {producto.nombre}
+                                            </option>
+                                        ))}
                                         </select>
-                                        <input type="number" name="unidades-1" onChange={ handleChangeUnidades } min={1} required />
+                                        <input type="number" name="unidades-1" onChange={handleChangeUnidades} min={1} required />
                                     </p>
                                 </div>
                             </td>

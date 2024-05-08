@@ -38,25 +38,34 @@ export default function FuncionesPopUps() {
     // Setear los valores de los formularios de Añadir y Editar
         function handleChange(e, venta) {
 
-            if (venta) {
-                console.log(venta);
-            }
+            console.log(venta)
 
-            const { name, value } = e.target;
+            if (venta) {
+                setFormDatos(prev => ({
+                    ...prev,
+                    venta
+                }));
+            } 
+            
+            if (e && e.target) {
+                
+                const { name, value } = e.target;
         
-            // Si el nombre del campo es 'descripcion', actualiza
-            if (name === 'descripcion') {
-                setFormDatos(prev => ({
-                    ...prev,
-                    [name]: value
-                }));
-            } else {
-                // Para otros campos
-                setFormDatos(prev => ({
-                    ...prev,
-                    [name]: value.trim()
-                }));
+                // Si el nombre del campo es 'descripcion', actualiza
+                if (name === 'descripcion') {
+                    setFormDatos(prev => ({
+                        ...prev,
+                        [name]: value
+                    }));
+                } else {
+                    // Para otros campos
+                    setFormDatos(prev => ({
+                        ...prev,
+                        [name]: value.trim()
+                    }));
+                }
             }
+            console.log("FormDatos: ",formDatos);
         }
     
     // Solicitudes POST al servidor

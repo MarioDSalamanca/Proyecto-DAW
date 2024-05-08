@@ -1,13 +1,17 @@
 import FuncionesPopUps from '../../Componentes/FuncionesPopUps';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function FuncionesPopupAñadir() {
-        
-    const [venta, setVenta] = useState({});
 
     const {
         handleChange
     } = FuncionesPopUps();
+
+    const [venta, setVenta] = useState({});
+    useEffect(() => {
+        handleChange(venta);
+    }, [venta]);
+
 
     function handleChangeDatos(e) {
         const { name, value } = e.target;
@@ -15,6 +19,7 @@ export default function FuncionesPopupAñadir() {
             ...prev,
             [name]: value
         }));
+
     }
 
     function handleChangeProductos(e, productos) {
@@ -32,9 +37,9 @@ export default function FuncionesPopupAñadir() {
             // Verificar si el producto ya está en la venta 
             let productoExistente = false;
 
-            for (const key in venta) {
-                if (key.startsWith('productos-')) {
-                    const nombreProducto = venta[key].producto.nombre;
+            for (const i in venta) {
+                if (i.startsWith('productos-')) {
+                    const nombreProducto = venta[i].producto.nombre;
                     
                     if (nombreProducto === value) {
                         productoExistente = true;
@@ -50,6 +55,9 @@ export default function FuncionesPopupAñadir() {
                 const unidades = 'unidades-' + name.split('-')[1];
                 document.getElementsByName(unidades)[0].value = '';
                 alert("Este producto ya está en la venta");
+
+                if (venta[name]) delete venta[name];
+
                 return;
 
             } else {
@@ -72,6 +80,9 @@ export default function FuncionesPopupAñadir() {
                     farmaco.value = '';
                     alert("El fármaco " + productoObj.nombre + " necesita prescripción médica");
                     cipa.focus();
+
+                    if (venta[name]) delete venta[name];
+                    
                     return;
 
                 } else {
@@ -113,22 +124,44 @@ export default function FuncionesPopupAñadir() {
             }
         }
 
-        console.log("Ventaaa: ", venta);
-        handleChange(venta);
+        const unidades = document.getElementsByName('unidades-'+name.split('-')[1])[0];
+
+        if (farmaco.value != '') {
+            unidades.style.display = 'block';
+        } else {
+            unidades.style.display = 'none';
+        }
+
+        handleChange({
+            ...venta,
+            [name]: {
+                producto: productoObj,
+                unidades: 0
+            }
+        });
     }
     
     
     function handleChangeUnidades(e) {
 
         const { name, value } = e.target;
-        const producto = 'productos-'+name.split('-')[1];
-    
-        // Actualizar las unidades asociadas al producto en el objeto venta
-        venta[producto].unidades = parseInt(value);
+        const n = name.split('-')[1];
 
-        console.log("Ventaaa: ", venta);
-        //handleChange(venta);
+        setVenta(prev => ({
+            ...prev,
+            ['productos-' + n]: {
+                ...prev['productos-' + n],
+                unidades: parseInt(value)
+            }
+        }));
 
+        handleChange({
+            ...venta,
+            ['productos-' + n]: {
+                ...venta['productos-' + n],
+                unidades: parseInt(value)
+            }
+        });
     }
 
     function agregarSelect(productos) {
@@ -156,6 +189,7 @@ export default function FuncionesPopupAñadir() {
         const select = document.createElement('select');
         select.id = 'productos' + nuevoSelect;
         select.name = 'productos-' + nuevoSelect;
+        select.value = venta.productos;
         select.onchange = (e) => {
             handleChangeProductos(e, productos);
         };
@@ -224,11 +258,6 @@ export default function FuncionesPopupAñadir() {
             delete venta[select];
         }
 
-        console.log(venta)
-    }  
-
-    function enviar() {
-        confirmarAñadir(e, '/ventas/añadir')
     }
 
     return {
