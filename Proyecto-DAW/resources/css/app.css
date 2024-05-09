@@ -479,3 +479,10 @@ h1 {
     margin-left: 1vw;
     width: 10%;
 }
+.popup.añadir-editar .cliente.oculto {
+    display: none;
+}
+.popup.añadir-editar #avisos {
+    font-size: 80%;
+    color: red;
+}

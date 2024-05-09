@@ -4,12 +4,89 @@ export default function FuncionesPopupAñadir() {
 
     const [venta, setVenta] = useState({});
 
-    function handleChangeDatos(e) {
+    let errores = [];
+
+    function err(error) {
+        errores.push(error);
+        
+        let avisos = document.getElementById("avisos");
+        // Limpiar contenido existente
+        avisos.innerHTML = "";
+        // Agregar cada error como un párrafo
+        errores.forEach((error) => {
+            let parrafo = document.createElement("p");
+            parrafo.textContent = error;
+            avisos.appendChild(parrafo);
+        });    
+    }
+
+
+
+
+    
+
+
+
+
+/* ME HE QUEDADO AQUÍ **/
+
+    function eliminarErr(error) {
+        let erroresPosibles = ["cipa", "producto", "farmaco"];
+    
+        // Buscar la palabra clave que coincide con la cadena de error
+        let palabraClave = null;
+        for (let i = 0; i < erroresPosibles.length; i++) {
+            if (error.includes(erroresPosibles[i])) {
+                palabraClave = erroresPosibles[i];
+                break;
+            }
+        }
+    
+        // Si se encuentra una palabra clave, buscar y eliminar el error correspondiente
+        if (palabraClave) {
+            for (let i = 0; i < errores.length; i++) {
+                if (errores[i].includes(palabraClave)) {
+                    errores.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+    
+
+    function handleChangeDatos(e, clientes) {
+
+        const cipa = document.getElementsByName('cipa')[0];
+
         const { name, value } = e.target;
-        setVenta(prev => ({
-            ...prev,
-            [name]: value
-        }));
+
+        if (clientes && cipa.value.length == 10) {
+
+            let error = "El cliente con el cipa ("+cipa.value+") no está registrado"
+
+            if (clientes.includes(value)) {
+
+                document.getElementsByClassName('cliente')[0].classList.add('oculto');
+                document.getElementsByClassName('cliente')[1].classList.add('oculto');
+
+                setVenta(prev => ({
+                    ...prev,
+                    [name]: value
+                }));
+
+                eliminarErr(error)
+            } else {
+                document.getElementsByClassName('cliente')[0].classList.remove('oculto');
+                document.getElementsByClassName('cliente')[1].classList.remove('oculto');
+                err(error);
+            }
+
+        } else {
+            setVenta(prev => ({
+                ...prev,
+                [name]: value
+            }));
+        }
     }
 
     function handleChangeProductos(e, productos) {
@@ -26,6 +103,8 @@ export default function FuncionesPopupAñadir() {
 
             // Verificar si el producto ya está en la venta 
             let productoExistente = false;
+
+            let error = "El producto "+name+" ya está en la venta";
 
             for (const i in venta) {
                 if (i.startsWith('productos-')) {
@@ -44,7 +123,7 @@ export default function FuncionesPopupAñadir() {
                 farmaco.value = '';
                 const unidades = 'unidades-' + name.split('-')[1];
                 document.getElementsByName(unidades)[0].value = '';
-                alert("Este producto ya está en la venta");
+                err(error);
 
                 if (venta[name]) {
                     delete venta[name];
@@ -55,6 +134,7 @@ export default function FuncionesPopupAñadir() {
 
             } else {
                 añadir();
+                eliminarErr(error);
             }
         } else {
             añadir();
@@ -68,10 +148,12 @@ export default function FuncionesPopupAñadir() {
             // Verificar si necesita prescripción médica
             if (productoObj.prescripcion == 1) {
 
+                let error = "El fármaco " + productoObj.nombre + " necesita prescripción médica";
+
                 if (cipa.value.length !== 10) {
 
                     farmaco.value = '';
-                    alert("El fármaco " + productoObj.nombre + " necesita prescripción médica");
+                    err(error);
                     cipa.focus();
 
                     if (venta[name]) {
@@ -99,6 +181,8 @@ export default function FuncionesPopupAñadir() {
                             unidades: 0
                         }
                     }));
+
+                    eliminarErr(error);
                 }
             } else {
 

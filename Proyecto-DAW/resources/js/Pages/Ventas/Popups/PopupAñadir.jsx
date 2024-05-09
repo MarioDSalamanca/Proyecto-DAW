@@ -11,8 +11,6 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
         venta
     } = FuncionesPopupAñadir();
 
-    console.log(venta)
-
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
@@ -20,12 +18,13 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
             </div>
             <h2>Añadir una tarea</h2>
             <form onSubmit={ (e) => confirmarAñadirVenta(e, '/ventas/añadir', venta) }>
+            <p id="avisos"></p>
                 <table>
                     <tbody>
                         <tr>
                             <td>
                                 <label>CIPA</label><br />
-                                <input type="number" name='cipa' onChange={ (e) => handleChangeDatos(e) } min={1} />
+                                <input type="number" name='cipa' onChange={ (e) => handleChangeDatos(e, clientes) } min={1} />
                             </td>
                             <td>
                                 <label>Empleado</label><br />
@@ -39,6 +38,16 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
                             <td>
                                 <label>Fecha</label><br />
                                 <input type="datetime-local" name='fecha' onChange={ (e) => handleChangeDatos(e) } minLength={8} required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='cliente oculto'>
+                                <label>Nombre cliente</label><br />
+                                <input type="text" name='nombre' onChange={ (e) => handleChangeDatos(e, clientes) } min={1} required />
+                            </td>
+                            <td className='cliente oculto'>
+                                <label>Apellido</label><br />
+                                <input type="text" name='apellido' onChange={ (e) => handleChangeDatos(e, clientes) } min={1} required />
                             </td>
                         </tr>
                         <tr>
