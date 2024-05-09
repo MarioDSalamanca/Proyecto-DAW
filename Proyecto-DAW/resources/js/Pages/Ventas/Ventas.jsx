@@ -1,5 +1,5 @@
 import Header from "../Componentes/Header";
-import FuncionesPopUps from '../Componentes/FuncionesPopUps';
+import FuncionesPopUps from "../Componentes/FuncionesPopUps";
 import PopupAñadir from "./Popups/PopupAñadir";
 import PopupInfo from "./Popups/PopupInfo";
 import PopupEliminar from "./Popups/PopupEliminar";
@@ -8,7 +8,6 @@ import { useState } from "react";
 
 export default function Ventas({ sesionUsuario, datosServidor, empleados, clientes, productos }) {
 
-    //console.log(datosServidor)
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
     // Usa las funciones de popup
@@ -22,8 +21,7 @@ export default function Ventas({ sesionUsuario, datosServidor, empleados, client
         añadir,
         eliminar,
         info,
-        handleChange,
-        confirmarAñadir,
+        confirmarAñadirVenta,
         confirmarEliminar,
         formDatos
     } = FuncionesPopUps();
@@ -33,7 +31,7 @@ export default function Ventas({ sesionUsuario, datosServidor, empleados, client
             <Header sesion={ sesionUsuario }/>
             <main>
                 <h1>Ventas</h1>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } clientes={ clientes } empleados={ empleados } productos={ productos } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadirVenta={ confirmarAñadirVenta } clientes={ clientes } empleados={ empleados } productos={ productos } /> }
                 { popupInfo && <PopupInfo mostrarPopupInfo={ mostrarPopupInfo } formDatos={ formDatos } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
                 { datosServidor &&

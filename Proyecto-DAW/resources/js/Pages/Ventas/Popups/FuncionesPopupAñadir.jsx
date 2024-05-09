@@ -1,15 +1,8 @@
-import FuncionesPopUps from '../../Componentes/FuncionesPopUps';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function FuncionesPopupAñadir() {
 
-    const { handleChangeVenta } = FuncionesPopUps();
-
     const [venta, setVenta] = useState({});
-    useEffect(() => {
-        handleChangeVenta(venta);
-    }, [venta]);
-
 
     function handleChangeDatos(e) {
         const { name, value } = e.target;
@@ -17,7 +10,6 @@ export default function FuncionesPopupAñadir() {
             ...prev,
             [name]: value
         }));
-
     }
 
     function handleChangeProductos(e, productos) {
@@ -107,7 +99,6 @@ export default function FuncionesPopupAñadir() {
                             unidades: 0
                         }
                     }));
-
                 }
             } else {
 
@@ -138,7 +129,6 @@ export default function FuncionesPopupAñadir() {
             unidades.style.display = 'none';
         }
     }
-    
     
     function handleChangeUnidades(e) {
 
@@ -248,7 +238,6 @@ export default function FuncionesPopupAñadir() {
             delete venta[select];
             setVenta(venta);
         }
-
     }
 
     return {

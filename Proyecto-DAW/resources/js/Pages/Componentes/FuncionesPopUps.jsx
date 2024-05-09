@@ -30,10 +30,10 @@ export default function FuncionesPopUps() {
         };
 
     // Funciones para mostrar los PopUps
-        const mostrarPopupAñadir = () => setPopupAñadir(!popupAñadir);
-        const mostrarPopupEditar = () => setPopupEditar(!popupEditar);
-        const mostrarPopupEliminar = () => setPopupEliminar(!popupEliminar);
-        const mostrarPopupInfo = () => setPopupInfo(!popupInfo);
+        function mostrarPopupAñadir() { setPopupAñadir(!popupAñadir) };
+        function mostrarPopupEditar() { setPopupEditar(!popupEditar) };
+        function mostrarPopupEliminar() { setPopupEliminar(!popupEliminar) };
+        function mostrarPopupInfo() { setPopupInfo(!popupInfo) };
 
     // Setear los valores de los formularios de Añadir y Editar
         function handleChange(e) {
@@ -54,20 +54,22 @@ export default function FuncionesPopUps() {
                 }));
             }
         }
-
-        function handleChangeVenta(venta) {
-            setFormDatos(venta);
-        }
     
     // Solicitudes POST al servidor
         function confirmarAñadir(e, url) {
             e.preventDefault();
-            console.log(formDatos);
+            console.log(formDatos, url);
             /* mostrarPopupAñadir();
             router.post(url, formDatos)
             setFormDatos({});
             window.location.reload(); */
         };
+        function confirmarAñadirVenta(e, url, venta) {
+            e.preventDefault();
+            mostrarPopupAñadir();
+            router.post(url, venta);
+            window.location.reload();
+        }
         function confirmarEditar(e, url) {
             e.preventDefault();
             mostrarPopupEditar();
@@ -97,8 +99,8 @@ export default function FuncionesPopUps() {
             eliminar,
             info,
             handleChange,
-            handleChangeVenta,
             confirmarAñadir,
+            confirmarAñadirVenta,
             confirmarEditar,
             confirmarEliminar,
             datoEliminar,

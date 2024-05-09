@@ -1,6 +1,6 @@
 import FuncionesPopupAñadir from './FuncionesPopupAñadir';
 
-export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, empleados, clientes, productos }) {  
+export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVenta, empleados, clientes, productos }) {  
 
     const {
         handleChangeDatos,
@@ -11,23 +11,25 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, em
         venta
     } = FuncionesPopupAñadir();
 
+    console.log(venta)
+
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
-                <button onClick={ mostrarPopupAñadir }>x</button>
+            <button onClick={ () => { mostrarPopupAñadir() }}>x</button>
             </div>
             <h2>Añadir una tarea</h2>
-            <form onSubmit={ (e) => confirmarAñadir(e, '/ventas/añadir') }>
+            <form onSubmit={ (e) => confirmarAñadirVenta(e, '/ventas/añadir', venta) }>
                 <table>
                     <tbody>
                         <tr>
                             <td>
                                 <label>CIPA</label><br />
-                                <input type="number" name='cipa' value={ venta.cipa || '' } onChange={ (e) => handleChangeDatos(e) } minLength={10} maxLength={10} />
+                                <input type="number" name='cipa' onChange={ (e) => handleChangeDatos(e) } minLength={10} maxLength={10} />
                             </td>
                             <td>
                                 <label>Empleado</label><br />
-                                <select name='empleado' value={ venta.empleado || '' } onChange={ (e) => handleChangeDatos(e) } required >
+                                <select name='empleado' onChange={ (e) => handleChangeDatos(e) } required >
                                     <option value=""></option>
                                     {empleados.map((empleado) => (
                                         <option key={empleado} value={empleado}>{empleado}</option>
@@ -36,7 +38,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, em
                             </td>
                             <td>
                                 <label>Fecha</label><br />
-                                <input type="datetime-local" name='fecha' value={ venta.fecha || '' } onChange={ (e) => handleChangeDatos(e) } minLength={8} />
+                                <input type="datetime-local" name='fecha' onChange={ (e) => handleChangeDatos(e) } minLength={8} required />
                             </td>
                         </tr>
                         <tr>
