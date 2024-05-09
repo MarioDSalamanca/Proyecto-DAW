@@ -58,11 +58,10 @@ export default function FuncionesPopUps() {
     // Solicitudes POST al servidor
         function confirmarAñadir(e, url) {
             e.preventDefault();
-            console.log(formDatos, url);
-            /* mostrarPopupAñadir();
+            mostrarPopupAñadir();
             router.post(url, formDatos)
             setFormDatos({});
-            window.location.reload(); */
+            window.location.reload();
         };
         function confirmarAñadirVenta(e, url, venta) {
             e.preventDefault();

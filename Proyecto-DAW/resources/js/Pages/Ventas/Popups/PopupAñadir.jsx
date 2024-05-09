@@ -56,7 +56,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
                                 <div id="contenedor-selects">
                                     <p>
                                         <button id="agregar1" type="button" onClick={ () => agregarSelect(productos, venta) }>+</button>
-                                        <select id="productos1" name="productos-1" onChange={(e) => { handleChangeProductos(e, productos); }} required >
+                                        <select id="productos1" name="productos-1" onChange={(e) => { handleChangeProductos(e, productos) }} required >
                                         <option value=""></option>
                                         {productos.map((producto) => (
                                             <option key={producto.idInventario} value={producto.nombre}>

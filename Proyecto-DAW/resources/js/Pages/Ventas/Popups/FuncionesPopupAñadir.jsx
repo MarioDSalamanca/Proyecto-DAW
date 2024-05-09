@@ -1,57 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function FuncionesPopupAñadir() {
 
     const [venta, setVenta] = useState({});
+    const [errores, setErrores] = useState({});
 
-    let errores = [];
+    useEffect(() => {
+    
+        console.log(errores, venta)
 
-    function err(error) {
-        errores.push(error);
-        
+        // Limpia el contenido existente en "avisos"
         let avisos = document.getElementById("avisos");
-        // Limpiar contenido existente
         avisos.innerHTML = "";
-        // Agregar cada error como un párrafo
-        errores.forEach((error) => {
+    
+        // Agrega cada error como un párrafo
+        Object.keys(errores).forEach((errorName) => {
             let parrafo = document.createElement("p");
-            parrafo.textContent = error;
+            parrafo.textContent = errores[errorName];
             avisos.appendChild(parrafo);
-        });    
+        });
+
+        avisos.focus();
+
+    }, [errores]);
+
+    function err(name, value) {
+        setErrores(prev => ({ 
+            ...prev, 
+            [name]: value 
+        }));
     }
 
+    function eliminarErr(name) {
 
-
-
-    
-
-
-
-
-/* ME HE QUEDADO AQUÍ **/
-
-    function eliminarErr(error) {
-        let erroresPosibles = ["cipa", "producto", "farmaco"];
-    
-        // Buscar la palabra clave que coincide con la cadena de error
-        let palabraClave = null;
-        for (let i = 0; i < erroresPosibles.length; i++) {
-            if (error.includes(erroresPosibles[i])) {
-                palabraClave = erroresPosibles[i];
-                break;
-            }
-        }
-    
-        // Si se encuentra una palabra clave, buscar y eliminar el error correspondiente
-        if (palabraClave) {
-            for (let i = 0; i < errores.length; i++) {
-                if (errores[i].includes(palabraClave)) {
-                    errores.splice(i, 1);
-                    break;
-                }
-            }
+        if (errores[name]) {
+            const nuevo = { ...errores };
+            delete nuevo[name];
+            setErrores(nuevo);
         }
     }
+
     
 
     function handleChangeDatos(e, clientes) {
@@ -61,8 +49,6 @@ export default function FuncionesPopupAñadir() {
         const { name, value } = e.target;
 
         if (clientes && cipa.value.length == 10) {
-
-            let error = "El cliente con el cipa ("+cipa.value+") no está registrado"
 
             if (clientes.includes(value)) {
 
@@ -74,11 +60,11 @@ export default function FuncionesPopupAñadir() {
                     [name]: value
                 }));
 
-                eliminarErr(error)
+                eliminarErr("errorCipa")
             } else {
                 document.getElementsByClassName('cliente')[0].classList.remove('oculto');
                 document.getElementsByClassName('cliente')[1].classList.remove('oculto');
-                err(error);
+                err("errorCipa", "El cliente con el cipa ("+cipa.value+") no está registrado");
             }
 
         } else {
@@ -104,8 +90,6 @@ export default function FuncionesPopupAñadir() {
             // Verificar si el producto ya está en la venta 
             let productoExistente = false;
 
-            let error = "El producto "+name+" ya está en la venta";
-
             for (const i in venta) {
                 if (i.startsWith('productos-')) {
                     const nombreProducto = venta[i].producto.nombre;
@@ -123,7 +107,7 @@ export default function FuncionesPopupAñadir() {
                 farmaco.value = '';
                 const unidades = 'unidades-' + name.split('-')[1];
                 document.getElementsByName(unidades)[0].value = '';
-                err(error);
+                err("errorRepetido", "El producto "+value+" ya está en la venta");
 
                 if (venta[name]) {
                     delete venta[name];
@@ -134,7 +118,7 @@ export default function FuncionesPopupAñadir() {
 
             } else {
                 añadir();
-                eliminarErr(error);
+                eliminarErr("errorRepetido");
             }
         } else {
             añadir();
@@ -148,12 +132,10 @@ export default function FuncionesPopupAñadir() {
             // Verificar si necesita prescripción médica
             if (productoObj.prescripcion == 1) {
 
-                let error = "El fármaco " + productoObj.nombre + " necesita prescripción médica";
-
                 if (cipa.value.length !== 10) {
 
                     farmaco.value = '';
-                    err(error);
+                    err("errorPrescripcion", "El fármaco " + productoObj.nombre + " necesita prescripción médica");
                     cipa.focus();
 
                     if (venta[name]) {
@@ -182,7 +164,7 @@ export default function FuncionesPopupAñadir() {
                         }
                     }));
 
-                    eliminarErr(error);
+                    eliminarErr("errorPrescripcion");
                 }
             } else {
 
@@ -317,10 +299,12 @@ export default function FuncionesPopupAñadir() {
         const contenedor = document.getElementById(id);
         contenedor.parentNode.removeChild(contenedor);
     
+        let nuevo = { ...venta };
+
         // Eliminar el registro del objeto venta si el valor no está vacío
         if (valorSelect !== '') {
-            delete venta[select];
-            setVenta(venta);
+            delete nuevo[select];
+            setVenta(nuevo);
         }
     }
 
