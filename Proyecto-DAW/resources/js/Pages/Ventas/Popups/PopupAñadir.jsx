@@ -25,7 +25,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
                         <tr>
                             <td>
                                 <label>CIPA</label><br />
-                                <input type="number" name='cipa' onChange={ (e) => handleChangeDatos(e) } minLength={10} maxLength={10} />
+                                <input type="number" name='cipa' onChange={ (e) => handleChangeDatos(e) } min={1} />
                             </td>
                             <td>
                                 <label>Empleado</label><br />
