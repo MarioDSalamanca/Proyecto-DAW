@@ -35,22 +35,12 @@ class VentasController extends Controller {
 
     // Añadir tareas a la tabla tareas
     public function insert(Request $request) {
-        
-        //dd($request);
-        /* {
-        "empleado":"iker@example.com",
-        "fecha":"2024-05-10T08:41",
-        "productos-1":{
-            "producto":{
-                "idInventario":1,
-                "nombre":"ibufen",
-                "prescripcion":0},
-                "unidades":1
-            }
-        } */
 
         // Capturar el empleado
-        $idEmpleado = Empleados::where('correo', $request->empleado)->get('idEmpleado');
+        $idEmpleado = Empleados::where('correo', $request->empleado)->value('idEmpleado');
+
+        // Inicializar cliente nulo
+        $idCliente = null;
 
         // Capturar el cipa si llega en la llamada
         if ($request->cipa) {
@@ -61,18 +51,18 @@ class VentasController extends Controller {
             // Si existe capturar su id
             if ($cliente) {
 
-                $idCliente = $cliente->idCliente;
+                $idCliente = Clientes::where('cipa', $request->cipa)->value('idCliente');
 
             // Si no existe crearlo y capturar el id
             } else {
-                $cliente = new Cliente();
+                $cliente = new Clientes();
                 $cliente->cipa = $request->cipa;
                 $cliente->nombre = $request->nombre;
                 $cliente->apellido = $request->apellido;
 
                 $cliente->save();
 
-                $idCliente = Clientes::where('cipa', $cliente->cipa)->get('idCliente');
+                $idCliente = Clientes::where('cipa', $request->cipa)->value('idCliente');
             }
         }
 
@@ -99,23 +89,32 @@ class VentasController extends Controller {
             }
         }
 
-        dd($idsInventario, $idCliente, $idEmpleado);
-        
-
-
-
-
-
         // Crear un objeto para guardar los datos
-        $venta = new Venta();
+        $venta = new Ventas();
         $venta->importe = $importe;
         $venta->fecha = $request->fecha;
-        $idCliente ? $venta->idCliente = $idCliente : null;
-        $venta->idEmpleado = $request->idEmpleado;
-
+        $idCliente != null ? $venta->idCliente = $idCliente : $venta->idCliente = null;
+        $venta->idEmpleado = $idEmpleado;
 
         $venta->save();
-        return redirect()->route('tareas.index');
+
+        $idVenta = $venta->idVenta;
+
+        foreach ($datos as $i => $dato) {
+            if (Str::startsWith($i, 'productos-')) {
+
+                $idInventario = $dato['producto']['idInventario'];
+
+                $detalle_venta = new Detalle_ventas();
+                $detalle_venta->unidades = $dato['unidades'];
+                $detalle_venta->idInventario = $idInventario;
+                $detalle_venta->idVenta = $idVenta;
+
+                $detalle_venta->save();
+            }
+        }
+
+        return redirect()->route('ventas.index');
     }
 
     public function delete(Request $request) {

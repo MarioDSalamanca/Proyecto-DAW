@@ -11,6 +11,8 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
         venta
     } = FuncionesPopupAñadir();
 
+    console.log(venta);
+
     return (
         <div className="popup añadir-editar">
             <div className='cerrar'>
@@ -46,7 +48,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
                                 <input type="text" name='nombre' onChange={ (e) => handleChangeDatos(e, clientes) } minLength={2} />
                             </td>
                             <td className='cliente oculto'>
-                                <label>Apellido</label><br />
+                                <label>Apellido cliente</label><br />
                                 <input type="text" name='apellido' onChange={ (e) => handleChangeDatos(e, clientes) } minLength={3} />
                             </td>
                         </tr>

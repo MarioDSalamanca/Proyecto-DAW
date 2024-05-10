@@ -2,73 +2,98 @@ import { useEffect, useState } from "react";
 
 export default function FuncionesPopupAñadir() {
 
-    const [venta, setVenta] = useState({});
-    const [errores, setErrores] = useState({});
+    // Estados
+        const [venta, setVenta] = useState({});
+        const [errores, setErrores] = useState({});
 
     // Cada vez que cambie errores se actualiza en el párrafo
-    useEffect(() => {
-    
-        console.log(errores, venta)
+        useEffect(() => {
+        
+            console.log(errores, venta)
 
-        // Limpia el contenido existente en "avisos"
-        let avisos = document.getElementById("avisos");
-        avisos.innerHTML = "";
-    
-        // Agrega cada error como un párrafo
-        Object.keys(errores).forEach((errorName) => {
-            let parrafo = document.createElement("p");
-            parrafo.textContent = errores[errorName];
-            avisos.appendChild(parrafo);
-        });
+            // Limpia el contenido existente en "avisos"
+            let avisos = document.getElementById("avisos");
+            avisos.innerHTML = "";
+        
+            // Agrega cada error como un párrafo
+            Object.keys(errores).forEach((errorName) => {
+                let parrafo = document.createElement("p");
+                parrafo.textContent = errores[errorName];
+                avisos.appendChild(parrafo);
+            });
 
-    }, [errores]);
+        }, [errores]);
 
-    function err(name, value) {
-        setErrores(prev => ({ 
-            ...prev, 
-            [name]: value 
-        }));
-    }
-
-    function eliminarErr(name) {
-
-        if (errores[name]) {
-            const nuevo = { ...errores };
-            delete nuevo[name];
-            setErrores(nuevo);
+    // Añadir los errores
+        function err(name, value) {
+            setErrores(prev => ({ 
+                ...prev, 
+                [name]: value 
+            }));
         }
-    }
 
+    // Eliminar errores
+        function eliminarErr(name) {
+
+            if (errores[name]) {
+                const nuevo = { ...errores };
+                delete nuevo[name];
+                setErrores(nuevo);
+            }
+        }
+
+    // Añadir datos a venta
+        function set(name, value) {
+            setVenta(prev => ({
+                ...prev,
+                [name]: value
+            }));
+        }
+
+    // Eliminar dato de la venta
+        function borrar(name) {
+            let nuevo = { ...venta };
+            delete nuevo[name];
+            setVenta(nuevo);
+        }
+
+    // Procesar los campos de cipa, empleado, fecha, nombre y apellido pasando la lista de clientes
     function handleChangeDatos(e, clientes) {
 
         const cipa = document.getElementsByName('cipa')[0];
 
         const { name, value } = e.target;
 
+        // Comprobar si se ha rellenado el cipa y se le llama a la funcion pasando clientes
         if (clientes && cipa.value.length == 10) {
 
+            // Si el cipa está en la lista de clientes
             if (clientes.includes(value)) {
 
                 document.getElementsByClassName('cliente')[0].classList.add('oculto');
                 document.getElementsByClassName('cliente')[1].classList.add('oculto');
 
-                setVenta(prev => ({
-                    ...prev,
-                    [name]: value
-                }));
+                set(name, value);
 
                 eliminarErr("errorCipa")
+
             } else {
+                // Mostrar el error y los campos
                 document.getElementsByClassName('cliente')[0].classList.remove('oculto');
                 document.getElementsByClassName('cliente')[1].classList.remove('oculto');
                 err("errorCipa", "El cliente con el cipa ("+cipa.value+") no está registrado");
+
+                const nombre = document.getElementsByName('nombre')[0];
+                const apellido = document.getElementsByName('apellido')[0];
+
+                // Si se rellenan nombre y apellido añadirlo
+                if (nombre.value.length >= 2 || apellido.value.length >= 3) {
+                    set(name, value);
+                }
             }
 
         } else {
-            setVenta(prev => ({
-                ...prev,
-                [name]: value
-            }));
+            set(name, value);
         }
     }
 
@@ -108,9 +133,7 @@ export default function FuncionesPopupAñadir() {
                 err("errorRepetido", "El producto "+value+" ya está en la venta");
 
                 if (venta[name]) {
-                    const nuevo = { ...venta };
-                    delete nuevo[name];
-                    setVenta(nuevo);
+                    borrar(name);
                 }
 
                 return;
@@ -138,9 +161,7 @@ export default function FuncionesPopupAñadir() {
                     cipa.focus();
 
                     if (venta[name]) {
-                        const nuevo = { ...venta };
-                        delete nuevo[name];
-                        setVenta(nuevo);
+                        borrar(name);
                     }   
                     
                     return;
@@ -149,9 +170,7 @@ export default function FuncionesPopupAñadir() {
 
                     // Eliminar el producto anterior
                     if (venta[name]) {
-                        const nuevo = { ...venta };
-                        delete nuevo[name];
-                        setVenta(nuevo);
+                        borrar(name);
                         const unidades = 'unidades-' + name.split('-')[1];
                         document.getElementsByName(unidades)[0].value = '';
                     }
@@ -171,9 +190,7 @@ export default function FuncionesPopupAñadir() {
 
                 // Eliminar el producto anterior
                 if (venta[name]) {
-                    const nuevo = { ...venta };
-                    delete nuevo[name];
-                    setVenta(nuevo);
+                    borrar(name);
                     const unidades = 'unidades-' + name.split('-')[1];
                     document.getElementsByName(unidades)[0].value = '';
                 }
