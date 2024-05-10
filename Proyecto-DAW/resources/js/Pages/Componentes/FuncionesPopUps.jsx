@@ -67,7 +67,7 @@ export default function FuncionesPopUps() {
             e.preventDefault();
             mostrarPopupAñadir();
             router.post(url, venta);
-            window.location.reload();
+            //window.location.reload();
         }
         function confirmarEditar(e, url) {
             e.preventDefault();

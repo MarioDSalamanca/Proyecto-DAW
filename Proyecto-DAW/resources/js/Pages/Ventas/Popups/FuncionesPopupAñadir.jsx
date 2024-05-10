@@ -5,6 +5,7 @@ export default function FuncionesPopupAñadir() {
     const [venta, setVenta] = useState({});
     const [errores, setErrores] = useState({});
 
+    // Cada vez que cambie errores se actualiza en el párrafo
     useEffect(() => {
     
         console.log(errores, venta)
@@ -19,8 +20,6 @@ export default function FuncionesPopupAñadir() {
             parrafo.textContent = errores[errorName];
             avisos.appendChild(parrafo);
         });
-
-        avisos.focus();
 
     }, [errores]);
 
@@ -39,8 +38,6 @@ export default function FuncionesPopupAñadir() {
             setErrores(nuevo);
         }
     }
-
-    
 
     function handleChangeDatos(e, clientes) {
 
@@ -98,6 +95,7 @@ export default function FuncionesPopupAñadir() {
                         productoExistente = true;
                         break;
                     }
+                    console.log(nombreProducto, value);
                 }
             }
 
@@ -110,8 +108,9 @@ export default function FuncionesPopupAñadir() {
                 err("errorRepetido", "El producto "+value+" ya está en la venta");
 
                 if (venta[name]) {
-                    delete venta[name];
-                    setVenta(venta);
+                    const nuevo = { ...venta };
+                    delete nuevo[name];
+                    setVenta(nuevo);
                 }
 
                 return;
@@ -139,8 +138,9 @@ export default function FuncionesPopupAñadir() {
                     cipa.focus();
 
                     if (venta[name]) {
-                        delete venta[name];
-                        setVenta(venta);
+                        const nuevo = { ...venta };
+                        delete nuevo[name];
+                        setVenta(nuevo);
                     }   
                     
                     return;
@@ -149,8 +149,9 @@ export default function FuncionesPopupAñadir() {
 
                     // Eliminar el producto anterior
                     if (venta[name]) {
-                        delete venta[name];
-                        setVenta(venta);
+                        const nuevo = { ...venta };
+                        delete nuevo[name];
+                        setVenta(nuevo);
                         const unidades = 'unidades-' + name.split('-')[1];
                         document.getElementsByName(unidades)[0].value = '';
                     }
@@ -170,8 +171,9 @@ export default function FuncionesPopupAñadir() {
 
                 // Eliminar el producto anterior
                 if (venta[name]) {
-                    delete venta[name];
-                    setVenta(venta);
+                    const nuevo = { ...venta };
+                    delete nuevo[name];
+                    setVenta(nuevo);
                     const unidades = 'unidades-' + name.split('-')[1];
                     document.getElementsByName(unidades)[0].value = '';
                 }

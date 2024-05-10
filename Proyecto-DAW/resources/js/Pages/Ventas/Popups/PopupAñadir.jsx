@@ -43,11 +43,11 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
                         <tr>
                             <td className='cliente oculto'>
                                 <label>Nombre cliente</label><br />
-                                <input type="text" name='nombre' onChange={ (e) => handleChangeDatos(e, clientes) } min={1} required />
+                                <input type="text" name='nombre' onChange={ (e) => handleChangeDatos(e, clientes) } minLength={2} />
                             </td>
                             <td className='cliente oculto'>
                                 <label>Apellido</label><br />
-                                <input type="text" name='apellido' onChange={ (e) => handleChangeDatos(e, clientes) } min={1} required />
+                                <input type="text" name='apellido' onChange={ (e) => handleChangeDatos(e, clientes) } minLength={3} />
                             </td>
                         </tr>
                         <tr>
