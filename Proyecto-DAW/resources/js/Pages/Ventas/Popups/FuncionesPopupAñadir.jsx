@@ -82,6 +82,7 @@ export default function FuncionesPopupAñadir() {
                 document.getElementsByClassName('cliente')[0].classList.remove('oculto');
                 document.getElementsByClassName('cliente')[1].classList.remove('oculto');
                 err("errorCipa", "El cliente con el cipa ("+cipa.value+") no está registrado");
+                set(name, value);
 
                 const nombre = document.getElementsByName('nombre')[0];
                 const apellido = document.getElementsByName('apellido')[0];
