@@ -14,6 +14,7 @@ export default function PopupInfo({ mostrarPopupInfo, formDatos }) {
             detalleInfo.unidades = detalle.unidades;
             detalleInfo.farmaco = detalle.inventario.farmaco;
             detalleInfo.nombreComercial = detalle.inventario.nombre;
+            detalleInfo.precio = detalle.inventario.precio;
             detalleInfo.stock = detalle.inventario.stock;
     
             // Agregar el objeto detalleInfo al array detallesInfo
@@ -47,6 +48,7 @@ export default function PopupInfo({ mostrarPopupInfo, formDatos }) {
                     <div key={index} className="detallesVenta productos">
                         <p><span>Nombre Comercial </span><br />{detalle.nombreComercial}</p>
                         <p><span>Fármaco  </span><br />{detalle.farmaco}</p>
+                        <p><span>Precio  </span>{detalle.precio}</p>
                         <p><span>Unidades  </span>{detalle.unidades}</p>
                         <p><span>Stock  </span>{detalle.stock}</p>
                     </div>

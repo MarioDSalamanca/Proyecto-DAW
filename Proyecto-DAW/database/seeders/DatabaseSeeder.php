@@ -57,15 +57,16 @@ class DatabaseSeeder extends Seeder
 
         $inventario = [
             ['nombre' => 'ibufen', 'farmaco' => 'ibuprofeno', 'precio' => 2, 'prescripcion' => false, 'stock' => 56],
-            ['nombre' => 'norlevo', 'farmaco' => 'levonogestrel', 'precio' => 1.5, 'prescripcion' => true, 'stock' => 70],
+            ['nombre' => 'norlevo', 'farmaco' => 'levonorgestrel', 'precio' => 1.5, 'prescripcion' => true, 'stock' => 70],
             ['nombre' => 'eutirox', 'farmaco' => 'levotiroxina', 'precio' => 3, 'prescripcion' => true, 'stock' => 5],
-            ['nombre' => 'lumigan', 'farmaco' => 'Bimatoprost', 'precio' => 2.5, 'prescripcion' => true, 'stock' => 60],
-            ['nombre' => 'viread', 'farmaco' => 'Tenofovir', 'precio' => 4, 'prescripcion' => true, 'stock' => 30],
-            ['nombre' => 'valium', 'farmaco' => 'Diazepam', 'precio' => 3.5, 'prescripcion' => true, 'stock' => 25],
-            ['nombre' => 'plenur', 'farmaco' => 'Carbonato de Calcio', 'precio' => 5, 'prescripcion' => true, 'stock' => 20],
-            ['nombre' => 'sintrom', 'farmaco' => 'Acenocumarol', 'precio' => 4, 'prescripcion' => true, 'stock' => 40],
-            ['nombre' => 'nolotil', 'farmaco' => 'Metamizol magnésico', 'precio' => 6, 'prescripcion' => true, 'stock' => 15],
-            ['nombre' => 'ebastina', 'farmaco' => 'Ebastina', 'precio' => 4.2, 'prescripcion' => true, 'stock' => 25],
+            ['nombre' => 'tylenol', 'farmaco' => 'paracetamol', 'precio' => 1.8, 'prescripcion' => false, 'stock' => 50],
+            ['nombre' => 'lumigan', 'farmaco' => 'bimatoprost', 'precio' => 2.5, 'prescripcion' => true, 'stock' => 60],
+            ['nombre' => 'viread', 'farmaco' => 'tenofovir', 'precio' => 4, 'prescripcion' => true, 'stock' => 30],
+            ['nombre' => 'valium', 'farmaco' => 'diazepam', 'precio' => 3.5, 'prescripcion' => true, 'stock' => 25],
+            ['nombre' => 'plenur', 'farmaco' => 'carbonato de calcio', 'precio' => 5, 'prescripcion' => true, 'stock' => 20],
+            ['nombre' => 'sintrom', 'farmaco' => 'acenocumarol', 'precio' => 4, 'prescripcion' => true, 'stock' => 40],
+            ['nombre' => 'nolotil', 'farmaco' => 'metamizol magnésico', 'precio' => 6, 'prescripcion' => true, 'stock' => 15],
+            ['nombre' => 'ebastina', 'farmaco' => 'ebastina', 'precio' => 3.2, 'prescripcion' => true, 'stock' => 25],
         ];
 
         // Crear registros de inventario
@@ -85,30 +86,29 @@ class DatabaseSeeder extends Seeder
         }
 
         $compras = [
-            ['importe' => 500, 'unidades' => 100, 'fecha' => '2024-04-01 10:15:00', 'idProveedor' => 1, 'idInventario' => 5],
-            ['importe' => 320, 'unidades' => 80, 'fecha' => '2024-04-02 14:30:00', 'idProveedor' => 2, 'idInventario' => 7],
-            ['importe' => 750, 'unidades' => 200, 'fecha' => '2024-04-03 09:45:00', 'idProveedor' => 3, 'idInventario' => 6],
-            ['importe' => 420, 'unidades' => 150, 'fecha' => '2024-04-04 11:20:00', 'idProveedor' => 1, 'idInventario' => 1],
-            ['importe' => 800, 'unidades' => 120, 'fecha' => '2024-04-05 16:00:00', 'idProveedor' => 1, 'idInventario' => 3],
-            ['importe' => 280, 'unidades' => 50, 'fecha' => '2024-04-06 13:10:00', 'idProveedor' => 2, 'idInventario' => 5],
-            ['importe' => 650, 'unidades' => 180, 'fecha' => '2024-04-07 08:30:00', 'idProveedor' => 1, 'idInventario' => 1],
-            ['importe' => 480, 'unidades' => 90, 'fecha' => '2024-04-08 12:45:00', 'idProveedor' => 1, 'idInventario' => 9],
-            ['importe' => 880, 'unidades' => 250, 'fecha' => '2024-04-09 15:20:00', 'idProveedor' => 2, 'idInventario' => 6],
-            ['importe' => 360, 'unidades' => 70, 'fecha' => '2024-04-10 14:30:00', 'idProveedor' => 1, 'idInventario' => 10],
-            ['importe' => 700, 'unidades' => 160, 'fecha' => '2024-04-11 09:00:00', 'idProveedor' => 1, 'idInventario' => 3],
-            ['importe' => 520, 'unidades' => 110, 'fecha' => '2024-04-12 11:45:00', 'idProveedor' => 1, 'idInventario' => 2],
-            ['importe' => 930, 'unidades' => 300, 'fecha' => '2024-04-13 16:30:00', 'idProveedor' => 1, 'idInventario' => 8],
-            ['importe' => 400, 'unidades' => 80, 'fecha' => '2024-04-14 13:00:00', 'idProveedor' => 1, 'idInventario' => 4],
-            ['importe' => 780, 'unidades' => 200, 'fecha' => '2024-04-15 10:25:00', 'idProveedor' => 1, 'idInventario' => 1],
-            ['importe' => 340, 'unidades' => 60, 'fecha' => '2024-04-16 14:15:00', 'idProveedor' => 2, 'idInventario' => 4],
-            ['importe' => 600, 'unidades' => 150, 'fecha' => '2024-04-17 09:30:00', 'idProveedor' => 3, 'idInventario' => 2],
-            ['importe' => 460, 'unidades' => 100, 'fecha' => '2024-04-18 12:00:00', 'idProveedor' => 1, 'idInventario' => 9],
-            ['importe' => 850, 'unidades' => 220, 'fecha' => '2024-04-19 16:45:00', 'idProveedor' => 1, 'idInventario' => 7],
-            ['importe' => 320, 'unidades' => 70, 'fecha' => '2024-04-20 11:00:00', 'idProveedor' => 1, 'idInventario' => 10],
-            ['importe' => 670, 'unidades' => 180, 'fecha' => '2024-04-21 10:40:00', 'idProveedor' => 1, 'idInventario' => 3],
-            ['importe' => 490, 'unidades' => 100, 'fecha' => '2024-04-22 14:20:00', 'idProveedor' => 2, 'idInventario' => 5],
-            ['importe' => 920, 'unidades' => 250, 'fecha' => '2024-04-23 09:50:00', 'idProveedor' => 3, 'idInventario' => 8],
-            ['importe' => 380, 'unidades' => 70, 'fecha' => '2024-04-24 13:30:00', 'idProveedor' => 1, 'idInventario' => 9],
+            ['importe' => 50, 'unidades' => 120, 'fecha' => '2024-05-01 10:15:00', 'idProveedor' => 1, 'idInventario' => 5],
+            ['importe' => 32, 'unidades' => 80, 'fecha' => '2024-05-02 14:30:00', 'idProveedor' => 2, 'idInventario' => 7],
+            ['importe' => 75, 'unidades' => 200, 'fecha' => '2024-05-03 09:45:00', 'idProveedor' => 3, 'idInventario' => 6],
+            ['importe' => 42, 'unidades' => 150, 'fecha' => '2024-05-04 11:20:00', 'idProveedor' => 1, 'idInventario' => 1],
+            ['importe' => 80, 'unidades' => 120, 'fecha' => '2024-05-05 16:00:00', 'idProveedor' => 1, 'idInventario' => 3],
+            ['importe' => 28, 'unidades' => 50, 'fecha' => '2024-05-06 13:10:00', 'idProveedor' => 2, 'idInventario' => 5],
+            ['importe' => 65, 'unidades' => 180, 'fecha' => '2024-05-07 08:30:00', 'idProveedor' => 1, 'idInventario' => 1],
+            ['importe' => 48, 'unidades' => 90, 'fecha' => '2024-05-08 12:45:00', 'idProveedor' => 1, 'idInventario' => 9],
+            ['importe' => 88, 'unidades' => 250, 'fecha' => '2024-05-09 15:20:00', 'idProveedor' => 2, 'idInventario' => 6],
+            ['importe' => 36, 'unidades' => 70, 'fecha' => '2024-05-10 14:30:00', 'idProveedor' => 1, 'idInventario' => 10],
+            ['importe' => 70, 'unidades' => 160, 'fecha' => '2024-05-11 09:00:00', 'idProveedor' => 1, 'idInventario' => 3],
+            ['importe' => 52, 'unidades' => 110, 'fecha' => '2024-04-12 11:45:00', 'idProveedor' => 1, 'idInventario' => 2],
+            ['importe' => 93, 'unidades' => 300, 'fecha' => '2024-04-13 16:30:00', 'idProveedor' => 1, 'idInventario' => 8],
+            ['importe' => 80, 'unidades' => 475, 'fecha' => '2024-04-13 16:30:00', 'idProveedor' => 2, 'idInventario' => 11],
+            ['importe' => 40, 'unidades' => 80, 'fecha' => '2024-04-14 13:00:00', 'idProveedor' => 1, 'idInventario' => 4],
+            ['importe' => 78, 'unidades' => 200, 'fecha' => '2024-04-15 10:25:00', 'idProveedor' => 1, 'idInventario' => 1],
+            ['importe' => 34, 'unidades' => 60, 'fecha' => '2024-04-16 14:15:00', 'idProveedor' => 2, 'idInventario' => 4],
+            ['importe' => 46, 'unidades' => 100, 'fecha' => '2024-04-18 12:00:00', 'idProveedor' => 1, 'idInventario' => 9],
+            ['importe' => 85, 'unidades' => 220, 'fecha' => '2024-04-19 16:45:00', 'idProveedor' => 1, 'idInventario' => 7],
+            ['importe' => 32, 'unidades' => 70, 'fecha' => '2024-04-20 11:00:00', 'idProveedor' => 1, 'idInventario' => 10],
+            ['importe' => 67, 'unidades' => 180, 'fecha' => '2024-04-21 10:40:00', 'idProveedor' => 1, 'idInventario' => 3],
+            ['importe' => 49, 'unidades' => 100, 'fecha' => '2024-04-22 14:20:00', 'idProveedor' => 2, 'idInventario' => 5],
+            ['importe' => 92, 'unidades' => 250, 'fecha' => '2024-04-23 09:50:00', 'idProveedor' => 3, 'idInventario' => 8],
         ];
 
         // Crear registros de compras
@@ -140,51 +140,26 @@ class DatabaseSeeder extends Seeder
 
         $ventas = [
 
-            ["importe" => 0, "fecha" => "2024-04-01 09:15:00", "idCliente" => null, "idEmpleado" => 8],
+            ["importe" => 0, "fecha" => "2024-04-01 09:15:00", "idCliente" => null, "idEmpleado" => 7],
             ["importe" => 0, "fecha" => "2024-04-02 10:30:00", "idCliente" => 4, "idEmpleado" => 10],
-            ["importe" => 0, "fecha" => "2024-04-03 11:45:00", "idCliente" => 11, "idEmpleado" => 3],
             ["importe" => 0, "fecha" => "2024-04-04 13:00:00", "idCliente" => 2, "idEmpleado" => 6],
             ["importe" => 0, "fecha" => "2024-04-05 14:15:00", "idCliente" => 9, "idEmpleado" => 12],
             ["importe" => 0, "fecha" => "2024-04-06 15:30:00", "idCliente" => 6, "idEmpleado" => 13],
-            ["importe" => 0, "fecha" => "2024-04-07 16:45:00", "idCliente" => 13, "idEmpleado" => 5],
-            ["importe" => 0, "fecha" => "2024-04-08 18:00:00", "idCliente" => 8, "idEmpleado" => 1],
-            ["importe" => 0, "fecha" => "2024-04-09 19:15:00", "idCliente" => 3, "idEmpleado" => 2],
-            ["importe" => 0, "fecha" => "2024-04-10 20:30:00", "idCliente" => 12, "idEmpleado" => 4],
-            ["importe" => 0, "fecha" => "2024-04-11 21:45:00", "idCliente" => 10, "idEmpleado" => 9],
-            ["importe" => 0, "fecha" => "2024-04-12 23:00:00", "idCliente" => 5, "idEmpleado" => 11],
-            ["importe" => 0, "fecha" => "2024-04-13 07:00:00", "idCliente" => 1, "idEmpleado" => 7],
-            ["importe" => 0, "fecha" => "2024-04-14 08:15:00", "idCliente" => 13, "idEmpleado" => 8],
+            ["importe" => 0, "fecha" => "2024-05-08 18:00:00", "idCliente" => 8, "idEmpleado" => 1],
+            ["importe" => 0, "fecha" => "2024-05-10 20:30:00", "idCliente" => 12, "idEmpleado" => 4],
+            ["importe" => 0, "fecha" => "2024-05-11 21:45:00", "idCliente" => 10, "idEmpleado" => 9],
+            ["importe" => 0, "fecha" => "2024-05-12 23:00:00", "idCliente" => 5, "idEmpleado" => 11],
+            ["importe" => 0, "fecha" => "2024-05-13 07:00:00", "idCliente" => 1, "idEmpleado" => 7],
+            ["importe" => 0, "fecha" => "2024-04-14 08:15:00", "idCliente" => 14, "idEmpleado" => 8],
             ["importe" => 0, "fecha" => "2024-04-15 09:30:00", "idCliente" => 7, "idEmpleado" => 3],
             ["importe" => 0, "fecha" => "2024-04-16 10:45:00", "idCliente" => 4, "idEmpleado" => 5],
             ["importe" => 0, "fecha" => "2024-04-17 12:00:00", "idCliente" => 11, "idEmpleado" => 10],
             ["importe" => 0, "fecha" => "2024-04-18 13:15:00", "idCliente" => 2, "idEmpleado" => 6],
             ["importe" => 0, "fecha" => "2024-04-19 14:30:00", "idCliente" => 9, "idEmpleado" => 1],
-            ["importe" => 0, "fecha" => "2024-04-20 15:45:00", "idCliente" => 6, "idEmpleado" => 11],
             ["importe" => 0, "fecha" => "2024-04-21 17:00:00", "idCliente" => 13, "idEmpleado" => 2],
-            ["importe" => 0, "fecha" => "2024-04-22 18:15:00", "idCliente" => 8, "idEmpleado" => 4],
             ["importe" => 0, "fecha" => "2024-04-23 19:30:00", "idCliente" => 3, "idEmpleado" => 7],
             ["importe" => 0, "fecha" => "2024-04-24 20:45:00", "idCliente" => 12, "idEmpleado" => 9],
             ["importe" => 0, "fecha" => "2024-04-25 22:00:00", "idCliente" => 10, "idEmpleado" => 13],
-            ["importe" => 0, "fecha" => "2024-04-26 07:00:00", "idCliente" => 5, "idEmpleado" => 8],
-            ["importe" => 0, "fecha" => "2024-04-27 08:15:00", "idCliente" => 1, "idEmpleado" => 3],
-            ["importe" => 0, "fecha" => "2024-04-28 09:30:00", "idCliente" => 13, "idEmpleado" => 12],
-            ["importe" => 0, "fecha" => "2024-04-29 10:45:00", "idCliente" => 7, "idEmpleado" => 5],
-            ["importe" => 0, "fecha" => "2024-04-30 12:00:00", "idCliente" => 4, "idEmpleado" => 11],
-            ["importe" => 0, "fecha" => "2024-04-01 13:15:00", "idCliente" => 11, "idEmpleado" => 2],
-            ["importe" => 0, "fecha" => "2024-04-02 14:30:00", "idCliente" => 2, "idEmpleado" => 10],
-            ["importe" => 0, "fecha" => "2024-04-03 15:45:00", "idCliente" => 9, "idEmpleado" => 6],
-            ["importe" => 0, "fecha" => "2024-04-04 17:00:00", "idCliente" => 6, "idEmpleado" => 1],
-            ["importe" => 0, "fecha" => "2024-04-05 18:15:00", "idCliente" => 13, "idEmpleado" => 11],
-            ["importe" => 0, "fecha" => "2024-04-06 19:30:00", "idCliente" => 8, "idEmpleado" => 13],
-            ["importe" => 0, "fecha" => "2024-04-07 20:45:00", "idCliente" => 3, "idEmpleado" => 7],
-            ["importe" => 0, "fecha" => "2024-04-08 22:00:00", "idCliente" => 12, "idEmpleado" => 5],
-            ["importe" => 0, "fecha" => "2024-04-09 07:00:00", "idCliente" => 10, "idEmpleado" => 9],
-            ["importe" => 0, "fecha" => "2024-04-10 08:15:00", "idCliente" => 5, "idEmpleado" => 3],
-            ["importe" => 0, "fecha" => "2024-04-11 09:30:00", "idCliente" => 1, "idEmpleado" => 13],
-            ["importe" => 0, "fecha" => "2024-04-12 10:45:00", "idCliente" => 13, "idEmpleado" => 8],
-            ["importe" => 0, "fecha" => "2024-04-13 12:00:00", "idCliente" => 7, "idEmpleado" => 4],
-            ["importe" => 0, "fecha" => "2024-04-14 13:15:00", "idCliente" => 4, "idEmpleado" => 12],
-            ["importe" => 0, "fecha" => "2024-04-14 13:15:00", "idCliente" => 2, "idEmpleado" => 1],        
         ];
 
         // Crear registros de ventas
@@ -192,16 +167,33 @@ class DatabaseSeeder extends Seeder
             Ventas::create($venta);
         }
 
+        // Inserción para detalle_ventas
+        // Preparar una sin prescripción
         $detalle_ventas = [["unidades" => 2, "idInventario" => 1, "idVenta" => 1]];
         
-        for ($i = 1; $i <= 170; $i++) {
-            $detalle_ventas[] = [
-                "unidades" => rand(1, 3),
-                "idInventario" => rand(1, 10),
-                "idVenta" => rand(2, 45)
-            ];
+        $ids = [];
+
+        for ($idVenta = 2; $idVenta <= 20; $idVenta++) {
+            
+            $n = rand(1, 3);
+
+            for ($i = 0; $i < $n; $i++) {
+
+                $unidades = rand(1, 2);
+                $idInventario = rand(1, 11);
+
+                if (!in_array($idInventario, $ids)) {
+                    $ids[] = $idInventario;
+                }
+
+                $detalle_ventas[] = [
+                    "unidades" => $unidades,
+                    "idInventario" => $idInventario,
+                    "idVenta" => $idVenta
+                ];
+            }
         }
-        
+
         foreach ($detalle_ventas as $detalle_venta) {
             Detalle_ventas::create($detalle_venta);
         }
@@ -210,24 +202,22 @@ class DatabaseSeeder extends Seeder
 
         $ventas = Ventas::pluck('importe', 'idVenta');
 
-foreach ($ventas as $idVenta => $importe) {
-    // Buscamos todos los productos vendidos en esta venta
-    $productos = Detalle_ventas::where('idVenta', $idVenta)->get();
+        foreach ($ventas as $idVenta => $importe) {
 
-    // Inicializamos la suma del importe para esta venta
-    $importeVenta = 0;
+            // Buscar todos los productos vendidos en esta venta
+            $productos = Detalle_ventas::where('idVenta', $idVenta)->get();
 
-    // Iteramos sobre los productos y calculamos el importe para esta venta
-    foreach ($productos as $producto) {
-        // Obtenemos el precio del producto desde el inventario
-        $precioProducto = $producto->inventario->precio;
+            $importeVenta = 0;
 
-        // Sumamos el importe del producto (precio * unidades) a la suma total
-        $importeVenta += $precioProducto * $producto->unidades;
-    }
+            // Calcular el importe para esta venta
+            foreach ($productos as $producto) {
+                
+                $precioProducto = $producto->inventario->precio;
 
-    // Actualizamos el importe de la venta en la base de datos
-    Ventas::where('idVenta', $idVenta)->update(['importe' => $importeVenta]);
-}
+                $importeVenta += $precioProducto * $producto->unidades;
+            }
+
+            Ventas::where('idVenta', $idVenta)->update(['importe' => $importeVenta]);
+        }
     }
 }

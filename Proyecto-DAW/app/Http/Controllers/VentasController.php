@@ -19,7 +19,7 @@ class VentasController extends Controller {
             'clientes:idCliente,nombre,apellido,cipa',
             'empleados:idEmpleado,correo',
             'detalle_ventas:idDetalleVenta,unidades,idVenta,idInventario',
-            'detalle_ventas.inventario:idInventario,nombre,farmaco,stock'
+            'detalle_ventas.inventario:idInventario,nombre,farmaco,precio,stock'
         )->get();
 
         $empleados = Empleados::pluck('correo');
