@@ -16,8 +16,21 @@ main {
     font-size: 1vw;
     padding: 8vh 5vw;
 }
-.main-home {
-    padding: 2vh 1vw;
+.graficoYtareas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5vh;
+    align-items: center;
+}
+.graficoYtareas table {
+    width: 100%;
+    padding: 1vh 0;
+    text-align: center;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+.graficoYtareas table p {
+    padding-top: 2vh;
 }
 .sin-permisos {
     text-align: center;
@@ -45,7 +58,7 @@ main {
 }
 .home {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Crea 4 columnas de igual ancho */
+    grid-template-columns: repeat(4, 1fr);
     gap: 5vh;
     padding: 5vh;
 }

@@ -4,31 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Compras;
 use App\Models\Ventas;
+use App\Models\Tareas;
+use App\Models\Empleados;
 use Inertia\Inertia;
 use Carbon\Carbon;
 
 class HomeController extends Controller {
     public function index() {
-        $sesionUsuario = session()->get('usuario_autenticado');
+    $sesionUsuario = session()->get('usuario_autenticado');
 
-        // Obtener la fecha de inicio del último mes
-        $fechaInicio = Carbon::now()->subMonth()->startOfMonth();
-        // Obtener la fecha de fin del último mes
-        $fechaFin = Carbon::now()->subMonth()->endOfMonth();
+    // Obtener las últimas ventas agrupadas por mes
+    $fecha = Carbon::now()->subMonths(6);
+    $ventas = Ventas::selectRaw('YEAR(fecha) as año, MONTH(fecha) as mes, SUM(importe) as importe')
+        ->where('fecha', '>=', $fecha)
+        ->groupBy('año', 'mes')
+        ->get();
 
-        // Calcular la suma de los importes de las compras y ventas del último mes
-        $comprasMes = Compras::whereBetween('fecha', [$fechaInicio, $fechaFin])->sum('importe');
-        $ventasMes = Ventas::whereBetween('fecha', [$fechaInicio, $fechaFin])->sum('importe');
+    // Obtener las últimas compras agrupadas por mes
+    $compras = Compras::selectRaw('YEAR(fecha) as año, MONTH(fecha) as mes, SUM(importe) as importe')
+        ->where('fecha', '>=', $fecha)
+        ->groupBy('año', 'mes')
+        ->get();
 
-        // Obtener el año actual
-        $año = Carbon::now()->year;
 
-        // Calcular la suma de los importes de las compras del año actual
-        $comprasAño = Compras::whereYear('fecha', $año)->sum('importe');
-        $ventasAño = Ventas::whereYear('fecha', $año)->sum('importe');
+    $idUsuario = Empleados::where('correo', $sesionUsuario)->value('idEmpleado');
+    $tareas = Tareas::where('idEmpleado', $idUsuario)->get();
 
-        return Inertia::render('Home', compact('sesionUsuario', 'comprasMes', 'ventasMes', 'comprasAño', 'ventasAño'));
-    }
+    return Inertia::render('Home', compact('sesionUsuario', 'ventas', 'compras', 'tareas'));
+}
+
 
     // Cerrar sesión
     public function logout() {

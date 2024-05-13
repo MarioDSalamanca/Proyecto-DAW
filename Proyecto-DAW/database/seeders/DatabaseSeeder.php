@@ -86,29 +86,19 @@ class DatabaseSeeder extends Seeder
         }
 
         $compras = [
-            ['importe' => 50, 'unidades' => 120, 'fecha' => '2024-05-01 10:15:00', 'idProveedor' => 1, 'idInventario' => 5],
+            ['importe' => 50, 'unidades' => 120, 'fecha' => '2024-03-01 10:15:00', 'idProveedor' => 1, 'idInventario' => 5],
+            ['importe' => 42, 'unidades' => 150, 'fecha' => '2024-03-04 11:20:00', 'idProveedor' => 1, 'idInventario' => 1],
+            ['importe' => 80, 'unidades' => 120, 'fecha' => '2024-03-05 16:00:00', 'idProveedor' => 1, 'idInventario' => 3],
+            ['importe' => 65, 'unidades' => 180, 'fecha' => '2024-03-07 08:30:00', 'idProveedor' => 1, 'idInventario' => 1],
+            ['importe' => 48, 'unidades' => 90, 'fecha' => '2024-03-08 12:45:00', 'idProveedor' => 1, 'idInventario' => 9],
+            ['importe' => 36, 'unidades' => 70, 'fecha' => '2024-03-10 14:30:00', 'idProveedor' => 1, 'idInventario' => 10],
+            ['importe' => 34, 'unidades' => 60, 'fecha' => '2024-04-16 14:15:00', 'idProveedor' => 2, 'idInventario' => 4],
+            ['importe' => 49, 'unidades' => 100, 'fecha' => '2024-04-22 14:20:00', 'idProveedor' => 2, 'idInventario' => 5],
+            ['importe' => 92, 'unidades' => 250, 'fecha' => '2024-04-23 09:50:00', 'idProveedor' => 3, 'idInventario' => 8],
             ['importe' => 32, 'unidades' => 80, 'fecha' => '2024-05-02 14:30:00', 'idProveedor' => 2, 'idInventario' => 7],
             ['importe' => 75, 'unidades' => 200, 'fecha' => '2024-05-03 09:45:00', 'idProveedor' => 3, 'idInventario' => 6],
             ['importe' => 42, 'unidades' => 150, 'fecha' => '2024-05-04 11:20:00', 'idProveedor' => 1, 'idInventario' => 1],
-            ['importe' => 80, 'unidades' => 120, 'fecha' => '2024-05-05 16:00:00', 'idProveedor' => 1, 'idInventario' => 3],
-            ['importe' => 28, 'unidades' => 50, 'fecha' => '2024-05-06 13:10:00', 'idProveedor' => 2, 'idInventario' => 5],
             ['importe' => 65, 'unidades' => 180, 'fecha' => '2024-05-07 08:30:00', 'idProveedor' => 1, 'idInventario' => 1],
-            ['importe' => 48, 'unidades' => 90, 'fecha' => '2024-05-08 12:45:00', 'idProveedor' => 1, 'idInventario' => 9],
-            ['importe' => 88, 'unidades' => 250, 'fecha' => '2024-05-09 15:20:00', 'idProveedor' => 2, 'idInventario' => 6],
-            ['importe' => 36, 'unidades' => 70, 'fecha' => '2024-05-10 14:30:00', 'idProveedor' => 1, 'idInventario' => 10],
-            ['importe' => 70, 'unidades' => 160, 'fecha' => '2024-05-11 09:00:00', 'idProveedor' => 1, 'idInventario' => 3],
-            ['importe' => 52, 'unidades' => 110, 'fecha' => '2024-04-12 11:45:00', 'idProveedor' => 1, 'idInventario' => 2],
-            ['importe' => 93, 'unidades' => 300, 'fecha' => '2024-04-13 16:30:00', 'idProveedor' => 1, 'idInventario' => 8],
-            ['importe' => 80, 'unidades' => 475, 'fecha' => '2024-04-13 16:30:00', 'idProveedor' => 2, 'idInventario' => 11],
-            ['importe' => 40, 'unidades' => 80, 'fecha' => '2024-04-14 13:00:00', 'idProveedor' => 1, 'idInventario' => 4],
-            ['importe' => 78, 'unidades' => 200, 'fecha' => '2024-04-15 10:25:00', 'idProveedor' => 1, 'idInventario' => 1],
-            ['importe' => 34, 'unidades' => 60, 'fecha' => '2024-04-16 14:15:00', 'idProveedor' => 2, 'idInventario' => 4],
-            ['importe' => 46, 'unidades' => 100, 'fecha' => '2024-04-18 12:00:00', 'idProveedor' => 1, 'idInventario' => 9],
-            ['importe' => 85, 'unidades' => 220, 'fecha' => '2024-04-19 16:45:00', 'idProveedor' => 1, 'idInventario' => 7],
-            ['importe' => 32, 'unidades' => 70, 'fecha' => '2024-04-20 11:00:00', 'idProveedor' => 1, 'idInventario' => 10],
-            ['importe' => 67, 'unidades' => 180, 'fecha' => '2024-04-21 10:40:00', 'idProveedor' => 1, 'idInventario' => 3],
-            ['importe' => 49, 'unidades' => 100, 'fecha' => '2024-04-22 14:20:00', 'idProveedor' => 2, 'idInventario' => 5],
-            ['importe' => 92, 'unidades' => 250, 'fecha' => '2024-04-23 09:50:00', 'idProveedor' => 3, 'idInventario' => 8],
         ];
 
         // Crear registros de compras
@@ -140,17 +130,25 @@ class DatabaseSeeder extends Seeder
 
         $ventas = [
 
-            ["importe" => 0, "fecha" => "2024-04-01 09:15:00", "idCliente" => null, "idEmpleado" => 7],
-            ["importe" => 0, "fecha" => "2024-04-02 10:30:00", "idCliente" => 4, "idEmpleado" => 10],
-            ["importe" => 0, "fecha" => "2024-04-04 13:00:00", "idCliente" => 2, "idEmpleado" => 6],
-            ["importe" => 0, "fecha" => "2024-04-05 14:15:00", "idCliente" => 9, "idEmpleado" => 12],
-            ["importe" => 0, "fecha" => "2024-04-06 15:30:00", "idCliente" => 6, "idEmpleado" => 13],
-            ["importe" => 0, "fecha" => "2024-05-08 18:00:00", "idCliente" => 8, "idEmpleado" => 1],
-            ["importe" => 0, "fecha" => "2024-05-10 20:30:00", "idCliente" => 12, "idEmpleado" => 4],
-            ["importe" => 0, "fecha" => "2024-05-11 21:45:00", "idCliente" => 10, "idEmpleado" => 9],
-            ["importe" => 0, "fecha" => "2024-05-12 23:00:00", "idCliente" => 5, "idEmpleado" => 11],
-            ["importe" => 0, "fecha" => "2024-05-13 07:00:00", "idCliente" => 1, "idEmpleado" => 7],
-            ["importe" => 0, "fecha" => "2024-04-14 08:15:00", "idCliente" => 14, "idEmpleado" => 8],
+            ["importe" => 0, "fecha" => "2024-03-01 09:15:00", "idCliente" => null, "idEmpleado" => 7],
+            ["importe" => 0, "fecha" => "2024-03-02 10:30:00", "idCliente" => 4, "idEmpleado" => 10],
+            ["importe" => 0, "fecha" => "2024-03-04 13:00:00", "idCliente" => 2, "idEmpleado" => 6],
+            ["importe" => 0, "fecha" => "2024-03-05 14:15:00", "idCliente" => 9, "idEmpleado" => 12],
+            ["importe" => 0, "fecha" => "2024-03-06 15:30:00", "idCliente" => 6, "idEmpleado" => 13],
+            ["importe" => 0, "fecha" => "2024-03-01 09:45:00", "idCliente" => 5, "idEmpleado" => 8],
+            ["importe" => 0, "fecha" => "2024-03-02 10:20:00", "idCliente" => 10, "idEmpleado" => 11],
+            ["importe" => 0, "fecha" => "2024-03-04 13:30:00", "idCliente" => 3, "idEmpleado" => 7],
+            ["importe" => 0, "fecha" => "2024-03-05 14:50:00", "idCliente" => 1, "idEmpleado" => 10],
+            ["importe" => 0, "fecha" => "2024-03-06 15:15:00", "idCliente" => 12, "idEmpleado" => 9],
+            ["importe" => 0, "fecha" => "2024-04-14 08:30:00", "idCliente" => 7, "idEmpleado" => 10],
+            ["importe" => 0, "fecha" => "2024-04-15 09:00:00", "idCliente" => 9, "idEmpleado" => 4],
+            ["importe" => 0, "fecha" => "2024-04-16 10:55:00", "idCliente" => 4, "idEmpleado" => 6],
+            ["importe" => 0, "fecha" => "2024-04-17 12:10:00", "idCliente" => 13, "idEmpleado" => 11],
+            ["importe" => 0, "fecha" => "2024-04-18 13:20:00", "idCliente" => 2, "idEmpleado" => 8],
+            ["importe" => 0, "fecha" => "2024-04-19 14:40:00", "idCliente" => 11, "idEmpleado" => 3],
+            ["importe" => 0, "fecha" => "2024-04-21 17:20:00", "idCliente" => 5, "idEmpleado" => 12],
+            ["importe" => 0, "fecha" => "2024-04-25 22:10:00", "idCliente" => 4, "idEmpleado" => 13],
+            ["importe" => 0, "fecha" => "2024-04-14 08:15:00", "idCliente" => 3, "idEmpleado" => 8],
             ["importe" => 0, "fecha" => "2024-04-15 09:30:00", "idCliente" => 7, "idEmpleado" => 3],
             ["importe" => 0, "fecha" => "2024-04-16 10:45:00", "idCliente" => 4, "idEmpleado" => 5],
             ["importe" => 0, "fecha" => "2024-04-17 12:00:00", "idCliente" => 11, "idEmpleado" => 10],
@@ -160,6 +158,16 @@ class DatabaseSeeder extends Seeder
             ["importe" => 0, "fecha" => "2024-04-23 19:30:00", "idCliente" => 3, "idEmpleado" => 7],
             ["importe" => 0, "fecha" => "2024-04-24 20:45:00", "idCliente" => 12, "idEmpleado" => 9],
             ["importe" => 0, "fecha" => "2024-04-25 22:00:00", "idCliente" => 10, "idEmpleado" => 13],
+            ["importe" => 0, "fecha" => "2024-05-08 18:15:00", "idCliente" => 3, "idEmpleado" => 1],
+            ["importe" => 0, "fecha" => "2024-05-10 20:40:00", "idCliente" => 10, "idEmpleado" => 5],
+            ["importe" => 0, "fecha" => "2024-05-11 21:50:00", "idCliente" => 7, "idEmpleado" => 10],
+            ["importe" => 0, "fecha" => "2024-05-12 23:20:00", "idCliente" => 12, "idEmpleado" => 12],
+            ["importe" => 0, "fecha" => "2024-05-13 07:30:00", "idCliente" => 1, "idEmpleado" => 6],
+            ["importe" => 0, "fecha" => "2024-05-08 18:00:00", "idCliente" => 8, "idEmpleado" => 1],
+            ["importe" => 0, "fecha" => "2024-05-10 20:30:00", "idCliente" => 12, "idEmpleado" => 4],
+            ["importe" => 0, "fecha" => "2024-05-11 21:45:00", "idCliente" => 10, "idEmpleado" => 9],
+            ["importe" => 0, "fecha" => "2024-05-12 23:00:00", "idCliente" => 5, "idEmpleado" => 11],
+            ["importe" => 0, "fecha" => "2024-05-13 07:00:00", "idCliente" => 1, "idEmpleado" => 7],
         ];
 
         // Crear registros de ventas
@@ -173,7 +181,7 @@ class DatabaseSeeder extends Seeder
         
         $ids = [];
 
-        for ($idVenta = 2; $idVenta <= 20; $idVenta++) {
+        for ($idVenta = 2; $idVenta <= 38; $idVenta++) {
             
             $n = rand(1, 3);
 
