@@ -4,62 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Clientes;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
-class ClientesController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+class ClientesController extends Controller {
+    public function index() {
+        // Recoger todos los registros de la tabla Clientes refiriendonos al modelo Clientes
+        $datosServidor = Clientes::all();
+
+        // Coger la variable de sesión para pruebas
+        $sesionUsuario = session()->get('usuario_autenticado');
+
+        return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    // Añadir Clientes a la tabla Clientes
+    public function insert(Request $request) {
+        
+        // Crear un objeto para guardar los datos
+        $usuario = new Clientes();
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido = $request->apellido;
+        $usuario->correo = $request->correo;
+        $usuario->contrasena = Hash::make($request->contrasena);;
+        $usuario->rol = $request->rol;
+
+        $usuario->save();
+        return redirect()->route('Clientes.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    // Editar Clientes de la tabla Clientes
+    public function update(Request $request) {
+
+        $usuario = Clientes::where('idEmpleado', $request->idEmpleado)->first();
+
+        ($request->nombre != $usuario->nombre) ? $usuario->nombre = $request->nombre : null;
+        ($request->apellido != $usuario->apellido) ? $usuario->apellido = $request->apellido : null;
+        ($request->correo != $usuario->correo) ? $usuario->correo = $request->correo : null;
+        ($request->contrasena != $usuario->contrasena) ? $usuario->contrasena = Hash::make($request->contrasena) : null;
+        ($request->rol != $usuario->rol) ? $usuario->rol = $request->rol : null;
+        
+        $usuario->save();
+        return redirect()->route('Clientes.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Clientes $clientes)
-    {
-        //
-    }
+    // Eliminar Clientes de la tabla Clientes
+    public function delete(Request $request) {
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Clientes $clientes)
-    {
-        //
-    }
+        $usuario = Clientes::where('correo', $request->dato);
+        $usuario->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Clientes $clientes)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Clientes $clientes)
-    {
-        //
+        return redirect()->route('Clientes.index');
     }
 }

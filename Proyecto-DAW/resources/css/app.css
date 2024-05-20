@@ -19,18 +19,24 @@ main {
 .graficoYtareas {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 5vh;
+    gap: 2vh;
     align-items: center;
 }
 .graficoYtareas table {
     width: 100%;
-    padding: 1vh 0;
+    margin: 1vh 0;
     text-align: center;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    font-size: 90%;
 }
-.graficoYtareas table p {
-    padding-top: 2vh;
+.graficoYtareas table td {
+    padding: 2vh 0;
+    width: 33%;
+}
+.tareas-home {
+    max-height: 32vh;
+    overflow-y: auto;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 .sin-permisos {
     text-align: center;
@@ -60,14 +66,14 @@ main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5vh;
-    padding: 5vh;
+    margin-top: 6vh;
 }
 .link-home {
     padding: 3vh;
     height: 20vh;
     text-decoration: none;
     font-weight: 500;
-    border-radius: 1vh;
+    border-radius: 5px;
     font-size: 1.3vw;
     background-size: cover;
     background-color: white;
@@ -83,7 +89,7 @@ main {
     background-color: inherit;
     color: inherit;
     padding: 1.5vh 2vw;
-    border-radius: .3vw;
+    border-radius: 5px;
 }
 .link-home.inventario {
     background-image: url('../js/Img/inventario.jpg');
@@ -96,6 +102,9 @@ main {
 }
 .link-home.proveedores {
     background-image: url('../js/Img/proveedores.jpg');
+}
+.link-home.clientes {
+    background-image: url('../js/Img/clientes.jpg');
 }
 .link-home.empleados {
     background-image: url('../js/Img/empleados.jpg');

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EmpleadosController;
@@ -24,13 +25,19 @@ Route::middleware(['verificar_usuario'])->group(function () {
     // Cerrar sesión y salir del middleware
     Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
 
+    // Clientes
+    Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+    Route::post('/clientes/añadir', [ClientesController::class, 'insert'])->name('clientes.insert');
+    Route::post('/clientes/editar', [ClientesController::class, 'update'])->name('clientes.update');
+    Route::post('/clientes/eliminar', [ClientesController::class, 'delete'])->name('clientes.delete');
+
     // Compras
     Route::get('/compras', [ComprasController::class, 'index'])->name('compras.index');
     Route::post('/compras/añadir', [ComprasController::class, 'insert'])->name('compras.insert');
     Route::post('/compras/editar', [ComprasController::class, 'update'])->name('compras.update');
     Route::post('/compras/eliminar', [ComprasController::class, 'delete'])->name('compras.delete');
 
-    // Empleados/Usuarios
+    // Empleados
     Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
     Route::post('/empleados/añadir', [EmpleadosController::class, 'insert'])->name('empleados.insert');
     Route::post('/empleados/editar', [EmpleadosController::class, 'update'])->name('empleados.update');

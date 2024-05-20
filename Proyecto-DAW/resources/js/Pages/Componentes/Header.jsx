@@ -27,6 +27,7 @@ export default function Header({ sesion }) {
                     <a href="/ventas"><li>Ventas</li></a>
                     <a href="/compras"><li>Compras</li></a>
                     <a href="/proveedores"><li>Proveedores</li></a>
+                    <a href="/clientes"><li>Clientes</li></a>
                     <a href="/empleados"><li>Empleados</li></a>
                     <a href="/tareas"><li>Tareas</li></a>
                 </ul>

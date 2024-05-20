@@ -17,18 +17,23 @@ class HomeController extends Controller {
     $fecha = Carbon::now()->subMonths(6);
     $ventas = Ventas::selectRaw('YEAR(fecha) as año, MONTH(fecha) as mes, SUM(importe) as importe')
         ->where('fecha', '>=', $fecha)
+        ->orderBy('año')
+        ->orderBy('mes')
         ->groupBy('año', 'mes')
         ->get();
 
     // Obtener las últimas compras agrupadas por mes
     $compras = Compras::selectRaw('YEAR(fecha) as año, MONTH(fecha) as mes, SUM(importe) as importe')
         ->where('fecha', '>=', $fecha)
+        ->where('fecha', '>=', $fecha)
+        ->orderBy('año')
+        ->orderBy('mes')
         ->groupBy('año', 'mes')
         ->get();
 
 
     $idUsuario = Empleados::where('correo', $sesionUsuario)->value('idEmpleado');
-    $tareas = Tareas::where('idEmpleado', $idUsuario)->get();
+    $tareas = Tareas::where('idEmpleado', $idUsuario)->orderBy('fecha')->get();
 
     return Inertia::render('Home', compact('sesionUsuario', 'ventas', 'compras', 'tareas'));
 }

@@ -41,7 +41,7 @@ export default function FuncionesPopUps() {
             const { name, value } = e.target;
     
             // Si el nombre del campo es 'descripcion', actualiza
-            if (name === 'descripcion') {
+            if (name === 'descripcion' || name === 'nombre') {
                 setFormDatos(prev => ({
                     ...prev,
                     [name]: value
