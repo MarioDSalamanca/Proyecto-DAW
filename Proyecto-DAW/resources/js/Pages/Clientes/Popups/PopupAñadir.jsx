@@ -5,8 +5,8 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
             <div className='cerrar'>
                 <button onClick={ mostrarPopupAñadir }>x</button>
             </div>
-            <h2>Añadir un usuario</h2>
-            <form onSubmit={ (e) => confirmarAñadir(e, '/empleados/añadir') }>
+            <h2>Añadir un cliente</h2>
+            <form onSubmit={ (e) => confirmarAñadir(e, '/clientes/añadir') }>
                 <table>
                     <tbody>
                         <tr>
@@ -19,24 +19,11 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                                 <input type="text" name='apellido' value={ formDatos.apellido || '' } onChange={ handleChange } minLength={2} />
                             </td>
                             <td>
-                                <label>Correo</label><br />
-                                <input type="email" name='correo' value={ formDatos.correo || '' } onChange={ handleChange } minLength={5} />
+                                <label>Cipa</label><br />
+                                <input type="number" name='cipa' value={ formDatos.cipa || '' } onChange={ handleChange } minLength={10} maxLength={10} />
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <label>Contraseña</label><br />
-                                <input type="text" name='contrasena' value={ formDatos.contrasena || '' } onChange={ handleChange } minLength={8} />
-                            </td>
-                            <td>
-                                <label>Rol</label><br />
-                                <select name='rol' value={ formDatos.rol || '' } onChange={ handleChange } required >
-                                    <option value=""></option>
-                                    <option value="auxiliar">auxiliar</option>
-                                    <option value="adjunto">adjunto</option>
-                                    <option value="titular">titular</option>
-                                </select>
-                            </td>
                             <td>
                                 <div className='guardar'>
                                     <button type='submit'>Guardar</button>

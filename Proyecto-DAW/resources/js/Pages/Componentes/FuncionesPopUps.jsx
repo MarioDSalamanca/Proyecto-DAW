@@ -39,20 +39,10 @@ export default function FuncionesPopUps() {
         function handleChange(e) {
             
             const { name, value } = e.target;
-    
-            // Si el nombre del campo es 'descripcion', actualiza
-            if (name === 'descripcion' || name === 'nombre') {
-                setFormDatos(prev => ({
-                    ...prev,
-                    [name]: value
-                }));
-            } else {
-                // Para otros campos
-                setFormDatos(prev => ({
-                    ...prev,
-                    [name]: value.trim()
-                }));
-            }
+            setFormDatos(prev => ({
+                ...prev,
+                [name]: value
+            }));
         }
     
     // Solicitudes POST al servidor
@@ -67,7 +57,7 @@ export default function FuncionesPopUps() {
             e.preventDefault();
             mostrarPopupAñadir();
             router.post(url, venta);
-            //window.location.reload();
+            window.location.reload();
         }
         function confirmarEditar(e, url) {
             e.preventDefault();

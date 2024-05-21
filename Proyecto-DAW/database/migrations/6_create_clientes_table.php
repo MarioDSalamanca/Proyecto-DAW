@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('idCliente');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('cipa');
+            $table->string('cipa')->unique();
             $table->timestamps();
         });
     }
