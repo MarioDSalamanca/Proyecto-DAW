@@ -5,12 +5,10 @@ import PopupEditar from "./Popups/PopupEditar";
 import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
 import { useState } from "react";
-import { usePage } from "@inertiajs/react";
 
-export default function Clientes({ datosServidor, sesionUsuario }) {
+export default function Clientes({ datosServidor, sesionUsuario, mensaje }) {
 
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
-    const { mensaje } = usePage().props;
 
     // Usa las funciones de popup
     const {
@@ -39,8 +37,12 @@ export default function Clientes({ datosServidor, sesionUsuario }) {
                 { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } datoEliminar={ datoEliminar } /> }
-                { mensaje ? mensaje.exito && (<p>{ mensaje.exito }</p>) : (<p>{ mensaje.error }</p>) }
-                { datosServidor &&
+                {mensaje && (
+                    <div>
+                        {mensaje.exito && <p className="mensaje exito">{mensaje.exito}&#x2714;</p>}
+                        {mensaje.error && <p className="mensaje error">{mensaje.error}</p>}
+                    </div>
+                )}
                 <>
                     <div className="cabecera-tabla">
                         <div>
@@ -81,7 +83,6 @@ export default function Clientes({ datosServidor, sesionUsuario }) {
                         </tbody>
                     </table>
                 </>
-                }
             </main>
         </>
     ); 

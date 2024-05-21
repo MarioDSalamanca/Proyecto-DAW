@@ -9,7 +9,6 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\TareasController;
 use App\Http\Controllers\VentasController;
-use App\Models\Empleados;
 use Illuminate\Support\Facades\Route;
 
 // Login fuera del middleware para poder acceder e iniciar sesión

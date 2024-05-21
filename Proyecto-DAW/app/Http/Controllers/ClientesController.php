@@ -15,17 +15,33 @@ class ClientesController extends Controller {
         // Coger la variable de sesión para pruebas
         $sesionUsuario = session()->get('usuario_autenticado');
 
-        return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario'));
+        // Recuperar el mensaje de la sesión
+        $mensaje = session()->get('mensaje');
+
+        // Eliminar el mensaje de la sesión para que no se muestre en la siguiente solicitud
+        session()->forget('mensaje');
+
+        return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario', 'mensaje'));
     }
 
     // Añadir Clientes a la tabla Clientes
     public function insert(Request $request) {
         
+        $datosServidor = Clientes::all();
+        $sesionUsuario = session()->get('usuario_autenticado');
+
         $existe = Clientes::where('cipa', $request->cipa)->first();
 
         if ($existe) {
-            return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario'),
-             ['mensaje' => ['error' => 'Ya existe un cliente con el cipa '.$request->cipa]]);
+
+            $mensaje = ['error' => 'Ya existe un cliente con el cipa ' . $request->cipa];
+
+            // Almacenar el mensaje en la sesión
+            session()->flash('mensaje', $mensaje);
+
+            // Redireccionar de vuelta a la página de clientes.index
+            return redirect()->route('clientes.index');
+            
         } else {
             // Crear un objeto para guardar los datos
             $cliente = new Clientes();
@@ -34,8 +50,14 @@ class ClientesController extends Controller {
             $cliente->cipa = $request->cipa;
 
             $cliente->save();
-            return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario'),
-             ['mensaje' => ['exito' => 'Cliente con el cipa '.$request->cipa.' añadido.']]);
+            
+            $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' añadido.'];
+
+            // Almacenar el mensaje en la sesión
+            session()->flash('mensaje', $mensaje);
+
+            // Redireccionar de vuelta a la página de clientes.index
+            return redirect()->route('clientes.index');
         }        
     }
 

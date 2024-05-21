@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { router } from "@inertiajs/react";
+import { router } from '@inertiajs/react';
 
 export default function FuncionesPopUps() {
 
@@ -49,7 +49,7 @@ export default function FuncionesPopUps() {
         function confirmarAñadir(e, url) {
             e.preventDefault();
             mostrarPopupAñadir();
-            router.post(url, formDatos)
+            router.post(url, formDatos);
             setFormDatos({});
             window.location.reload();
         };
