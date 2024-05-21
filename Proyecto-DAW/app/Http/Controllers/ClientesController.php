@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ClientesController extends Controller {
+
     public function index() {
         // Recoger todos los registros de la tabla Clientes refiriendonos al modelo Clientes
         $datosServidor = Clientes::all();
@@ -20,14 +21,22 @@ class ClientesController extends Controller {
     // Añadir Clientes a la tabla Clientes
     public function insert(Request $request) {
         
-        // Crear un objeto para guardar los datos
-        $cliente = new Clientes();
-        $cliente->nombre = $request->nombre;
-        $cliente->apellido = $request->apellido;
-        $cliente->cipa = $request->cipa;
+        $existe = Clientes::where('cipa', $request->cipa)->first();
 
-        $cliente->save();
-        return redirect()->route('clientes.index');
+        if ($existe) {
+            return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario'),
+             ['mensaje' => ['error' => 'Ya existe un cliente con el cipa '.$request->cipa]]);
+        } else {
+            // Crear un objeto para guardar los datos
+            $cliente = new Clientes();
+            $cliente->nombre = $request->nombre;
+            $cliente->apellido = $request->apellido;
+            $cliente->cipa = $request->cipa;
+
+            $cliente->save();
+            return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario'),
+             ['mensaje' => ['exito' => 'Cliente con el cipa '.$request->cipa.' añadido.']]);
+        }        
     }
 
     // Editar Clientes de la tabla Clientes
