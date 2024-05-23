@@ -67,6 +67,7 @@ class VentasController extends Controller {
 
             // Si no existe crearlo y capturar el id
             } else {
+                
                 $cliente = new Clientes();
                 $cliente->cipa = $request->cipa;
                 $cliente->nombre = $request->nombre;
@@ -155,7 +156,7 @@ class VentasController extends Controller {
         }
 
         session()->flash('mensaje', $mensaje);
-        
+
         return redirect()->route('ventas.index');
     }
 }
