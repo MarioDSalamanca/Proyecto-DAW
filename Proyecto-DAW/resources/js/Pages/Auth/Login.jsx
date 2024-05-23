@@ -3,16 +3,12 @@ import { router } from '@inertiajs/react'
 import { usePage } from '@inertiajs/react'
 import img from '../../Img/login.png'
 
-
 export default function Login() {
     // Hook para recoger los errores del servidor
     const { errores } = usePage().props;
 
     // Declarar las credenciales como estados
-    const [credenciales, setCredenciales] = useState({
-        correo: '',
-        contrasena: '',
-    });
+    const [credenciales, setCredenciales] = useState({});
 
     // Función para que cada vez que cambie el valor del input guardo los datos nuevos
     function handleChange(e) { 
