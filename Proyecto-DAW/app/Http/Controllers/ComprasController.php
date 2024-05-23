@@ -11,22 +11,29 @@ use Inertia\Inertia;
 
 class ComprasController extends Controller {
     
+    // Index del módulo de Compras
     public function index(){
         
-        // Obtener todas las compras con los nombres de los empleados asociados
+        /* Recoger todos los registros de la tabla compras 
+         con los productos de la tabla inventario y los provedores relacionados */
         $datosServidor = Compras::with('inventario:idInventario,farmaco', 'proveedores:idProveedor,empresa')->get();
 
+        // Recoger el campo empresa de todos los registros de la tabla proveedores
         $proveedores = Proveedores::pluck('empresa');
 
-        // Coger la variable de sesión para pruebas
+        // Recoger las variables de sesión
         $sesionUsuario = session()->get('usuario_autenticado');
+        $mensaje = session()->get('mensaje');
+
+        // Eliminar el mensaje de la sesión para que no se muestre en la siguiente solicitud
+        session()->forget('mensaje');
 
         // Comporbar el rol del usuario de sesión
         $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
         $rolUsuario = $rolUsuario->rol;
 
         if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
-            return Inertia::render('Compras/Compras', compact('sesionUsuario', 'datosServidor', 'proveedores'));
+            return Inertia::render('Compras/Compras', compact('sesionUsuario', 'datosServidor', 'proveedores', 'mensaje'));
         } else {
             return Inertia::render('SinPermisos');
         }
@@ -35,55 +42,61 @@ class ComprasController extends Controller {
     // Añadir compras a la tabla compras
     public function insert(Request $request) {
         
-        $proveedor = Proveedores::where('empresa', $request->proveedor)->first();
+        // Buscar el registro del producto
+        $inventario = Inventario::where('farmaco', $request->farmaco)->where('nombre', $request->nombre)->first();
+    
+        // Comprobar que el producto existe
+        if ($inventario) {
 
-        // Mirar si el proveedor existe
-        if ($proveedor) {
+            // Actualizar el producto
+            $inventario->stock += $request->unidades;
+            ($request->precio != $inventario->precio) ? $inventario->precio = $request->precio : null;
 
-            // Buscar el registro del producto
-            $inventario = Inventario::where('farmaco', $request->farmaco)->where('nombre', $request->nombre)->first();
-        
-            // Verificar si se encontró el producto
-            if ($inventario) {
+        } else {
 
-                // Si el inventario existe, actualiza el stock
-                $inventario->stock += $request->unidades;
-                ($request->precio != $inventario->precio) ? $inventario->precio = $request->precio : null;
-                
-                $inventario->save();
-
-            } else {
-
-                // Si el inventario no existe, crea uno nuevo
-                $inventario = new Inventario();
-                $inventario->farmaco = $request->farmaco;
-                $inventario->nombre = $request->nombre;
-                $inventario->precio = $request->precio;
-                $inventario->prescripcion = $request->prescripcion;
-                $inventario->stock = $request->unidades;
-
-                $inventario->save();
-
-            }
-        
-            $compra = new Compras();
-            $compra->importe = $request->importe;
-            $compra->unidades = $request->unidades;
-            $compra->fecha = $request->fecha;
-            $compra->idProveedor = $proveedor->idProveedor;
-            $compra->idInventario = $inventario->idInventario;
-
-            $compra->save();
+            // Si el producto no existe, añadirlo a la tabla inventario
+            $inventario = new Inventario();
+            $inventario->farmaco = $request->farmaco;
+            $inventario->nombre = $request->nombre;
+            $inventario->precio = $request->precio;
+            $inventario->prescripcion = $request->prescripcion;
+            $inventario->stock = $request->unidades;
 
         }
+    
+        $compra = new Compras();
+        $compra->importe = $request->importe;
+        $compra->unidades = $request->unidades;
+        $compra->fecha = $request->fecha;
+        $compra->idProveedor = $proveedor->idProveedor;
+        $compra->idInventario = $inventario->idInventario;
+
+        if($compra->save() && $inventario->save()) {
+            $mensaje = ['exito' => 'Compra añadida.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al añadir la compra, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
 
         return redirect()->route('compras.index');
     }
 
+    // Eliminar un registro de la tabla
     public function delete(Request $request) {
 
         $compra = Compras::where('idCompra', $request->dato)->first();
-        $compra->delete();
+        if ($compra->delete()) {
+            $mensaje = ['exito' => 'Compra eliminada.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al eliminar la compra, intentelo más tarde o contacte con soporte.'];
+
+        }
+        
+        session()->flash('mensaje', $mensaje);
 
         return redirect()->route('compras.index');
     }

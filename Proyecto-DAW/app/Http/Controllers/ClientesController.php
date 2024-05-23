@@ -8,14 +8,14 @@ use Inertia\Inertia;
 
 class ClientesController extends Controller {
 
+    // Index del módulo de clientes
     public function index() {
-        // Recoger todos los registros de la tabla Clientes refiriendonos al modelo Clientes
+
+        // Recoger todos los registros de la tabla clientes
         $datosServidor = Clientes::all();
 
-        // Coger la variable de sesión para pruebas
+        // Recoger las variables de sesión
         $sesionUsuario = session()->get('usuario_autenticado');
-
-        // Recuperar el mensaje de la sesión
         $mensaje = session()->get('mensaje');
 
         // Eliminar el mensaje de la sesión para que no se muestre en la siguiente solicitud
@@ -24,23 +24,14 @@ class ClientesController extends Controller {
         return Inertia::render('Clientes/Clientes', compact('datosServidor', 'sesionUsuario', 'mensaje'));
     }
 
-    // Añadir Clientes a la tabla Clientes
+    // Añadir un registro a la tabla
     public function insert(Request $request) {
-        
-        $datosServidor = Clientes::all();
-        $sesionUsuario = session()->get('usuario_autenticado');
 
         $existe = Clientes::where('cipa', $request->cipa)->first();
 
+        // Comprobar si el registro existe en la tabla
         if ($existe) {
-
             $mensaje = ['error' => 'Ya existe un cliente con el cipa ' . $request->cipa];
-
-            // Almacenar el mensaje en la sesión
-            session()->flash('mensaje', $mensaje);
-
-            // Redireccionar de vuelta a la página de clientes.index
-            return redirect()->route('clientes.index');
             
         } else {
             // Crear un objeto para guardar los datos
@@ -49,19 +40,21 @@ class ClientesController extends Controller {
             $cliente->apellido = $request->apellido;
             $cliente->cipa = $request->cipa;
 
-            $cliente->save();
-            
-            $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' añadido.'];
+            if ($cliente->save()) {
+                $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' añadido.'];
 
-            // Almacenar el mensaje en la sesión
-            session()->flash('mensaje', $mensaje);
+            } else {
+                $mensaje = ['error' => 'Error al añadir al cliente, intentelo más tarde o contacte con soporte.'];
 
-            // Redireccionar de vuelta a la página de clientes.index
-            return redirect()->route('clientes.index');
-        }        
+            }
+        }
+
+        session()->flash('mensaje', $mensaje);
+
+        return redirect()->route('clientes.index');
     }
 
-    // Editar Clientes de la tabla Clientes
+    // Actualizar un registro de la tabla
     public function update(Request $request) {
 
         $cliente = Clientes::where('idCliente', $request->idCliente)->first();
@@ -70,15 +63,33 @@ class ClientesController extends Controller {
         ($request->apellido != $cliente->apellido) ? $cliente->apellido = $request->apellido : null;
         ($request->cipa != $cliente->cipa) ? $cliente->cipa = $request->cipa : null;
         
-        $cliente->save();
+        if ($cliente->save()) {
+            $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' actualizado.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al actualizar al cliente, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
+
         return redirect()->route('clientes.index');
     }
 
-    // Eliminar Clientes de la tabla Clientes
+    // Eliminar un registro de la tabla
     public function delete(Request $request) {
 
         $cliente = Clientes::where('cipa', $request->dato);
-        $cliente->delete();
+        
+        if ($cliente->delete()) {
+            $mensaje = ['exito' => 'Cliente con el cipa '.$request->dato.' eliminado.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al eliminar al cliente, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
 
         return redirect()->route('clientes.index');
     }

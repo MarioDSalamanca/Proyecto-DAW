@@ -17,9 +17,21 @@ main {
     padding: 8vh 5vw;
 }
 .mensaje {
-    border: 1px solid black;
+    text-align: center;
     border-radius: 5px;
-    background-color: red;
+    font-size: 1.2vw;
+    padding: 3vh 1vw;
+    margin: 6vh auto;
+    width: 70%;
+}
+.mensaje.exito {
+    background-color: lightgreen;
+    border: 2px solid green;
+
+}
+.mensaje.error {
+    background-color: pink;
+    border: 2px solid red;
 }
 
 /************* HOME *************/

@@ -75,8 +75,8 @@ class DatabaseSeeder extends Seeder
         }
 
         $proveedores = [
-            ['empresa' => 'bidafarma'],
-            ['empresa' => 'cofares'],
+            ['empresa' => 'Bidafarma'],
+            ['empresa' => 'Cofares'],
             ['empresa' => 'Bayer'],
         ];
 

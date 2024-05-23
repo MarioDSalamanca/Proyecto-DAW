@@ -7,30 +7,63 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ProveedoresController extends Controller {
+
+    // Index del módulo de proveedores
     public function index(){
-        // Recoger todos los registros de la tabla
+
+        // Recoger todos los registros de la tabla proveedores
         $datosServidor = Proveedores::all();
 
-        // Coger la variable de sesión para pruebas
+        // Recoger las variables de sesión
         $sesionUsuario = session()->get('usuario_autenticado');
+        $mensaje = session()->get('mensaje');
+
+        // Eliminar el mensaje de la sesión para que no se muestre en la siguiente solicitud
+        session()->forget('mensaje');
         
-        return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario', 'datosServidor'));
+        return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario', 'datosServidor', 'mensaje'));
     }
 
+    // Añadir un registro a la tabla
     public function insert(Request $request) {
         
-        $proveedor = new Proveedores();
-        $proveedor->empresa = $request->empresa;
-        $proveedor->especialidad = $request->especialidad;
+        $existe = Proveedores::where('idProveedor', $request->idProveedor)->first();
 
-        $proveedor->save();
+        // Comprobar si el registro existe en la tabla
+        if ($existe) {
+            $mensaje = ['error' => 'Ya existe un proveedor con esas características.'];
+            
+        } else {
+
+            $proveedor = new Proveedores();
+            $proveedor->empresa = $request->empresa;
+            $proveedor->especialidad = $request->especialidad;
+
+            if ($proveedor->save()) {
+                $mensaje = ['exito' => 'Proveedor añadido.'];
+
+            } else {
+                $mensaje = ['error' => 'Error al añadir el proveedor, intentelo más tarde o contacte con soporte.'];
+
+            }
+        }
+
         return redirect()->route('proveedores.index');
     }
 
     public function delete(Request $request) {
 
-        $compra = Proveedores::where('idProveedor', $request->dato)->first();
-        $compra->delete();
+        $proveedor = Proveedores::where('empresa', $request->dato)->first();
+        
+        if ($proveedor->delete()) {
+            $mensaje = ['exito' => 'Proveedor '.$request->dato.' eliminado.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al eliminar el proveedor, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
 
         return redirect()->route('proveedores.index');
     }

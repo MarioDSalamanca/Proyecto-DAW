@@ -8,32 +8,57 @@ use Inertia\Inertia;
 
 class InventarioController extends Controller {
     
+    // Index del módulo de clientes
     public function index(){
 
-        // Recoger todos los registros de la tabla
+        // Recoger todos los registros de la tabla inventario
         $datosServidor = Inventario::all();
 
-        // Capturar la variable de sesión
+        // Recoger las variables de sesión
         $sesionUsuario = session()->get('usuario_autenticado');
+        $mensaje = session()->get('mensaje');
 
-        return Inertia::render('Inventario/Inventario', compact('sesionUsuario', 'datosServidor'));
+        // Eliminar el mensaje de la sesión para que no se muestre en la siguiente solicitud
+        session()->forget('mensaje');
+
+        return Inertia::render('Inventario/Inventario', compact('sesionUsuario', 'datosServidor', 'mensaje'));
     }
 
+    // Actualizar un registro de la tabla
     public function update(Request $request) {
         
-        $inventrario = Inventario::where('idInventario', $request->idInventario)->first();
+        $inventario = Inventario::where('idInventario', $request->idInventario)->first();
 
-        ($request->precio != $inventrario->precio) ? $inventrario->precio = $request->precio : null;
-        ($request->stock != $inventrario->stock) ? $inventrario->stock = $request->stock : null;
+        ($request->precio != $inventario->precio) ? $inventario->precio = $request->precio : null;
+        ($request->stock != $inventario->stock) ? $inventario->stock = $request->stock : null;
         
-        $inventrario->save();
+        if ($inventario->save()) {
+            $mensaje = ['exito' => 'Producto actualizado.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al actualizar el producto, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
+
         return redirect()->route('inventario.index');
     }
 
+    // Eliminar un registro de la tabla
     public function delete(Request $request) {
 
         $inventario = Inventario::where('idInventario', $request->dato)->first();
-        $inventario->delete();
+        
+        if ($inventario->delete()) {
+            $mensaje = ['exito' => 'Producto eliminado.'];
+            
+        } else {
+            $mensaje = ['error' => 'Error al eliminar el producto, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
 
         return redirect()->route('inventario.index');
     }

@@ -10,19 +10,25 @@ use Inertia\Inertia;
 class TareasController extends Controller {
     public function index(){
 
-        // Coger la variable de sesión para pruebas
-        $sesionUsuario = session()->get('usuario_autenticado');
-
-        // Obtener todas las tareas con los nombres de los empleados asociados
+        /* Recoger todos los registros de la tabla compras 
+         con los empleados de la tabla empleados relacionados */
         $datosServidor = Tareas::with('empleados:idEmpleado,correo')->get();
 
+        // Recoger el campo correo de todos los registros de la tabla empleados
         $empleados = Empleados::pluck('correo');
 
+        // Recoger las variables de sesión
+        $sesionUsuario = session()->get('usuario_autenticado');
+        $mensaje = session()->get('mensaje');
+
+        // Eliminar el mensaje de la sesión para que no se muestre en la siguiente solicitud
+        session()->forget('mensaje');
+
         // Invocar la vista de Inertia en 'resources/Pages/Tareas' pasando las prop
-        return Inertia::render('Tareas/Tareas', compact('sesionUsuario', 'datosServidor', 'empleados'));
+        return Inertia::render('Tareas/Tareas', compact('sesionUsuario', 'datosServidor', 'empleados', 'mensaje'));
     }
     
-    // Añadir tareas a la tabla tareas
+    // Añadir un registro a la tabla
     public function insert(Request $request) {
         
         $empleado = Empleados::where('correo', $request->empleado)->first();
@@ -35,11 +41,20 @@ class TareasController extends Controller {
         $tarea->estado = $request->estado;
         $tarea->idEmpleado = $empleado->idEmpleado;
 
-        $tarea->save();
+        if ($tarea->save()) {
+            $mensaje = ['exito' => 'Tarea añadida.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al añadir la tarea, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
+
         return redirect()->route('tareas.index');
     }
 
-    // Editar tareas de la tabla tareas
+    // Actualizar un registro de la tabla
     public function update(Request $request) {
         
         // Comprobar si se ha modificado o no el correo al editar
@@ -51,25 +66,41 @@ class TareasController extends Controller {
 
         }
 
-        // Sacar el id de la tarea que se va a modificar
         $tarea = Tareas::where('idTarea', $request->idTarea)->first();
 
         ($request->nombre != $tarea->nombre) ? $tarea->nombre = $request->nombre : null;
         ($request->fecha != $tarea->fecha) ? $tarea->fecha = $request->fecha : null;
         ($request->descripcion != $tarea->descripcion) ? $tarea->descripcion = $request->descripcion : null;
         ($request->estado != $tarea->estado) ? $tarea->estado = $request->estado : null;
-        // Comprueba si $empleados es null (si se ha ingresado un empleado válido) y si es distinto del que había
         ($empleado != null && $empleado != $tarea->idEmpleado) ? $tarea->idEmpleado = $empleado : null;
         
-        $tarea->save();
+        if ($tarea->save()) {
+            $mensaje = ['exito' => 'Tarea actualizada.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al actualizar la tarea, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
+
         return redirect()->route('tareas.index');
     }
 
-    // Eliminar tareas de la tabla tareas
+    // Eliminar un registro de la tabla
     public function delete(Request $request) {
 
         $tarea = Tareas::where('idTarea', $request->dato)->first();
-        $tarea->delete();
+        
+        if ($tarea->delete()) {
+            $mensaje = ['exito' => 'Tarea eliminada.'];
+
+        } else {
+            $mensaje = ['error' => 'Error al eliminar la tarea, intentelo más tarde o contacte con soporte.'];
+
+        }
+
+        session()->flash('mensaje', $mensaje);
 
         return redirect()->route('tareas.index');
     }

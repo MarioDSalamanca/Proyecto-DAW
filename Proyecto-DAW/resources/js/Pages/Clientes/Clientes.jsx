@@ -39,8 +39,8 @@ export default function Clientes({ datosServidor, sesionUsuario, mensaje }) {
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } datoEliminar={ datoEliminar } /> }
                 {mensaje && (
                     <div>
-                        {mensaje.exito && <p className="mensaje exito">{mensaje.exito}&#x2714;</p>}
-                        {mensaje.error && <p className="mensaje error">{mensaje.error}</p>}
+                        {mensaje.exito && <p className="mensaje exito">{mensaje.exito} &#x2714;</p>}
+                        {mensaje.error && <p className="mensaje error">&#x274C; {mensaje.error}</p>}
                     </div>
                 )}
                 <>
