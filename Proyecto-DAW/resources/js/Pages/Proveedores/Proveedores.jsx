@@ -56,7 +56,7 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                                     <tr key={proveedor.idProveedor}>
                                         <td>{proveedor.empresa}</td>
                                         <td>{new Date(proveedor.created_at).toLocaleString()}</td>
-                                        <td className="botones eliminar"><button onClick={() => eliminar(proveedor.idProveedor) }>Eliminar</button></td>
+                                        <td className="botones eliminar"><button onClick={() => eliminar(proveedor.empresa) }>Eliminar</button></td>
                                     </tr>
                                 ))
                             )}
