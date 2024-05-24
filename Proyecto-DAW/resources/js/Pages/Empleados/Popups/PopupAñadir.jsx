@@ -12,7 +12,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadir, fo
                         <tr>
                             <td>
                                 <label>Nombre</label><br />
-                                <input type="text" name='nombre' value={ formDatos.nombre || '' } onChange={ handleChange } minLength={2} />
+                                <input type="text" name='nombre' value={ formDatos.nombre } onChange={ handleChange } minLength={2} />
                             </td>
                             <td>
                                 <label>Apellido</label><br />

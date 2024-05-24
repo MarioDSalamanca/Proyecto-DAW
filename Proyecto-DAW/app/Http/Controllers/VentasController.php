@@ -81,7 +81,7 @@ class VentasController extends Controller {
 
         // Crear un objeto para guardar los datos
         $venta = new Ventas();
-        $venta->importe = $importe;
+        $venta->importe = 0;
         $venta->fecha = $request->fecha;
         $idCliente != null ? $venta->idCliente = $idCliente : $venta->idCliente = null;
         $venta->idEmpleado = $idEmpleado;
@@ -94,7 +94,7 @@ class VentasController extends Controller {
         $datos = $request->all();
 
         $importe = 0;
-        $insertados;
+        $insertados = true;
 
         // Recorrer todas las listas de productos
         foreach ($datos as $i => $dato) {
@@ -128,6 +128,11 @@ class VentasController extends Controller {
                 }
             }
         }
+
+        // Actualizar el importe de la venta
+        $venta->importe = $importe;
+
+        $venta->save();
 
         if ($venta->save() && $insertados) {
             $mensaje = ['exito' => 'Registro de venta añadido.'];

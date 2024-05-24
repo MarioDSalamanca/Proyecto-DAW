@@ -139,7 +139,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $ventas = [
-            ["importe" => 0, "fecha" => "2023-12-04 14:22:00", "idCliente" => 7, "idEmpleado" => 9],
+            ["importe" => 0, "fecha" => "2023-12-04 14:22:00", "idCliente" => null, "idEmpleado" => 9],
             ["importe" => 0, "fecha" => "2023-12-22 16:50:00", "idCliente" => 8, "idEmpleado" => 11],
             ["importe" => 0, "fecha" => "2023-12-08 10:05:00", "idCliente" => 1, "idEmpleado" => 7],
             ["importe" => 0, "fecha" => "2023-12-15 14:10:00", "idCliente" => 3, "idEmpleado" => 5],
@@ -191,7 +191,7 @@ class DatabaseSeeder extends Seeder
             ["importe" => 0, "fecha" => "2024-02-18 09:15:00", "idCliente" => 7, "idEmpleado" => 2],
             ["importe" => 0, "fecha" => "2024-02-04 08:10:00", "idCliente" => 11, "idEmpleado" => 1],
             ["importe" => 0, "fecha" => "2024-02-22 10:40:00", "idCliente" => 4, "idEmpleado" => 7],
-            ["importe" => 0, "fecha" => "2024-03-01 09:15:00", "idCliente" => null, "idEmpleado" => 7],
+            ["importe" => 0, "fecha" => "2024-03-01 09:15:00", "idCliente" => 5, "idEmpleado" => 7],
             ["importe" => 0, "fecha" => "2024-03-02 10:30:00", "idCliente" => 4, "idEmpleado" => 10],
             ["importe" => 0, "fecha" => "2024-03-04 13:00:00", "idCliente" => 2, "idEmpleado" => 6],
             ["importe" => 0, "fecha" => "2024-03-05 14:15:00", "idCliente" => 9, "idEmpleado" => 12],
@@ -201,7 +201,7 @@ class DatabaseSeeder extends Seeder
             ["importe" => 0, "fecha" => "2024-03-04 13:30:00", "idCliente" => 3, "idEmpleado" => 7],
             ["importe" => 0, "fecha" => "2024-03-05 14:50:00", "idCliente" => 1, "idEmpleado" => 10],
             ["importe" => 0, "fecha" => "2024-03-06 15:15:00", "idCliente" => 12, "idEmpleado" => 9],
-            ["importe" => 0, "fecha" => "2024-03-01 09:15:00", "idCliente" => null, "idEmpleado" => 7],
+            ["importe" => 0, "fecha" => "2024-03-01 09:15:00", "idCliente" => 3, "idEmpleado" => 7],
             ["importe" => 0, "fecha" => "2024-03-02 10:30:00", "idCliente" => 4, "idEmpleado" => 10],
             ["importe" => 0, "fecha" => "2024-03-04 13:00:00", "idCliente" => 2, "idEmpleado" => 6],
             ["importe" => 0, "fecha" => "2024-03-05 14:15:00", "idCliente" => 9, "idEmpleado" => 12],
@@ -251,7 +251,7 @@ class DatabaseSeeder extends Seeder
         
         $ids = [];
 
-        for ($idVenta = 2; $idVenta <= 98; $idVenta++) {
+        for ($idVenta = 2; $idVenta <= 99; $idVenta++) {
             
             $n = rand(1, 3);
 

@@ -27,7 +27,7 @@ class ProveedoresController extends Controller {
     // Añadir un registro a la tabla
     public function insert(Request $request) {
         
-        $existe = Proveedores::where('idProveedor', $request->idProveedor)->first();
+        $existe = Proveedores::where('empresa', $request->empresa)->first();
 
         // Comprobar si el registro existe en la tabla
         if ($existe) {
@@ -37,7 +37,6 @@ class ProveedoresController extends Controller {
 
             $proveedor = new Proveedores();
             $proveedor->empresa = $request->empresa;
-            $proveedor->especialidad = $request->especialidad;
 
             if ($proveedor->save()) {
                 $mensaje = ['exito' => 'Proveedor añadido.'];
@@ -47,6 +46,8 @@ class ProveedoresController extends Controller {
 
             }
         }
+
+        session()->flash('mensaje', $mensaje);
 
         return redirect()->route('proveedores.index');
     }

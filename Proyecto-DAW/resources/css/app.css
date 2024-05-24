@@ -379,7 +379,7 @@ h1 {
     left: 0;
     right: 0;
     margin: auto;
-    max-width: 40vw;
+    max-width: 50vw;
     max-height: 40vh;
     z-index: 2;
     border: .5vh solid black;
@@ -406,6 +406,9 @@ h1 {
 }
 .popup h2 {
     margin-bottom: 3%;
+}
+.popup.añadir-editar, .popup.popup.eliminar {
+    max-width: 40vw;
 }
 .popup.añadir-editar table {
     width: 100%;
@@ -476,17 +479,17 @@ h1 {
     align-items: center;
     grid-template-columns: repeat(3, 1fr);
     padding: 1.5vh 1vw;
-    font-size: .8vw;
+    font-size: 1vw;
 }
 .detallesVenta.productos {
     display: grid;
     align-items: center;
     grid-template-columns: repeat(5, 1fr);
     padding: 1.7vh 2vw;
-    font-size: .8vw;
+    font-size: 1vw;
 }
 .detallesVenta span {
-    font-size: .7vw;
+    font-size: .8vw;
     font-weight: 400;
 }
 .detallesVenta p {

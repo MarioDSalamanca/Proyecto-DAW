@@ -44,6 +44,9 @@ class ComprasController extends Controller {
         
         // Buscar el registro del producto
         $inventario = Inventario::where('farmaco', $request->farmaco)->where('nombre', $request->nombre)->first();
+
+        // Buscar el registro del proveedor
+        $proveedor = Proveedores::where('empresa', $request->proveedor)->first();
     
         // Comprobar que el producto existe
         if ($inventario) {
@@ -51,6 +54,7 @@ class ComprasController extends Controller {
             // Actualizar el producto
             $inventario->stock += $request->unidades;
             ($request->precio != $inventario->precio) ? $inventario->precio = $request->precio : null;
+            ($request->prescripcion != $inventario->prescripcion) ? $inventario->prescripcion = $request->prescripcion : null;
 
         } else {
 
@@ -64,6 +68,8 @@ class ComprasController extends Controller {
 
         }
     
+        $inventario->save();
+
         $compra = new Compras();
         $compra->importe = $request->importe;
         $compra->unidades = $request->unidades;

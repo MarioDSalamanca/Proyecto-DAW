@@ -48,7 +48,7 @@ export default function inventarios({ sesionUsuario, datosServidor, mensaje }) {
                         <tbody>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Farmaco</th>
+                                <th>Fármaco</th>
                                 <th>Precio</th>
                                 <th>Prescripción</th>
                                 <th>stock</th>

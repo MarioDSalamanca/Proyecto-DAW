@@ -7,6 +7,8 @@ import { useState } from "react";
 
 export default function Compras({ sesionUsuario, datosServidor, proveedores, mensaje }) {
 
+    console.log(datosServidor);
+
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
     // Usa las funciones de popup
