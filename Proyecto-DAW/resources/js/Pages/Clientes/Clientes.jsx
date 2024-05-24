@@ -43,6 +43,7 @@ export default function Clientes({ datosServidor, sesionUsuario, mensaje }) {
                         {mensaje.error && <p className="mensaje error">&#x274C; {mensaje.error}</p>}
                     </div>
                 )}
+                { datosServidor &&
                 <>
                     <div className="cabecera-tabla">
                         <div>
@@ -83,6 +84,7 @@ export default function Clientes({ datosServidor, sesionUsuario, mensaje }) {
                         </tbody>
                     </table>
                 </>
+                }
             </main>
         </>
     ); 

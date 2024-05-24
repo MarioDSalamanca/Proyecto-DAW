@@ -5,7 +5,7 @@ import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
 import { useState } from "react";
 
-export default function inventarios({ sesionUsuario, datosServidor }) {
+export default function inventarios({ sesionUsuario, datosServidor, mensaje }) {
 
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
@@ -30,6 +30,12 @@ export default function inventarios({ sesionUsuario, datosServidor }) {
                 <h1>Inventario</h1>
                 { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
+                {mensaje && (
+                    <div>
+                        {mensaje.exito && <p className="mensaje exito">{mensaje.exito} &#x2714;</p>}
+                        {mensaje.error && <p className="mensaje error">&#x274C; {mensaje.error}</p>}
+                    </div>
+                )}
                 { datosServidor &&
                 <>
                     <div className="cabecera-tabla">

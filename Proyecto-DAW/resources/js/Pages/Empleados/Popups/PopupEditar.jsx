@@ -4,7 +4,7 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formD
             <div className='cerrar'>
                 <button onClick={ mostrarPopupEditar }>x</button>
             </div>
-            <h2>Editar un usuario</h2>
+            <h2>Editar el empleado</h2>
             <form onSubmit={ (e) => confirmarEditar(e, '/empleados/editar') }>
                 <table>
                     <tbody>

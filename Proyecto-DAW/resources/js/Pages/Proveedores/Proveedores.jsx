@@ -5,7 +5,7 @@ import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
 import { useState } from "react";
 
-export default function Proveedores({ sesionUsuario, datosServidor }) {
+export default function Proveedores({ sesionUsuario, datosServidor, mensaje }) {
 
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
@@ -30,6 +30,12 @@ export default function Proveedores({ sesionUsuario, datosServidor }) {
                 <h1>Proveedores</h1>
                 { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
+                {mensaje && (
+                    <div>
+                        {mensaje.exito && <p className="mensaje exito">{mensaje.exito} &#x2714;</p>}
+                        {mensaje.error && <p className="mensaje error">&#x274C; {mensaje.error}</p>}
+                    </div>
+                )}
                 { datosServidor &&
                 <>
                     <div className="cabecera-tabla">

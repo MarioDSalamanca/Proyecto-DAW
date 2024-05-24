@@ -6,7 +6,7 @@ import PopupEliminar from "./Popups/PopupEliminar";
 import Buscador from '../Componentes/Buscador';
 import { useState } from "react";
 
-export default function Ventas({ sesionUsuario, datosServidor, empleados, clientes, productos }) {
+export default function Ventas({ sesionUsuario, datosServidor, empleados, clientes, productos, mensaje }) {
 
     const [datosFiltrados, setDatosFiltrados] = useState(datosServidor);
 
@@ -31,9 +31,16 @@ export default function Ventas({ sesionUsuario, datosServidor, empleados, client
             <Header sesion={ sesionUsuario }/>
             <main>
                 <h1>Ventas</h1>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadirVenta={ confirmarAñadirVenta } clientes={ clientes } empleados={ empleados } productos={ productos } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadirVenta={ confirmarAñadirVenta } 
+                    clientes={ clientes } empleados={ empleados } productos={ productos } /> }
                 { popupInfo && <PopupInfo mostrarPopupInfo={ mostrarPopupInfo } formDatos={ formDatos } /> }
                 { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
+                {mensaje && (
+                    <div>
+                        {mensaje.exito && <p className="mensaje exito">{mensaje.exito} &#x2714;</p>}
+                        {mensaje.error && <p className="mensaje error">&#x274C; {mensaje.error}</p>}
+                    </div>
+                )}
                 { datosServidor &&
                 <>
                     <div className="cabecera-tabla">

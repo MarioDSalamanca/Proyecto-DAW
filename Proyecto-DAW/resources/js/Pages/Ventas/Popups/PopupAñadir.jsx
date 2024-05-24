@@ -18,7 +18,7 @@ export default function PopupAñadir({ mostrarPopupAñadir, confirmarAñadirVent
             <div className='cerrar'>
             <button onClick={ () => { mostrarPopupAñadir() }}>x</button>
             </div>
-            <h2>Añadir una tarea</h2>
+            <h2>Añadir una venta</h2>
             <form onSubmit={ (e) => confirmarAñadirVenta(e, '/ventas/añadir', venta) }>
             <p id="avisos"></p>
                 <table>
