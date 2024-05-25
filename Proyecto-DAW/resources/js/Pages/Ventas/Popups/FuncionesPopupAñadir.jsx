@@ -98,6 +98,7 @@ export default function FuncionesPopupAñadir() {
         }
     }
 
+    // Función para procesar los selects
     function handleChangeProductos(e, productos) {
         
         const { name, value } = e.target;
@@ -147,6 +148,7 @@ export default function FuncionesPopupAñadir() {
             añadir();
         }
 
+        // Verificación de prescripción
         function añadir() {
 
             // Capturar el campo del cipa
@@ -207,6 +209,7 @@ export default function FuncionesPopupAñadir() {
             }
         }
 
+        // Ocultar o mostrar el campo de las unidades si hay un producto seleccioando
         const unidades = document.getElementsByName('unidades-'+name.split('-')[1])[0];
 
         if (farmaco.value != '') {
@@ -230,11 +233,12 @@ export default function FuncionesPopupAñadir() {
         }));
     }
 
+    // Agregar los campos de select para añadir más productos
     function agregarSelect(productos) {
 
         let ultimoSelect = null;
 
-        for (let i = 10; i >= 0; i--) {
+        for (i = 10; i >= 0; i--) {
             const selects = document.getElementsByName('productos-'+i);
             
             if (selects.length > 0) {
@@ -243,10 +247,11 @@ export default function FuncionesPopupAñadir() {
             }
         };
 
+        // Sacar el último select que hay en el html por el nº
         ultimoSelect = ultimoSelect.name;
-        let ultimoCaracter = ultimoSelect.slice(-1);
-        let ultimoNumero = parseInt(ultimoCaracter, 10);
-        let nuevoSelect = ultimoNumero + 1;
+        const ultimoCaracter = ultimoSelect.slice(-1);
+        const ultimoNumero = parseInt(ultimoCaracter, 10);
+        const nuevoSelect = ultimoNumero + 1;
 
         const contenedor = document.createElement('p');
         contenedor.id = nuevoSelect;
@@ -267,6 +272,7 @@ export default function FuncionesPopupAñadir() {
         opcionVacia.textContent = '';
         select.appendChild(opcionVacia);
     
+        // Agregar los options con los productos al select
         productos.forEach(producto => {
             const option = document.createElement('option');
             option.key = producto.idInventario;
@@ -275,7 +281,7 @@ export default function FuncionesPopupAñadir() {
             select.appendChild(option);
         });
     
-        // Crear el atr select
+        // Crear las unidades para el select
         const unidades = document.createElement('input');
         unidades.type = 'number';
         unidades.id = 'unidades' + nuevoSelect;
@@ -308,9 +314,10 @@ export default function FuncionesPopupAñadir() {
         document.getElementById('contenedor-selects').appendChild(contenedor);
     }
     
+    // Para eliminar el select seleccionado con sus unidades
     function eliminarSelect(id) {
     
-        let select = 'productos-'+id
+        const select = 'productos-'+id
         
         // Obtener el valor del select
         const valorSelect = document.getElementsByName(select)[0].value;

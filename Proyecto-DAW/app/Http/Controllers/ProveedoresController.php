@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proveedores;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Empleados;
 
 class ProveedoresController extends Controller {
 
@@ -21,7 +22,15 @@ class ProveedoresController extends Controller {
         // Eliminar el mensaje de la sesión para que no se muestre en la siguiente solicitud
         session()->forget('mensaje');
         
-        return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario', 'datosServidor', 'mensaje'));
+        // Comporbar el rol del usuario de sesión
+        $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
+        $rolUsuario = $rolUsuario->rol;
+
+        if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
+            return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario', 'datosServidor', 'mensaje'));
+        } else {
+            return Inertia::render('SinPermisos');
+        }
     }
 
     // Añadir un registro a la tabla

@@ -16,7 +16,7 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formD
                             </td>
                             <td>
                                 <label>Nuevo Stock</label><br />
-                                <input type="number" name='stock' value={ formDatos.stock } onChange={ handleChange } minLength={1} />
+                                <input type="number" name='stock' value={ formDatos.stock } onChange={ handleChange } min={1} />
                             </td>
                             <td>
                                 <div className='guardar'>

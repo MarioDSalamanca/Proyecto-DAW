@@ -19,7 +19,7 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formD
                             </td>
                             <td>
                                 <label>Cipa</label><br />
-                                <input type="number" name='cipa' value={ formDatos.cipa } onChange={ handleChange } minLength={10} maxLength={10} />
+                                <input type="number" name='cipa' value={ formDatos.cipa } onChange={ handleChange } min={1} max={9999999999} />
                             </td>
                         </tr>
                         <tr>
