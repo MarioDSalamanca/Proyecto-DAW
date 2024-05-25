@@ -26,7 +26,7 @@ class ProveedoresController extends Controller {
         $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
         $rolUsuario = $rolUsuario->rol;
 
-        if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
+        if ($rolUsuario === 'titular') {
             return Inertia::render('Proveedores/Proveedores', compact('sesionUsuario', 'datosServidor', 'mensaje'));
         } else {
             return Inertia::render('SinPermisos');
@@ -40,7 +40,7 @@ class ProveedoresController extends Controller {
 
         // Comprobar si el registro existe en la tabla
         if ($existe) {
-            $mensaje = ['error' => 'Ya existe un proveedor con esas características.'];
+            $mensaje = ['error' => 'Ya existe un proveedor con esas características'];
             
         } else {
 
@@ -48,10 +48,10 @@ class ProveedoresController extends Controller {
             $proveedor->empresa = $request->empresa;
 
             if ($proveedor->save()) {
-                $mensaje = ['exito' => 'Proveedor añadido.'];
+                $mensaje = ['exito' => 'Proveedor añadido'];
 
             } else {
-                $mensaje = ['error' => 'Error al añadir el proveedor, intentelo más tarde o contacte con soporte.'];
+                $mensaje = ['error' => 'Error al añadir el proveedor, intentelo más tarde o contacte con soporte'];
 
             }
         }
@@ -66,10 +66,10 @@ class ProveedoresController extends Controller {
         $proveedor = Proveedores::where('empresa', $request->dato)->first();
         
         if ($proveedor->delete()) {
-            $mensaje = ['exito' => 'Proveedor '.$request->dato.' eliminado.'];
+            $mensaje = ['exito' => 'Proveedor '.$request->dato.' eliminado'];
 
         } else {
-            $mensaje = ['error' => 'Error al eliminar el proveedor, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al eliminar el proveedor, intentelo más tarde o contacte con soporte'];
 
         }
 

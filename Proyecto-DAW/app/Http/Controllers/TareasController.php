@@ -42,10 +42,10 @@ class TareasController extends Controller {
         $tarea->idEmpleado = $empleado->idEmpleado;
 
         if ($tarea->save()) {
-            $mensaje = ['exito' => 'Tarea añadida.'];
+            $mensaje = ['exito' => 'Tarea añadida'];
 
         } else {
-            $mensaje = ['error' => 'Error al añadir la tarea, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al añadir la tarea, intentelo más tarde o contacte con soporte'];
 
         }
 
@@ -75,10 +75,10 @@ class TareasController extends Controller {
         ($empleado != null && $empleado != $tarea->idEmpleado) ? $tarea->idEmpleado = $empleado : null;
         
         if ($tarea->save()) {
-            $mensaje = ['exito' => 'Tarea actualizada.'];
+            $mensaje = ['exito' => 'Tarea actualizada'];
 
         } else {
-            $mensaje = ['error' => 'Error al actualizar la tarea, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al actualizar la tarea, intentelo más tarde o contacte con soporte'];
 
         }
 
@@ -93,10 +93,10 @@ class TareasController extends Controller {
         $tarea = Tareas::where('idTarea', $request->dato)->first();
         
         if ($tarea->delete()) {
-            $mensaje = ['exito' => 'Tarea eliminada.'];
+            $mensaje = ['exito' => 'Tarea eliminada'];
 
         } else {
-            $mensaje = ['error' => 'Error al eliminar la tarea, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al eliminar la tarea, intentelo más tarde o contacte con soporte'];
 
         }
 

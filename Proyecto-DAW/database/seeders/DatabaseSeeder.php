@@ -56,17 +56,17 @@ class DatabaseSeeder extends Seeder
         }
 
         $inventario = [
-            ['nombre' => 'ibufen', 'farmaco' => 'ibuprofeno', 'precio' => 2, 'prescripcion' => false, 'stock' => 56],
-            ['nombre' => 'norlevo', 'farmaco' => 'levonorgestrel', 'precio' => 1.5, 'prescripcion' => true, 'stock' => 70],
-            ['nombre' => 'eutirox', 'farmaco' => 'levotiroxina', 'precio' => 3, 'prescripcion' => true, 'stock' => 5],
-            ['nombre' => 'tylenol', 'farmaco' => 'paracetamol', 'precio' => 1.8, 'prescripcion' => false, 'stock' => 50],
-            ['nombre' => 'lumigan', 'farmaco' => 'bimatoprost', 'precio' => 2.5, 'prescripcion' => true, 'stock' => 60],
-            ['nombre' => 'viread', 'farmaco' => 'tenofovir', 'precio' => 4, 'prescripcion' => true, 'stock' => 30],
-            ['nombre' => 'valium', 'farmaco' => 'diazepam', 'precio' => 3.5, 'prescripcion' => true, 'stock' => 25],
-            ['nombre' => 'plenur', 'farmaco' => 'carbonato de calcio', 'precio' => 5, 'prescripcion' => true, 'stock' => 20],
-            ['nombre' => 'sintrom', 'farmaco' => 'acenocumarol', 'precio' => 4, 'prescripcion' => true, 'stock' => 40],
-            ['nombre' => 'nolotil', 'farmaco' => 'metamizol magnésico', 'precio' => 6, 'prescripcion' => true, 'stock' => 15],
-            ['nombre' => 'ebastina', 'farmaco' => 'ebastina', 'precio' => 3.2, 'prescripcion' => true, 'stock' => 25],
+            ['nombre' => 'Ibufen', 'farmaco' => 'Ibuprofeno', 'precio' => 2, 'prescripcion' => false, 'stock' => 56],
+            ['nombre' => 'Norlevo', 'farmaco' => 'Levonorgestrel', 'precio' => 1.5, 'prescripcion' => true, 'stock' => 70],
+            ['nombre' => 'Eutirox', 'farmaco' => 'Levotiroxina', 'precio' => 3, 'prescripcion' => true, 'stock' => 5],
+            ['nombre' => 'Tylenol', 'farmaco' => 'Paracetamol', 'precio' => 1.8, 'prescripcion' => false, 'stock' => 50],
+            ['nombre' => 'Lumigan', 'farmaco' => 'Bimatoprost', 'precio' => 2.5, 'prescripcion' => true, 'stock' => 60],
+            ['nombre' => 'Viread', 'farmaco' => 'Tenofovir', 'precio' => 4, 'prescripcion' => true, 'stock' => 30],
+            ['nombre' => 'Valium', 'farmaco' => 'Diazepam', 'precio' => 3.5, 'prescripcion' => true, 'stock' => 25],
+            ['nombre' => 'Plenur', 'farmaco' => 'Carbonato de calcio', 'precio' => 5, 'prescripcion' => true, 'stock' => 20],
+            ['nombre' => 'Sintrom', 'farmaco' => 'Acenocumarol', 'precio' => 4, 'prescripcion' => true, 'stock' => 40],
+            ['nombre' => 'Nolotil', 'farmaco' => 'Metamizol magnésico', 'precio' => 6, 'prescripcion' => true, 'stock' => 15],
+            ['nombre' => 'Ebastina', 'farmaco' => 'Ebastina', 'precio' => 3.2, 'prescripcion' => true, 'stock' => 25],
         ];
 
         // Crear registros de inventario

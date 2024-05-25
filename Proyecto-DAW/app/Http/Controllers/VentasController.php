@@ -25,7 +25,7 @@ class VentasController extends Controller {
             'empleados:idEmpleado,correo',
             'detalle_ventas:idDetalleVenta,unidades,idVenta,idInventario',
             'detalle_ventas.inventario:idInventario,nombre,farmaco,precio,stock'
-        )->get();
+        )->orderBy('fecha', 'desc')->get();
 
         // Recoger el campo correo de todos los registros de la tabla empleados
         $empleados = Empleados::pluck('correo');
@@ -135,10 +135,10 @@ class VentasController extends Controller {
         $venta->save();
 
         if ($venta->save() && $insertados) {
-            $mensaje = ['exito' => 'Registro de venta añadido.'];
+            $mensaje = ['exito' => 'Registro de venta añadido'];
 
         } else {
-            $mensaje = ['error' => 'Error al añadir la venta, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al añadir la venta, intentelo más tarde o contacte con soporte'];
 
         }
 
@@ -153,10 +153,10 @@ class VentasController extends Controller {
         $venta = Ventas::where('idVenta', $request->dato)->first();
         
         if ($venta->delete()) {
-            $mensaje = ['exito' => 'Registro de venta eliminado.'];
+            $mensaje = ['exito' => 'Registro de venta eliminado'];
 
         } else {
-            $mensaje = ['error' => 'Error al eliminar el registro de la venta, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al eliminar el registro de la venta, intentelo más tarde o contacte con soporte'];
 
         }
 

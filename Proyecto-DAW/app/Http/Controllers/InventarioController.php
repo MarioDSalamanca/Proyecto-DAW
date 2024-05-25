@@ -33,10 +33,10 @@ class InventarioController extends Controller {
         ($request->stock != $inventario->stock) ? $inventario->stock = $request->stock : null;
         
         if ($inventario->save()) {
-            $mensaje = ['exito' => 'Producto actualizado.'];
+            $mensaje = ['exito' => 'Producto actualizado'];
 
         } else {
-            $mensaje = ['error' => 'Error al actualizar el producto, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al actualizar el producto, intentelo más tarde o contacte con soporte'];
 
         }
 
@@ -51,10 +51,10 @@ class InventarioController extends Controller {
         $inventario = Inventario::where('idInventario', $request->dato)->first();
         
         if ($inventario->delete()) {
-            $mensaje = ['exito' => 'Producto eliminado.'];
+            $mensaje = ['exito' => 'Producto eliminado'];
             
         } else {
-            $mensaje = ['error' => 'Error al eliminar el producto, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al eliminar el producto, intentelo más tarde o contacte con soporte'];
 
         }
 

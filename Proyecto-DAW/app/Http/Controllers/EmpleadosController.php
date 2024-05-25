@@ -26,7 +26,7 @@ class empleadosController extends Controller {
         $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
         $rolUsuario = $rolUsuario->rol;
 
-        if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
+        if ($rolUsuario === 'titular') {
             return Inertia::render('Empleados/Empleados', compact('datosServidor', 'sesionUsuario', 'mensaje'));
         } else {
             return Inertia::render('SinPermisos');
@@ -52,10 +52,10 @@ class empleadosController extends Controller {
             $usuario->rol = $request->rol;
 
             if ($usuario->save()) {
-                $mensaje = ['exito' => 'Empleado con el correo '.$request->correo.' añadido.'];
+                $mensaje = ['exito' => 'Empleado con el correo '.$request->correo.' añadido'];
 
             } else {
-                $mensaje = ['error' => 'Error al añadir al empleado, intentelo más tarde o contacte con soporte.'];
+                $mensaje = ['error' => 'Error al añadir al empleado, intentelo más tarde o contacte con soporte'];
 
             }
         }
@@ -77,10 +77,10 @@ class empleadosController extends Controller {
         ($request->rol != $usuario->rol) ? $usuario->rol = $request->rol : null;
         
         if ($usuario->save()) {
-            $mensaje = ['exito' => 'Empleado con el correo '.$request->correo.' actualizado.'];
+            $mensaje = ['exito' => 'Empleado con el correo '.$request->correo.' actualizado'];
 
         } else {
-            $mensaje = ['error' => 'Error al actualizar al empleado, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al actualizar al empleado, intentelo más tarde o contacte con soporte'];
 
         }
 
@@ -95,10 +95,10 @@ class empleadosController extends Controller {
         $usuario = Empleados::where('correo', $request->dato);
         
         if ($usuario->delete()) {
-            $mensaje = ['exito' => 'Empleado con el correo '.$request->dato.' eliminado.'];
+            $mensaje = ['exito' => 'Empleado con el correo '.$request->dato.' eliminado'];
             
         } else {
-            $mensaje = ['error' => 'Error al eliminar al empleado, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al eliminar al empleado, intentelo más tarde o contacte con soporte'];
 
         }
 

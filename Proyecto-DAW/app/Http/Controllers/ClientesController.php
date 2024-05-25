@@ -41,10 +41,10 @@ class ClientesController extends Controller {
             $cliente->cipa = $request->cipa;
 
             if ($cliente->save()) {
-                $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' añadido.'];
+                $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' añadido'];
 
             } else {
-                $mensaje = ['error' => 'Error al añadir al cliente, intentelo más tarde o contacte con soporte.'];
+                $mensaje = ['error' => 'Error al añadir al cliente, intentelo más tarde o contacte con soporte'];
 
             }
         }
@@ -64,10 +64,10 @@ class ClientesController extends Controller {
         ($request->cipa != $cliente->cipa) ? $cliente->cipa = $request->cipa : null;
         
         if ($cliente->save()) {
-            $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' actualizado.'];
+            $mensaje = ['exito' => 'Cliente con el cipa '.$request->cipa.' actualizado'];
 
         } else {
-            $mensaje = ['error' => 'Error al actualizar al cliente, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al actualizar al cliente, intentelo más tarde o contacte con soporte'];
 
         }
 
@@ -82,10 +82,10 @@ class ClientesController extends Controller {
         $cliente = Clientes::where('cipa', $request->dato);
         
         if ($cliente->delete()) {
-            $mensaje = ['exito' => 'Cliente con el cipa '.$request->dato.' eliminado.'];
+            $mensaje = ['exito' => 'Cliente con el cipa '.$request->dato.' eliminado'];
 
         } else {
-            $mensaje = ['error' => 'Error al eliminar al cliente, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al eliminar al cliente, intentelo más tarde o contacte con soporte'];
 
         }
 

@@ -369,7 +369,7 @@ h1 {
     background-color: blue;
 }
 .sin-resultados {
-    color: red;
+    text-align: center;
     font-size: 100%;
     padding: 2vw 0;
 }

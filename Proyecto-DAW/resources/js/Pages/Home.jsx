@@ -42,12 +42,12 @@ export default function Home({ sesionUsuario, ventas, compras, tareas }) {
                         }}
                     />
                     <div className='tareas-home'>
-                        {tareas.length === 0 ? (
-                            <p className="sin-resultados">No tienes tareas próximas</p>
+                        { tareas.length === 0 || tareas.filter(tarea => tarea.estado != "pendiente") ? (
+                            <p className="sin-resultados">No tienes tareas pendientes</p>
                         ) : (
                             <table>
                                 <tbody>
-                                    {tareas.map(tarea => (
+                                    { tareas.map(tarea => (
                                         tarea.estado === "pendiente" && (
                                             <React.Fragment key={tarea.idTarea}>
                                                 <tr>

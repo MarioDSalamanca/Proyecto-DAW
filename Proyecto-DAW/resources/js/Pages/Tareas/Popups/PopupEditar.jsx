@@ -1,4 +1,4 @@
-export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formDatos, handleChange }) {
+export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formDatos, handleChange, empleados }) {
         
     return (
         <div className="popup añadir-editar">
@@ -16,7 +16,12 @@ export default function PopupEditar({ mostrarPopupEditar, confirmarEditar, formD
                             </td>
                             <td>
                                 <label>Empleado</label><br />
-                                <input type="email" name='empleados' value={ formDatos.empleados.correo } onChange={ handleChange } minLength={5} />
+                                <select name='empleados' value={ formDatos.empleados.correo } onChange={ handleChange } required >
+                                    <option value=""></option>
+                                    {empleados.map((empleado) => (
+                                        <option key={empleado} value={empleado}>{empleado}</option>
+                                    ))}
+                                </select>
                             </td>
                             <td>
                                 <label>Correo</label><br />

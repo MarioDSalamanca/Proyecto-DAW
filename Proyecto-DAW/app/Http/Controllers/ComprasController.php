@@ -16,7 +16,7 @@ class ComprasController extends Controller {
         
         /* Recoger todos los registros de la tabla compras 
          con los productos de la tabla inventario y los provedores relacionados */
-        $datosServidor = Compras::with('inventario:idInventario,farmaco', 'proveedores:idProveedor,empresa')->get();
+        $datosServidor = Compras::with('inventario:idInventario,farmaco', 'proveedores:idProveedor,empresa')->orderBy('fecha', 'desc')->get();
 
         // Recoger el campo empresa de todos los registros de la tabla proveedores
         $proveedores = Proveedores::pluck('empresa');
@@ -32,7 +32,7 @@ class ComprasController extends Controller {
         $rolUsuario = Empleados::where('correo', $sesionUsuario)->first();
         $rolUsuario = $rolUsuario->rol;
 
-        if ($rolUsuario === 'adjunto' || $rolUsuario === 'titular') {
+        if ($rolUsuario === 'titular') {
             return Inertia::render('Compras/Compras', compact('sesionUsuario', 'datosServidor', 'proveedores', 'mensaje'));
         } else {
             return Inertia::render('SinPermisos');
@@ -78,10 +78,10 @@ class ComprasController extends Controller {
         $compra->idInventario = $inventario->idInventario;
 
         if($compra->save() && $inventario->save()) {
-            $mensaje = ['exito' => 'Compra añadida.'];
+            $mensaje = ['exito' => 'Compra añadida'];
 
         } else {
-            $mensaje = ['error' => 'Error al añadir la compra, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al añadir la compra, intentelo más tarde o contacte con soporte'];
 
         }
 
@@ -95,10 +95,10 @@ class ComprasController extends Controller {
 
         $compra = Compras::where('idCompra', $request->dato)->first();
         if ($compra->delete()) {
-            $mensaje = ['exito' => 'Compra eliminada.'];
+            $mensaje = ['exito' => 'Compra eliminada'];
 
         } else {
-            $mensaje = ['error' => 'Error al eliminar la compra, intentelo más tarde o contacte con soporte.'];
+            $mensaje = ['error' => 'Error al eliminar la compra, intentelo más tarde o contacte con soporte'];
 
         }
         
