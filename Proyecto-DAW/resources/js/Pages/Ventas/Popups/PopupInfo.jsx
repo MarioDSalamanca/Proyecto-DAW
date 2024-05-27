@@ -12,11 +12,18 @@ export default function PopupInfo({ mostrarPopupInfo, formDatos }) {
             let detalleInfo = {};
     
             detalleInfo.unidades = detalle.unidades;
-            detalleInfo.farmaco = detalle.inventario.farmaco;
-            detalleInfo.nombreComercial = detalle.inventario.nombre;
-            detalleInfo.precio = detalle.inventario.precio;
-            detalleInfo.stock = detalle.inventario.stock;
-    
+            if (detalle.inventario) {
+                detalleInfo.farmaco = detalle.inventario.farmaco;
+                detalleInfo.nombreComercial = detalle.inventario.nombre;
+                detalleInfo.precio = detalle.inventario.precio;
+                detalleInfo.stock = detalle.inventario.stock;
+            } else {
+                detalleInfo.farmaco = '-';
+                detalleInfo.nombreComercial = '-';
+                detalleInfo.precio = '-';
+                detalleInfo.stock = '-';
+            }
+
             // Agregar el objeto detalleInfo al array detallesInfo
             detallesInfo.push(detalleInfo);
         }
@@ -39,7 +46,7 @@ export default function PopupInfo({ mostrarPopupInfo, formDatos }) {
                     </div>
                 )}
                 <div className="detallesVenta empleado">
-                    <p><span>Correo empleado </span><br />{formDatos.empleados.correo}</p>
+                    <p><span>Correo empleado </span><br />{formDatos.empleados ? formDatos.empleados.correo : "-" }</p>
                     <p><span>Fecha </span><br />{new Date (formDatos.fecha).toLocaleString()}</p>
                     <p><span>Importe </span><br />{formDatos.importe}€</p>
                 </div>
