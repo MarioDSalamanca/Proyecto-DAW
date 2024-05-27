@@ -1,0 +1,58 @@
+{
+  "resources/js/Img/clientes.jpg": {
+    "file": "assets/clientes-zYiDDUJJ.jpg",
+    "src": "resources/js/Img/clientes.jpg"
+  },
+  "resources/js/Img/compras.jpg": {
+    "file": "assets/compras-pXSbkEg3.jpg",
+    "src": "resources/js/Img/compras.jpg"
+  },
+  "resources/js/Img/empleados.jpg": {
+    "file": "assets/empleados-CTqS2W5q.jpg",
+    "src": "resources/js/Img/empleados.jpg"
+  },
+  "resources/js/Img/inventario.jpg": {
+    "file": "assets/inventario-BKLTjXTC.jpg",
+    "src": "resources/js/Img/inventario.jpg"
+  },
+  "resources/js/Img/login.png": {
+    "file": "assets/login-Bn14pvpE.png",
+    "src": "resources/js/Img/login.png"
+  },
+  "resources/js/Img/logo.png": {
+    "file": "assets/logo-fVt052qi.png",
+    "src": "resources/js/Img/logo.png"
+  },
+  "resources/js/Img/proveedores.jpg": {
+    "file": "assets/proveedores-CryQ0hn7.jpg",
+    "src": "resources/js/Img/proveedores.jpg"
+  },
+  "resources/js/Img/tareas.jpg": {
+    "file": "assets/tareas-CtTKb_xH.jpg",
+    "src": "resources/js/Img/tareas.jpg"
+  },
+  "resources/js/Img/ventas.jpg": {
+    "file": "assets/ventas-CY2DLMB-.jpg",
+    "src": "resources/js/Img/ventas.jpg"
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-Q1X4uqqU.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "css": [
+      "assets/app-YHdV7JEk.css"
+    ],
+    "assets": [
+      "assets/login-Bn14pvpE.png",
+      "assets/logo-fVt052qi.png",
+      "assets/inventario-BKLTjXTC.jpg",
+      "assets/ventas-CY2DLMB-.jpg",
+      "assets/compras-pXSbkEg3.jpg",
+      "assets/proveedores-CryQ0hn7.jpg",
+      "assets/clientes-zYiDDUJJ.jpg",
+      "assets/empleados-CTqS2W5q.jpg",
+      "assets/tareas-CtTKb_xH.jpg"
+    ]
+  }
+}
