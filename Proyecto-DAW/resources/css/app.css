@@ -58,6 +58,22 @@ main {
     border: 1px solid black;
     border-radius: 5px;
 }
+.tareas-home table {
+    border-collapse: collapse;
+}
+.tareas-home td {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+.tareas-home .fecha {
+    width: 27%;
+    padding: 4vh 0;
+}
+.tareas-home .descripcion {
+    width: 73%;
+    text-align: justify;
+    padding: 4vh 1.5vw;
+}
 .sin-permisos {
     text-align: center;
     margin-top: 20vh;

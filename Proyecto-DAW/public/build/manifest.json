@@ -36,12 +36,12 @@
     "src": "resources/js/Img/ventas.jpg"
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-Q1X4uqqU.js",
+    "file": "assets/app-CdaR7tc3.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
     "css": [
-      "assets/app-YHdV7JEk.css"
+      "assets/app-B3ZE3PFx.css"
     ],
     "assets": [
       "assets/login-Bn14pvpE.png",

@@ -42,24 +42,16 @@ export default function Home({ sesionUsuario, ventas, compras, tareas }) {
                         }}
                     />
                     <div className='tareas-home'>
-                        { tareas.length === 0 || tareas.filter(tarea => tarea.estado != "pendiente") ? (
+                        { tareas.length === 0 ? (
                             <p className="sin-resultados">No tienes tareas pendientes</p>
                         ) : (
                             <table>
                                 <tbody>
                                     { tareas.map(tarea => (
-                                        tarea.estado === "pendiente" && (
-                                            <React.Fragment key={tarea.idTarea}>
-                                                <tr>
-                                                    <td style={{ borderRight: '1px solid gray' }}>{tarea.nombre}</td>
-                                                    <td style={{ borderRight: '1px solid gray' }}>{new Date(tarea.fecha).toLocaleString()}</td>
-                                                    <td>{tarea.estado}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td colSpan={3} style={{ borderTop: '1px solid gray' }}>{tarea.descripcion}</td>
-                                                </tr>
-                                            </React.Fragment>
-                                        )
+                                        <tr key={tarea.idTarea}>
+                                            <td className='fecha'>{new Date(tarea.fecha).toLocaleString()}</td>
+                                            <td className='descripcion'>{tarea.descripcion}</td>
+                                        </tr>
                                     ))}
                                 </tbody>
                             </table>

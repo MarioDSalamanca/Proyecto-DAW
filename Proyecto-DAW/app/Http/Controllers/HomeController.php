@@ -33,7 +33,7 @@ class HomeController extends Controller {
 
 
     $idUsuario = Empleados::where('correo', $sesionUsuario)->value('idEmpleado');
-    $tareas = Tareas::where('idEmpleado', $idUsuario)->orderBy('fecha')->get();
+    $tareas = Tareas::where('idEmpleado', $idUsuario)->where('estado', 'pendiente')->orderBy('fecha')->get();
 
     return Inertia::render('Home', compact('sesionUsuario', 'ventas', 'compras', 'tareas'));
 }

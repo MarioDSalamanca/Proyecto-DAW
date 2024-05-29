@@ -238,7 +238,7 @@ export default function FuncionesPopupAñadir() {
 
         let ultimoSelect = null;
 
-        for (i = 10; i >= 0; i--) {
+        for (let i = 10; i >= 0; i--) {
             const selects = document.getElementsByName('productos-'+i);
             
             if (selects.length > 0) {

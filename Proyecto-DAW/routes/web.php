@@ -27,7 +27,6 @@ Route::middleware(['verificar_usuario'])->group(function () {
     // Clientes
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
     Route::post('/clientes/añadir', [ClientesController::class, 'insert'])->name('clientes.insert');
-    Route::post('/clientes/editar', [ClientesController::class, 'update'])->name('clientes.update');
     Route::post('/clientes/eliminar', [ClientesController::class, 'delete'])->name('clientes.delete');
 
     // Compras
@@ -61,7 +60,6 @@ Route::middleware(['verificar_usuario'])->group(function () {
     // Ventas
     Route::get('/ventas', [VentasController::class, 'index'])->name('ventas.index');
     Route::post('/ventas/añadir', [VentasController::class, 'insert'])->name('ventas.insert');
-    Route::post('/ventas/editar', [VentasController::class, 'update'])->name('ventas.update');
     Route::post('/ventas/eliminar', [VentasController::class, 'delete'])->name('ventas.delete');
 
 });
