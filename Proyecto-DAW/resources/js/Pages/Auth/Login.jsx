@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { router } from '@inertiajs/react'
-import { usePage } from '@inertiajs/react'
 import img from '../../Img/login.png'
 
-export default function Login() {
-    // Hook para recoger los errores del servidor
-    const { errores } = usePage().props;
+export default function Login({ errores }) {
 
     // Declarar las credenciales como estados
     const [credenciales, setCredenciales] = useState({});
