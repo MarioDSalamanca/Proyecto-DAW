@@ -25,7 +25,6 @@ export default function Tareas({ sesionUsuario, datosServidor, empleados, mensaj
         confirmarAñadir,
         confirmarEditar,
         confirmarEliminar,
-        datoEliminar,
         formDatos
     } = FuncionesPopUps();
 
@@ -34,9 +33,12 @@ export default function Tareas({ sesionUsuario, datosServidor, empleados, mensaj
             <Header sesion={ sesionUsuario }/>
             <main>
                 <h1>Tareas</h1>
-                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir } formDatos={ formDatos } handleChange={ handleChange } empleados={ empleados } /> }
-                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar } formDatos={ formDatos } handleChange={ handleChange } empleados={ empleados } /> }
-                { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar } confirmarEliminar={ confirmarEliminar } /> }
+                { popupAñadir && <PopupAñadir mostrarPopupAñadir={ mostrarPopupAñadir } confirmarAñadir={ confirmarAñadir }
+                 formDatos={ formDatos } handleChange={ handleChange } empleados={ empleados } /> }
+                { popupEditar && <PopupEditar mostrarPopupEditar={ mostrarPopupEditar } confirmarEditar={ confirmarEditar }
+                 formDatos={ formDatos } handleChange={ handleChange } empleados={ empleados } /> }
+                { popupEliminar && <PopupEliminar mostrarPopupEliminar={ mostrarPopupEliminar }
+                 confirmarEliminar={ confirmarEliminar } /> }
                 {mensaje && (
                     <div>
                         {mensaje.exito && <p className="mensaje exito">{mensaje.exito} &#x2714;</p>}

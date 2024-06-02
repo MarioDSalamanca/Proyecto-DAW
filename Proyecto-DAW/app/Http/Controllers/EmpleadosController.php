@@ -7,7 +7,7 @@ use App\Models\Empleados;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class empleadosController extends Controller {
+class EmpleadosController extends Controller {
 
     // Index del módulo de empleados
     public function index() {

@@ -8,7 +8,7 @@ export default function Buscador({ datosServidor, setDatosFiltrados, campos }) {
     // Actualizar el valor del buscador
     const handleChangeBuscador = (e) => {
 
-        const valor = e.target.value.trim();
+        const valor = e.target.value;
         setBuscar(valor);
         
         if (datosServidor && campos) {

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Empleados;
-use App\Models\Inventario;
 use App\Models\Clientes;
 use App\Models\Detalle_ventas;
 
