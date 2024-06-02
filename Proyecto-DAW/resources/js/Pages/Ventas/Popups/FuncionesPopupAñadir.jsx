@@ -8,8 +8,6 @@ export default function FuncionesPopupAñadir() {
 
     // Cada vez que cambie errores se actualiza en el párrafo
         useEffect(() => {
-        
-            console.log(errores, venta)
 
             // Limpia el contenido existente en "avisos"
             let avisos = document.getElementById("avisos");
@@ -122,7 +120,6 @@ export default function FuncionesPopupAñadir() {
                         productoExistente = true;
                         break;
                     }
-                    console.log(nombreProducto, value);
                 }
             }
 
@@ -137,7 +134,6 @@ export default function FuncionesPopupAñadir() {
                 if (venta[name]) {
                     borrar(name);
                 }
-
                 return;
 
             } else {
