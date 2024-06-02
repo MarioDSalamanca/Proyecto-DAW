@@ -17,5 +17,6 @@
 # Pasos para automatizar
     # El demonio cron de Ubuntu para automatizar tareas
     # crontab -e
+    
     # Se ejecuta todos los días a la 1 am
     # 0 1 * * * /var/www/html/ruta del proyecto/backup.sh
